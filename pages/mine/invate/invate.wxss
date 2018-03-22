@@ -1,0 +1,81 @@
+/* pages/mine/invate/invate.wxss */
+.invate_session{
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  height: 140rpx;
+}
+
+.user_info{
+  margin-left: 30rpx;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.username{
+  font-size: 20rpx;
+  color: #384269;
+}
+
+.invate_info{
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: space-between;
+}
+
+.game_type{
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
+  font-size: 28rpx;
+  color: #384269;
+}
+
+.time{
+  margin-right: 20rpx;
+  font-size: 28rpx;
+  color: #384269;
+}
+
+.location{
+  font-size: 28rpx;
+  color: #DDE0E5;
+}
+
+.invate_status{
+  margin-right: 30rpx;
+}
+
+.status{
+  font-size: 34rpx;
+  color: red;
+}
+
+.invate_tools{
+  flex-direction: row;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.tools{
+  height: 80rpx;
+  width: 33.3%;
+  font-size: 30rpx;
+  color: #384269;
+  flex-direction: column;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  border:  1px solid #DDE0E5;
+}

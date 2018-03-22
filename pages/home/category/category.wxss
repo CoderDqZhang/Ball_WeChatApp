@@ -1,0 +1,123 @@
+/* pages/home/category/category.wxss */
+.search_bar{
+  padding-left: 30rpx;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30rpx;
+  align-items: center;
+  height: 100rpx;
+}
+
+.location{
+  font-size: 30rpx;
+  color: #384269;
+  width: 80rpx;
+}
+
+.search_input{
+
+}
+
+.tools_top{
+  background-color: white;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  min-height: 100rpx;
+}
+
+.tool_contains{
+  border:  1px solid #DDE0E5;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  width: 33.3%;
+  height: 100rpx;
+}
+
+.sort_image{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.scroll_session{
+  background-color:white;
+}
+
+.invate_section{
+  flex-direction: row;
+  display: flex;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  justify-content: center;
+  align-items: center;
+  height: 250rpx;
+}
+
+.invate_sections{
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.invate_user{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 200rpx;
+}
+
+.avatar{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.user_name{
+  font-size: 20rpx;
+  margin-top: 30rpx;
+  color: #DDE0E5;
+}
+
+.invate_info{
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: space-between;
+  display: flex;
+}
+
+.invate_title{
+  font-size: 30rpx;
+  color: #384269
+}
+
+.invate_time{
+  font-size: 28rpx;
+  color: #DDE0E5
+}
+
+.invate_location{
+  font-size: 28rpx;
+  color: #DDE0E5
+}
+
+.invate_much_info{
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.invate_much{
+  font-size: 30rpx;
+  color: #384269
+}
+
+.invate_muchs{
+  font-size: 30rpx;
+  color: red
+}

@@ -1,0 +1,174 @@
+/* pages/home/detail/detail.wxss */
+.ball_section{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 30rpx;
+  min-height: 250rpx;
+}
+
+.avatar{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.ball_info{
+  margin-left: 10rpx;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-content: space-between;
+}
+
+.title{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.sub_title{
+  font-size: 28rpx;
+  color: #DDE0E5;
+}
+
+.session_title{
+  background-color: #f8f8fa;
+  height: 40rpx;
+  width: 100%;
+}
+
+.info_title{
+  font-size: 28rpx;
+  color: #DDE0E5;
+  margin-left: 30rpx;
+  margin-top: 6rpx;
+}
+
+.sub_info{
+  flex-direction: row;
+  display: flex;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100rpx;
+}
+
+.sub_title{
+  font-size: 30rpx;
+  color: #DDE0E5;
+}
+
+.sub_detail{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.sub_location{
+  flex-direction: row;
+  padding-left: 30rpx;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 150rpx;
+}
+
+.sub_locations{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.sub_infos{
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
+}
+
+.sub_subtitle{
+  font-size: 28rpx;
+  color: #DDE0E5;
+}
+
+.sub_much{
+  font-size: 36rpx;
+  color: red;
+}
+
+.users_sessions{
+  width: 100%;
+  background-color: white;
+}
+
+.game_info{
+  margin-left: 30rpx;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start
+}
+
+.game_info_title{
+  font-size: 28rpx;
+  color: #DDE0E5;
+}
+
+.user_list{
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  min-height: 120rpx; 
+}
+
+.user_info{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.user_infos{
+  flex-direction: column;
+  display: flex;
+  margin-left: 20rpx;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.user_name{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.user_desc{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.sub_user_desc{
+  font-size: 28rpx;
+  color: #384269;
+  margin-right: 30rpx;
+}
+
+/* .appointment{
+
+} */
+
+.appointment_text{
+  font-size: 34rpx;
+  color: red;
+}

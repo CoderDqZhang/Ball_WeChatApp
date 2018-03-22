@@ -1,0 +1,114 @@
+/* pages/mine/other/other.wxss */
+.avatar{
+  min-height: 170rpx;
+  flex-direction:row;
+  display: flex;
+  padding-left: 30rpx;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.username{
+  margin-left: 20rpx;
+  font-size: 34rpx;
+  color: #384269;
+}
+
+.session_title{
+  background-color: #f8f8fa;
+  height: 40rpx;
+  width: 100%;
+}
+
+.info_title{
+  font-size: 28rpx;
+  color: #DDE0E5;
+  margin-left: 30rpx;
+  margin-top: 6rpx;
+}
+
+.user_info{
+  flex-direction: row;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  min-height: 100rpx;
+  width: 100%;
+}
+
+.user_normal_info{
+  margin-right: 30rpx;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.title{
+  font-size: 30rpx;
+  color: #DDE0E5;
+}
+
+.sub_title{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.comment_info{
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.conmment_user_infos{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.comment-avatar{
+  margin-left: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.conmment_user_info{
+  margin-left: 20rpx;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.conmment_username{
+  font-size: 28rpx;
+  color: #384269;
+}
+
+.conmment_sub_title{
+  color: #DDE0E5;
+  font-size: 20rpx;
+}
+
+.comment{
+  font-size: 34rpx;
+  color: #384269;
+  margin-left: 100rpx;
+}

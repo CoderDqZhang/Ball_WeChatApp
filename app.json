@@ -1,0 +1,44 @@
+{
+  "pages":[
+    "pages/home/home/home",
+    "pages/home/category/category",
+    "pages/home/detail/detail",
+    "pages/home/map/map",
+    "pages/mine/mine/mine",
+    "pages/mine/other/other",
+    "pages/mine/info/info",
+    "pages/mine/invate/invate",
+    "pages/mine/command/command",
+    "pages/mine/help/help",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4bd4c5",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "#ffffff",
+    "backgroundColor": "#efeff4"
+  },
+  "tabBar": {
+    "color": "#8A96A2",
+    "selectedColor": "#4bd4c5",
+    "backgroundColor": "#f8f8fa",
+    "borderStyle": "white",
+    "borderColor": "#384249",
+    "list": [
+      {
+        "selectedIconPath": "images/tab_bar/home_tab_s.png",
+        "iconPath": "images/tab_bar/home_tab_n.png",
+        "pagePath": "pages/home/home/home",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/tab_bar/mine_tab_s.png",
+        "iconPath": "images/tab_bar/mine_tab_n.png",
+        "pagePath": "pages/mine/mine/mine",
+        "text": "我的"
+      }
+    ]
+  }
+}

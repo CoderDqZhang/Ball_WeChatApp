@@ -1,0 +1,41 @@
+<!--pages/mine/invate/invate.wxml-->
+<view class='invate_tools'>
+  <view class='tools'>发起人</view>
+  <view class='tools'>时间</view>
+  <view class='tools'>状态</view>
+</view>
+<view class='invate_session' bindtap='invate_session'>
+  <view class='user_info'>
+    <image src='/images/gloable/football.png' style='width:80rpx;height:80rpx;'></image>
+    <view class='username'>国贸第一刀</view>
+  </view>
+  <view class='invate_info'>
+    <view class='game_type'>
+      <text class='time'> 2018-02-09</text>
+      <text class='time'> 足球</text>
+      <text class='time'>人数 15</text>
+    </view>
+    <view class='location'> 胜利联盟3号场</view>
+  </view>
+  <view class='invate_status'>
+    <view class='status'>结束</view>
+  </view>
+</view>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='invate_session' bindtap='invate_session'>
+  <view class='user_info'>
+    <image src='/images/gloable/football.png' style='width:80rpx;height:80rpx;'></image>
+    <view class='username'>国贸第一刀</view>
+  </view>
+  <view class='invate_info'>
+    <view class='game_type'>
+      <text class='time'> 2018-02-09</text>
+      <text class='time'> 足球</text>
+      <text class='time'>人数 15</text>
+    </view>
+    <view class='location'> 胜利联盟3号场</view>
+  </view>
+  <view class='invate_status'>
+    <view class='status'>未结束</view>
+  </view>
+</view>

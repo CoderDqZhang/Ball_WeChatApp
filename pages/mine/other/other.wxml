@@ -1,0 +1,104 @@
+<!--pages/mine/other/other.wxml-->
+<scroll-view scroll-view scroll-y style="height: {{windowHeight}}px;">
+  <view class='user_infos'>
+    <view class='avatar'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class='user_normal_info'>
+        <view class='username'>{{userInfo.nickName}}</view>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+    <view class='session_title'>
+      <view class='info_title'>基本信息</view>
+    </view>
+    <view class='user_info' bindtap='gender_press'>
+      <view class='title'>性别</view>
+      <view class='user_normal_info'>
+        <view class='sub_title' wx:if="{{userInfo.gender == 1}}">男</view>
+        <view class='sub_title' wx:elif="{{userInfo.gender == 0}}">女</view>
+        <view class='sub_title' wx:else>其他</view>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='user_info' bindtap='weight_press'>
+      <view class='title'>体重</view>
+      <view class='user_normal_info'>
+        <view class='sub_title'>{{userInfo.weight}}kg</view>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='user_info' bindtap='phone_press'>
+      <view class='title'>电话</view>
+      <view class='user_normal_info'>
+        <input placeholder='输入电话号码' class='search_input' bindinput='input_search' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 70}}px; align:right;' confirm-type='done'
+          value='{{userInfo.phone}}'></input>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='user_info' bindtap='height_press'>
+      <view class='title'>身高</view>
+
+      <view class='user_normal_info'>
+        <view class='sub_title'>{{userInfo.height}}cm</view>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='user_info' bindtap='age_press'>
+      <view class='title'>球龄</view>
+      <view class='user_normal_info'>
+
+        <view class='sub_title'>{{userInfo.age}}</view>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='user_info' bindtap='good_press'>
+      <view class='title'>擅长位置</view>
+      <view class='user_normal_info'>
+        <view class='sub_title'>{{userInfo.good}}</view>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='user_info' bindtap='location_press'>
+      <view class='title'>位置</view>
+      <view class='user_normal_info'>
+        <view class='sub_title'>{{userInfo.location}}</view>
+        <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+      </view>
+    </view>
+  </view>
+  <view class='session_title'>
+    <view class='info_title'>评价信息</view>
+  </view>
+  <view class='comment_info'>
+    <view class='conmment_user_infos'>
+      <image class="comment-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class='conmment_user_info'>
+        <text class='conmment_username'>国贸第一刀</text>
+        <text class='conmment_sub_title'>男 42 168</text>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='comment'>好独啊，没发一起玩了</view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+  </view>
+  <view class='comment_info'>
+    <view class='conmment_user_infos'>
+      <image class="comment-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <view class='conmment_user_info'>
+        <text class='conmment_username'>国贸第一刀</text>
+        <text class='conmment_sub_title'>男 42 168</text>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='comment'>好独啊，没发一起玩了</view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+  </view>
+</scroll-view>
+<button class='comment_btn' bindtap='comment_press'>我要评价</button>

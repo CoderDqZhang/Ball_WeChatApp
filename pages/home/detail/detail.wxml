@@ -1,0 +1,91 @@
+<!--pages/home/detail/detail.wxml-->
+<scroll-view scroll-y style="height: {{windowHeight}}px;">
+  <view class='ball_section'>
+    <image src='/images/gloable/football.png' class='avatar'></image>
+    <view class='ball_info'>
+      <view class='title'>国贸红牛足球俱乐部持续发英雄帖～</view>
+      <view class='sub_title'>各位球星们，在这个特别的夜晚，别人约炮咱约球，都燥起来吧～</view>
+    </view>
+  </view>
+  <view class='session_title'>
+    <view class='info_title'>主体信息</view>
+  </view>
+  <view class='sub_session'>
+    <view class='sub_info'>
+      <view class='sub_title'>发起人</view>
+      <view class='sub_detail'>国贸第一刀</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info' bindtap='phone_press'>
+      <view class='sub_title'>联系电话</view>
+      <view class='sub_detail'>16601131280</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>时间</view>
+      <view class='sub_detail'>2018-2-14 18：30-20：30</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_location' bindtap='location_press'>
+      <view class='sub_title'>地点</view>
+      <view class='sub_locations'>
+        <view class='sub_infos'>
+          <view class='sub_detail'>胜利联盟3号场</view>
+          <view class='sub_subtitle'>北京是朝阳区建外大街东三环中路39号</view>
+
+        </view>
+        <image src='/images/gloable/location-o.png' style='width:40rpx;height:40rpx;'></image>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>场地条件</view>
+      <view class='sub_detail'>7人制 人工草</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>裁判</view>
+      <view class='sub_detail'>无</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>人数</view>
+      <view class='sub_detail'>14</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>费用</view>
+      <view class='sub_much'>￥80</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+  </view>
+  <view class='session_title'>
+    <view class='info_title'>人员信息</view>
+  </view>
+  <view class='users_sessions'>
+    <view class='game_info'>
+      <view class='game_info_title'>赴约球星 5/14</view>
+      <view class='game_info_title'>未约满</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='user_list' bindtap='user_info_press'>
+      <view class='user_info'>
+        <image src='/images/gloable/football.png' style='width: 80rpx;  height: 80rpx;'></image>
+        <view class='user_infos'>
+          <view class='user_name'>国贸第一刀</view>
+
+          <view class='user_desc'>
+            <text class='sub_user_desc'>168cm</text>
+            <text class='sub_user_desc'>前锋</text>
+            <text class='sub_user_desc'>球龄8年</text>
+          </view>
+        </view>
+      </view>
+      <view class='appointment'>
+        <rich-text class='appointment_text'>履约999次</rich-text>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+  </view>
+</scroll-view>
+<button class='appointment_btn' bindtap='appointment_btn_press'>我要赴约</button>
