@@ -21,23 +21,25 @@
 </view>
 <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
 <scroll-view scroll-y style="height: {{windowHeight - 50}}px;" class='scroll_session'>
-  <view class='invate_section' bindtap='ball_info_press'>
-    <view class='invate_sections'>
-      <view class='invate_user'>
-        <image src='/images/gloable/football.png' class='avatar'></image>
-        <view class='user_name'>国贸第一刀</view>
-      </view>
-      <view class='invate_info'>
-        <view class='invate_title'>国贸红牛足球俱乐部持续发英雄帖</view>
-        <view class='invate_time'>2018年2月14日周三</view>
-        <view class='invate_location'>北京市朝阳区建外大街东三环中路39号 胜利联盟球场</view>
-        <view class='invate_much_info'>
-          <view class='invate_much'>人均费用:</view>
-          <view class='invate_muchs'>80</view>
+  <view wx:for='{{item}}' bindtap='ball_info_press' wx:key='data' data-index = "{{index}}">
+    <view class='invate_section' >
+      <view class='invate_sections'>
+        <view class='invate_user'>
+          <image src='/images/gloable/football.png' class='avatar'></image>
+          <view class='user_name'>{{item.user.nickname}}</view>
+        </view>
+        <view class='invate_info'>
+          <view class='invate_title'>{{item.ball.sub_title}}</view>
+          <view class='invate_time'>{{item.game_start_time}}{{item.game_end_time}}</view>
+          <view class='invate_location'>{{item.game_location_detail}}</view>
+          <view class='invate_much_info'>
+            <view class='invate_much'>人均费用:</view>
+            <view class='invate_muchs'>{{item.game_price}}</view>
+          </view>
         </view>
       </view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
     </view>
-    <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
   </view>
-  <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
 </scroll-view>

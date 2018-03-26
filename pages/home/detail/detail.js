@@ -7,7 +7,8 @@ Page({
    */
   data: {
     windowWidth: 0,
-    windowHeight: 0
+    windowHeight: 0,
+    item:{}
   },
 
   /**
@@ -16,15 +17,29 @@ Page({
   onLoad: function (options) {
     var that = this
     that.setData({
+      item: JSON.parse(options.item),
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight
+    })
+    that.reqeuestData(that.data.item)
+  },
+
+  reqeuestData: function (res) {
+    var that = this
+    var data = { 'game_id': res.id }
+    app.func.requestPost('/ball/gameDetail/', data, function (res) {
+      that.setData({
+        item: res.data.game_detail
+      })
+      console.log(that.data.item)
     })
   },
 
 
   phone_press: function(e){
+    var that = this
     wx.makePhoneCall({
-      phoneNumber: '16601131280',
+      phoneNumber: that.data.item.user.phone,
     })
   },
 
@@ -62,8 +77,10 @@ Page({
   },
 
   user_info_press: function (e) {
+    var that = this
+    var data = that.data.item.user_list[e.currentTarget.dataset.index]
       wx.navigateTo({
-        url: '/pages/mine/other/other',
+        url: '/pages/mine/other/other?item=' + JSON.stringify(data),
       })
   },
 

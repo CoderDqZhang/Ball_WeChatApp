@@ -1,65 +1,12 @@
 // pages/home/home/home.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    ball_datas: [
-      {
-        'image':'/images/gloable/football.png',
-        'title':'足球',
-        'sub_title':'有最新的消息',
-        'id':'1'
-      },
-      {
-        'image': '/images/gloable/baseball.png',
-        'title': '棒球', 
-        'sub_title': '有最新的消息',
-        'id': '2'
-      },
-      {
-        'image': '/images/gloable/basketball.png',
-        'title': '篮球', 
-        'sub_title': '有最新的消息',
-        'id': '3'
-      },
-       {
-        'image': '/images/gloable/bowling-ball.png',
-        'title': '保龄球', 
-        'sub_title': '有最新的消息',
-        'id': '4'
-      },
-       {
-         'image': '/images/gloable/hockey.png',
-         'title': '冰球', 
-         'sub_title': '有最新的消息',
-         'id': '5'
-       },
-       {
-         'image': '/images/gloable/ping-pong.png',
-         'title': '乒乓球', 
-         'sub_title': '有最新的消息',
-         'id': '6'
-       },
-       {
-         'image': '/images/gloable/rugby.png',
-         'title': '橄榄球', 
-         'sub_title': '有最新的消息',
-         'id': '7'
-       },
-       {
-         'image': '/images/gloable/tennis.png',
-         'title': '网球', 
-         'sub_title': '有最新的消息',
-         'id': '8'
-       },
-       {
-         'image': '/images/gloable/volleyball.png',
-         'title': '排球', 
-         'sub_title': '有最新的消息',
-         'id': '9'
-       }],
+    ball_datas: []
   },
 
   category_press: function(e) {
@@ -68,11 +15,24 @@ Page({
     })
   },
 
+  requestData: function () {
+    var that = this;
+    app.func.requestGet('/ball/ballList/', {}, function (res) {
+      for (var i = 0; i < res.data.length; i ++){
+        var urls = 'http://127.0.0.1:8000/media/' + res.data[i].image
+        res.data[i].image = urls
+      }
+      that.setData({
+        ball_datas:res.data
+      })
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.requestData()
   },
 
   /**

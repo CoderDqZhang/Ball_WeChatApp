@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    item:{},
     userInfo:{},
     windowWidth: 0,
     windowHeight: 0
@@ -17,6 +18,7 @@ Page({
   onLoad: function (options) {
     var that = this
     that.setData({
+      item: JSON.parse(options.item),
       userInfo: app.globalData.userInfo,
       'userInfo.age': '10',
       'userInfo.phone': '18363899723',
@@ -24,6 +26,7 @@ Page({
       'userInfo.height': '174',
       'userInfo.good': '前锋',
     })
+    that.reqeuestData(that.data.item)
     that.setData({
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight
@@ -33,6 +36,17 @@ Page({
   comment_press: function (e) {
     wx.navigateTo({
       url: '/page/mine/command/command',
+    })
+  },
+
+  reqeuestData: function (res) {
+    var that = this
+    var data = { 'openid': res.openid }
+    app.func.requestGet('/ball/getUserInfo/', data, function (res) {
+      console.log(res)
+      that.setData({
+        userInfo: res.data.user_info
+      })
     })
   },
 

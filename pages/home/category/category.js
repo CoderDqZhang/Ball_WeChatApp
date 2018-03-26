@@ -21,8 +21,9 @@ Page({
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight
     })
+    that.reqeuestData(that.data.item)
     wx.setNavigationBarTitle({
-      title: that.data.item.title
+      title: that.data.item.name
     })
   },
 
@@ -31,11 +32,22 @@ Page({
   },
 
   ball_info_press: function (e) {
+    var that = this
+    var data = that.data.item[e.currentTarget.dataset.index]
     wx.navigateTo({
-      url: '/pages/home/detail/detail',
+      url: '/pages/home/detail/detail?item=' + JSON.stringify(data),
     })
   },
 
+  reqeuestData: function(res){
+    var that = this
+    var data = {'ball_id':res.id}
+    app.func.requestPost('/ball/gameList/', data, function (res) {
+        that.setData({
+          item:res.data.game_list
+        })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

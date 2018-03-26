@@ -4,7 +4,7 @@
     <view class='category_infos'>
       <image src='{{item.image}}' class='category_image'></image>
       <view class='category_info'>
-        <view class='category_title'>{{item.title}}</view>
+        <view class='category_title'>{{item.name}}</view>
         <view class='category_subtitle'>{{item.sub_title}}</view>
       </view>
     </view>

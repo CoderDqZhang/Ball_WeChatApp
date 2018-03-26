@@ -1,4 +1,6 @@
 //app.js
+var http = require('gloable/network/http.js');
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -44,5 +46,14 @@ App({
     userInfo: null,
     windowWidth:null,
     windowHeight:null
+  },
+
+  func: {
+    requestPost: http.requestPost,
+    requestUpload: http.requestUpload,
+    requestGet: http.requestGet,
+    requestPut: http.requestPut,
+    requestDelete: http.requestDelete,
+    requestSessionIDGet: http.requestSessionIDGet
   }
 })
