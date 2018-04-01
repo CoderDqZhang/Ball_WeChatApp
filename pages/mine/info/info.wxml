@@ -3,7 +3,7 @@
   <view class='avatar'>
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
     <view class='user_normal_info'>
-      <view class='username'>{{userInfo.nickName}}</view>
+      <view class='username'>{{userInfo.nickname}}</view>
       <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
     </view>
   </view>
@@ -68,7 +68,7 @@
     <view class='user_info' bindtap='good_press'>
       <view class='title'>擅长位置</view>
       <view class='user_normal_info'>
-        <view class='sub_title'>{{userInfo.good}}</view>
+        <view class='sub_title'>{{userInfo.good_point}}</view>
         <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
       </view>
     </view>

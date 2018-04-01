@@ -1,41 +1,59 @@
-// pages/mine/invate/invate.js
-var app = getApp()
+// pages/home/location_choose/location_choose.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    game_list:{}
+    markers: [{
+      iconPath: "/resources/others.png",
+      id: 0,
+      latitude: 23.099994,
+      longitude: 113.324520,
+      width: 50,
+      height: 50
+    }],
+    polyline: [{
+      points: [{
+        longitude: 113.3245211,
+        latitude: 23.10229
+      }, {
+        longitude: 113.324520,
+        latitude: 23.21229
+      }],
+      color: "#FF0000DD",
+      width: 2,
+      dottedLine: true
+    }],
+    controls: [{
+      id: 1,
+      iconPath: '/resources/location.png',
+      position: {
+        left: 0,
+        top: 300 - 50,
+        width: 50,
+        height: 50
+      },
+      clickable: true
+    }]
   },
-
-  
+  regionchange(e) {
+    console.log(e.type)
+  },
+  markertap(e) {
+    console.log(e.markerId)
+  },
+  controltap(e) {
+    console.log(e.controlId)
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.reqeuestData()
-  },
-
-  invate_session: function (e) {
-    var that = this
-    wx.navigateTo({
-      url: '/pages/home/detail/detail?item=' + JSON.stringify(that.data.game_list[e.currentTarget.dataset.index]),
-    })
-  },
-
-  reqeuestData: function (res) {
-    var that = this
-    var data = { 'openid': '16601131280' }
-    app.func.requestGet('/ball/myGameAppoinment', data, function (res) {
-      console.log(res)
-      that.setData({
-        game_list: res.data.game_list
-      })
-    })
-  },
   
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

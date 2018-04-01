@@ -50,6 +50,7 @@ Page({
   },
 
   appointment_btn_press: function (e) {
+    var that = this
     wx.showModal({
       title: '现在人数10个差5个，确定赴约吗？',
       showCancel:true,
@@ -63,12 +64,26 @@ Page({
             signType: '',
             paySign: '',
           })
+          that.appointment()
         }else{
 
         }
       }
     })
   },
+  
+  appointment: function (e) {
+    var data = { 'openid': '16601131280', 'game_id': this.data.item.id, 'number_count':1}
+    app.func.requestPost('/ball/gameAppointment/', data, function (res) {
+      wx.showToast({
+        title: '赴约成功',
+        icon: 'success',
+        duration: 2000
+      })
+      
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

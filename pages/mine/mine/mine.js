@@ -17,6 +17,7 @@ Page({
    */
   onLoad: function (options) {
     this.haseUserInfo()
+    this.reqeuestData()
   },
 
   haseUserInfo: function () {
@@ -57,12 +58,23 @@ Page({
     })
   },
 
+  reqeuestData: function (res) {
+    var that = this
+    var data = { 'openid': '16601131280' }
+    app.func.requestGet('/ball/getUserInfo/', data, function (res) {
+      console.log(res)
+      that.setData({
+        userInfo: res.data.user
+      })
+    })
+  },
+
   infos_press: function(e){
     var that = this
     switch (e.currentTarget.dataset.index){
       case 0:
         wx.navigateTo({
-          url: '/pages/mine/info/info',
+          url: '/pages/mine/info/info?item=' + JSON.stringify(that.data.userInfo),
         })
         break;
       case 1:

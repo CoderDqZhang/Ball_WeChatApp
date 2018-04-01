@@ -20,7 +20,7 @@
   </view>
 </view>
 <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
-<scroll-view scroll-y style="height: {{windowHeight - 50}}px;" class='scroll_session'>
+<scroll-view scroll-y style="height: {{windowHeight - 100}}px;" class='scroll_session'>
   <view wx:for='{{item}}' bindtap='ball_info_press' wx:key='data' data-index = "{{index}}">
     <view class='invate_section' >
       <view class='invate_sections'>
@@ -29,7 +29,7 @@
           <view class='user_name'>{{item.user.nickname}}</view>
         </view>
         <view class='invate_info'>
-          <view class='invate_title'>{{item.ball.sub_title}}</view>
+          <view class='invate_title'>{{item.game_title}}</view>
           <view class='invate_time'>{{item.game_start_time}}{{item.game_end_time}}</view>
           <view class='invate_location'>{{item.game_location_detail}}</view>
           <view class='invate_much_info'>
@@ -43,3 +43,4 @@
     <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
   </view>
 </scroll-view>
+<button class='appointment_btn' bindtap='appointment_btn_press'>创建邀约</button>

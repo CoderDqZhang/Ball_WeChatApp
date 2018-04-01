@@ -30,12 +30,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      userInfo: app.globalData.userInfo,
-      'userInfo.age':'10',
-      'userInfo.phone': '18363899723',
-      'userInfo.weight': '62',
-      'userInfo.height': '174',
-      'userInfo.good': '前锋',
+      userInfo: JSON.parse(options.item)
     })
     this.normalData()
   },
@@ -71,6 +66,7 @@ Page({
     that.setData({
       'userInfo.gender': that.data.gender_list[parseInt(e.detail.value)] == "女" ? "0" : that.data.gender_list[parseInt(e.detail.value)] == "男" ? "1":"2",
     })
+    that.save_userInfo(that.data.userInfo)
   },
 
   weight_press: function (e) {
@@ -78,6 +74,7 @@ Page({
     that.setData({
       'userInfo.weight': that.data.weight_list[parseInt(e.detail.value)],
     })
+    that.save_userInfo(that.data.userInfo)
   },
 
   height_press: function (e) {
@@ -85,6 +82,7 @@ Page({
     that.setData({
       'userInfo.height': that.data.height_list[parseInt(e.detail.value)],
     })
+    that.save_userInfo(that.data.userInfo)
   },
 
   age_press: function (e) {
@@ -92,6 +90,7 @@ Page({
     that.setData({
       'userInfo.age': that.data.age_list[parseInt(e.detail.value)],
     })
+    that.save_userInfo(that.data.userInfo)
   },
 
   bindMultiPickerColumnChange: function (e) {
@@ -102,14 +101,37 @@ Page({
         'balls_list[1]': temp_list
       })
     }
-    console.log(e)
+    that.save_userInfo(that.data.userInfo)
   },
 
   good_press: function (e) {
-    console.log(e)
     var that = this
     that.setData({
-      'userInfo.good': that.data.balls_list[0][e.detail.value[0]] + "  " + that.data.balls_list[1][e.detail.value[1]]
+      'userInfo.good_point': that.data.balls_list[0][e.detail.value[0]] + "  " + that.data.balls_list[1][e.detail.value[1]]
+    })
+    that.save_userInfo(that.data.userInfo)
+  },
+
+  save_userInfo: function(res) {
+    var that = this 
+    var data = {
+      "openid": res.openid,
+      "nickname": res.nickname,
+      "age": res.age,
+      "gender": res.gender,
+      "weight": res.weight,
+      "height": res.height,
+      "ball_age": res.ball_age,
+      "good_point": res.good_point,
+      "phone": res.openid,
+      "province": "福建",
+      "city": "三明",
+      "avatar": "11111111111222"
+    }
+    app.func.requestPost('/ball/updateUserInfo/', data, function (res) {
+      that.setData({
+        userInfo: res.data.user
+      })
     })
   },
 

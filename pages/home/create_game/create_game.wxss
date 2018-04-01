@@ -1,0 +1,31 @@
+/* pages/home/create_game/create_game.wxss */
+.session_info{
+  flex-direction: row;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  min-height: 100rpx;
+  width: 100%;
+}
+
+.normal_info{
+  margin-right: 30rpx;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.title{
+  font-size: 30rpx;
+  color: #DDE0E5;
+}
+
+.sub_title{
+  font-size: 30rpx;
+  color: #384269;
+}

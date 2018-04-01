@@ -48,6 +48,13 @@ Page({
         })
     })
   },
+
+  appointment_btn_press:function (res) {
+    wx.navigateTo({
+      url: '/pages/home/create_game/create_game',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

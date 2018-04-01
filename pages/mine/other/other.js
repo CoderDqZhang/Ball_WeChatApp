@@ -41,7 +41,7 @@ Page({
 
   reqeuestData: function (res) {
     var that = this
-    var data = { 'openid': res.openid }
+    var data = { 'openid': res.user.openid }
     app.func.requestGet('/ball/getUserInfo/', data, function (res) {
       console.log(res)
       that.setData({
