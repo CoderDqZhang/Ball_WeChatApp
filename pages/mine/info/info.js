@@ -33,6 +33,16 @@ Page({
       userInfo: JSON.parse(options.item)
     })
     this.normalData()
+
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        var speed = res.speed
+        var accuracy = res.accuracy
+      }
+    })
   },
 
   normalData: function (e){
