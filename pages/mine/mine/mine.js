@@ -106,12 +106,12 @@ Page({
         break;
       case 1:
         wx.navigateTo({
-          url: '/pages/mine/invate/invate',
+          url: '/pages/mine/invate/invate?item=' + JSON.stringify(that.data.userInfo),
         })
         break;
       case 2:
         wx.navigateTo({
-          url: '/pages/mine/command/command',
+          url: '/pages/mine/command/command?item=' + JSON.stringify(that.data.userInfo),
         })
         break;
       default:

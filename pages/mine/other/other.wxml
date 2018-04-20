@@ -84,7 +84,7 @@
   <view class='session_title'>
     <view class='info_title'>评价信息</view>
   </view>
-  <view class='comment_info' wx:for="{{commonds}}" wx:key="commond">
+  <view class='comment_info' wx:for="{{commonds}}" wx:key="commond" wx:key="commond" data-index = "{{index}}" bindtap='commond_press'>
     <view class='conmment_user_infos'>
       <image class="comment-avatar" src="{{item.tag_user.avatar}}"></image>
       <view class='conmment_user_info'>

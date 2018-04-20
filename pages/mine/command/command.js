@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    item:{},
+    commonds:{},
     windowWidth: 0,
     windowHeight: 0
   },
@@ -15,9 +17,34 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    this.setData({
+      userInfo: JSON.parse(options.item)
+    })
     that.setData({
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight
+    })
+    var that = this
+    
+    this.other_commond(that.data.userInfo)
+  },
+
+  other_commond: function (res) {
+    var that = this
+    var data = { 'openid': res.openid }
+    app.func.requestPost('/ball/UserCommond/', data, function (res) {
+      console.log(res)
+      that.setData({
+        commonds: res.data.commonds
+      })
+    })
+  },
+
+  commond_press: function (res){
+    var that = this
+    var data = that.data.commonds[res.currentTarget.dataset.index].tag_user
+    wx.navigateTo({
+      url: '/pages/mine/other/other?item=' + JSON.stringify(data),
     })
   },
 

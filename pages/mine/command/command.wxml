@@ -1,2 +1,13 @@
 <!--pages/mine/command/command.wxml-->
-<text>pages/mine/command/command.wxml</text>
+<view class='comment_info' wx:for="{{commonds}}" wx:key="commond" data-index = "{{index}}" bindtap='commond_press'>
+    <view class='conmment_user_infos'>
+      <image class="comment-avatar" src="{{item.tag_user.avatar}}"></image>
+      <view class='conmment_user_info'>
+        <text class='conmment_username'>{{item.tag_user.nickname}} {{item.tag_user.good_point}}</text>
+        <text class='conmment_sub_title'>{{item.tag_user.sign}}</text>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='comment'>{{item.content}}</view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+  </view>

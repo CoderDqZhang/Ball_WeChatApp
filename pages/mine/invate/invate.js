@@ -15,7 +15,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.reqeuestData()
+    var that = this
+    this.setData({
+      userInfo: JSON.parse(options.item)
+    })
+    this.reqeuestData(that.data.userInfo)
   },
 
   invate_session: function (e) {
@@ -27,7 +31,7 @@ Page({
 
   reqeuestData: function (res) {
     var that = this
-    var data = { 'openid': '16601131280' }
+    var data = { 'openid': res.openid }
     app.func.requestPost('/ball/myGameAppoinment/', data, function (res) {
       console.log(res)
       that.setData({

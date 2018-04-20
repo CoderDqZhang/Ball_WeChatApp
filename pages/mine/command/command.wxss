@@ -1,1 +1,48 @@
 /* pages/mine/command/command.wxss */
+.comment_info{
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  height: 140rpx;
+}
+
+.conmment_user_infos{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.comment-avatar{
+  margin-left: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.conmment_user_info{
+  margin-left: 20rpx;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.conmment_username{
+  font-size: 28rpx;
+  color: #384269;
+}
+
+.conmment_sub_title{
+  color: #DDE0E5;
+  font-size: 20rpx;
+}
+
+.comment{
+  font-size: 34rpx;
+  color: #384269;
+  margin-left: 100rpx;
+}

@@ -35,9 +35,17 @@ Page({
     })
   },
 
+  commond_press: function (res) {
+    var that = this
+    var data = that.data.commonds[res.currentTarget.dataset.index].tag_user
+    wx.navigateTo({
+      url: '/pages/mine/other/other?item=' + JSON.stringify(data),
+    })
+  },
+
   reqeuestData: function (res) {
     var that = this
-    var data = { 'openid': res.user.openid }
+    var data = { 'openid': res.openid }
     app.func.requestPost('/ball/getUserInfo/', data, function (res) {
       console.log(res)
       that.setData({
@@ -48,7 +56,7 @@ Page({
 
   other_commond: function (res) {
     var that = this
-    var data = { 'openid': res.user.openid }
+    var data = { 'openid': res.openid }
     app.func.requestPost('/ball/UserCommond/', data, function (res) {
       console.log(res)
       that.setData({
