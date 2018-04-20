@@ -28,7 +28,7 @@ Page({
   reqeuestData: function (res) {
     var that = this
     var data = { 'openid': '16601131280' }
-    app.func.requestGet('/ball/myGameAppoinment', data, function (res) {
+    app.func.requestPost('/ball/myGameAppoinment/', data, function (res) {
       console.log(res)
       that.setData({
         game_list: res.data.game_list

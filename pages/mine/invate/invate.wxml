@@ -7,7 +7,7 @@
 <view wx:for="{{game_list}}" bindtap='invate_session' data-index='{{index}}' wx:key='game_list'>
   <view class='invate_session' >
     <view class='user_info'>
-      <image src='/images/gloable/football.png' style='width:80rpx;height:80rpx;'></image>
+      <image src='{{item.ball.image}}' style='width:80rpx;height:80rpx;'></image>
       <view class='username'>{{item.user.nickname}}</view>
     </view>
     <view class='invate_info'>

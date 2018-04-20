@@ -61,7 +61,34 @@ Page({
   reqeuestData: function (res) {
     var that = this
     var data = { 'openid': '16601131280' }
-    app.func.requestGet('/ball/getUserInfo/', data, function (res) {
+    app.func.requestPost('/ball/getUserInfo/', data, function (res) {
+      console.log(res)
+      var avatar = that.data.userInfo.avatarUrl
+      that.setData({
+        userInfo: res.data.user,
+        'userInfo.avatar': avatar
+      })
+      that.save_userInfo(that.data.userInfo)
+    })
+  },
+
+  save_userInfo: function (res) {
+    var that = this
+    var data = {
+      "openid": res.openid,
+      "nickname": res.nickname,
+      "age": res.age,
+      "gender": res.gender,
+      "weight": res.weight,
+      "height": res.height,
+      "game_age": res.game_age,
+      "good_point": res.good_point,
+      "phone": res.openid,
+      "province": res.province,
+      "city": res.city,
+      "avatar": res.avatar
+    }
+    app.func.requestPost('/ball/updateUserInfo/', data, function (res) {
       console.log(res)
       that.setData({
         userInfo: res.data.user

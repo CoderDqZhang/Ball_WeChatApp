@@ -77,7 +77,7 @@
   <view class='user_info' bindtap='location_press'>
     <view class='title'>位置</view>
     <view class='user_normal_info'>
-      <view class='sub_title'>{{userInfo.location}}</view>
+      <view class='sub_title'>{{userInfo.province}}{{res.city}}</view>
       <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
     </view>
   </view>

@@ -52,7 +52,7 @@
   display: flex;
   padding-left: 30rpx;
   padding-right: 30rpx;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 250rpx;
 }
@@ -60,7 +60,7 @@
 .invate_sections{
   flex-direction: row;
   display: flex;
-  justify-content: center;
+  justify-content:center;
   align-items: center;
 }
 

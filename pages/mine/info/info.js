@@ -131,14 +131,15 @@ Page({
       "gender": res.gender,
       "weight": res.weight,
       "height": res.height,
-      "ball_age": res.ball_age,
+      "game_age": res.game_age,
       "good_point": res.good_point,
       "phone": res.openid,
-      "province": "福建",
-      "city": "三明",
-      "avatar": "11111111111222"
+      "province": res.province,
+      "city": res.city,
+      "avatar": res.avatar
     }
     app.func.requestPost('/ball/updateUserInfo/', data, function (res) {
+      console.log(res)
       that.setData({
         userInfo: res.data.user
       })

@@ -1,5 +1,47 @@
 // pages/home/category/category.js
 var app = getApp()
+
+//by函数接受一个成员名字符串做为参数
+//并返回一个可以用来对包含该成员的对象数组进行排序的比较函数
+var bymin = function (name) {
+  return function (o, p) {
+    var a, b;
+    if (typeof o === "object" && typeof p === "object" && o && p) {
+      a = o[name];
+      b = p[name];
+      if (a === b) {
+        return 0;
+      }
+      if (typeof a === typeof b) {
+        return a < b ? -1 : 1;
+      }
+      return typeof a < typeof b ? -1 : 1;
+    }
+    else {
+      throw ("error");
+    }
+  }
+}
+var bymax = function (name) {
+  return function (o, p) {
+    var a, b;
+    if (typeof o === "object" && typeof p === "object" && o && p) {
+      a = o[name];
+      b = p[name];
+      if (a === b) {
+        return 0;
+      }
+      if (typeof a === typeof b) {
+        return a > b ? -1 : 1;
+      }
+      return typeof a > typeof b ? -1 : 1;
+    }
+    else {
+      throw ("error");
+    }
+  }
+}
+
 Page({
 
   /**
@@ -7,6 +49,8 @@ Page({
    */
   data: {
     item:{},
+    sort_price:'normal',
+    sort_time: 'normal',
     windowWidth:0,
     windowHeight:0
   },
@@ -49,11 +93,34 @@ Page({
     })
   },
 
+  sort_time: function (res) {
+
+  },
+
+  sort_price: function (res) {
+      var that = this
+      if ((that.data.sort_price == 'normal') || (that.data.sort_price == 'max')) {
+        var newArray = that.data.item.sort(bymin('game_price'))
+        that.setData({
+          item: newArray,
+          sort_price:'min'
+        })
+      }else{
+        var newArray = that.data.item.sort(bymax('game_price'))
+        that.setData({
+          item: newArray,
+          sort_price: 'max'
+        })
+      }
+  },
+
   appointment_btn_press:function (res) {
     wx.navigateTo({
       url: '/pages/home/create_game/create_game',
     })
   },
+
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

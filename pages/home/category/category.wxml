@@ -5,7 +5,7 @@
     confirm-type='search'></input>
 </view>
 <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
-<view class='tools_top'>
+<view class='tools_top' bindtap='sort_time'>
   <view class='tool_contains'>
     <view class='tool_info'>时间</view>
     <image src='/images/gloable/sort-o.png' class='sort_image'></image>
@@ -14,8 +14,8 @@
     <view class='tool_info'>地点</view>
     <image src='/images/gloable/sort-o.png' class='sort_image'></image>
   </view>
-  <view class='tool_contains'>
-    <view class='tool_info'>场地大小</view>
+  <view class='tool_contains' bindtap='sort_price'>
+    <view class='tool_info'>价钱</view>
     <image src='/images/gloable/sort-o.png' class='sort_image'></image>
   </view>
 </view>
@@ -25,12 +25,13 @@
     <view class='invate_section' >
       <view class='invate_sections'>
         <view class='invate_user'>
-          <image src='/images/gloable/football.png' class='avatar'></image>
+          <image src='{{item.user.avatar}}' class='avatar'></image>
           <view class='user_name'>{{item.user.nickname}}</view>
         </view>
         <view class='invate_info'>
           <view class='invate_title'>{{item.game_title}}</view>
-          <view class='invate_time'>{{item.game_start_time}}{{item.game_end_time}}</view>
+          <view class='invate_time'>{{item.game_start_time}}</view>
+          <view class='invate_time'>{{item.game_end_time}}</view>
           <view class='invate_location'>{{item.game_location_detail}}</view>
           <view class='invate_much_info'>
             <view class='invate_much'>人均费用:</view>

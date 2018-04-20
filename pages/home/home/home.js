@@ -19,7 +19,7 @@ Page({
     var that = this;
     app.func.requestGet('/ball/ballList/', {}, function (res) {
       for (var i = 0; i < res.data.length; i ++){
-        var urls = 'http://127.0.0.1:8000/media/' + res.data[i].image
+        var urls = res.data[i].image
         res.data[i].image = urls
       }
       that.setData({
