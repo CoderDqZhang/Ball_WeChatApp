@@ -7,6 +7,7 @@ Page({
    */
   data: {
     item:{},
+    commond:{},
     userInfo:{},
     windowWidth: 0,
     windowHeight: 0
@@ -19,14 +20,9 @@ Page({
     var that = this
     that.setData({
       item: JSON.parse(options.item),
-      userInfo: app.globalData.userInfo,
-      'userInfo.age': '10',
-      'userInfo.phone': '18363899723',
-      'userInfo.weight': '62',
-      'userInfo.height': '174',
-      'userInfo.good': '前锋',
     })
     that.reqeuestData(that.data.item)
+    that.other_commond(that.data.item)
     that.setData({
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight
@@ -42,10 +38,21 @@ Page({
   reqeuestData: function (res) {
     var that = this
     var data = { 'openid': res.user.openid }
-    app.func.requestGet('/ball/getUserInfo/', data, function (res) {
+    app.func.requestPost('/ball/getUserInfo/', data, function (res) {
       console.log(res)
       that.setData({
-        userInfo: res.data.user_info
+        userInfo: res.data.user
+      })
+    })
+  },
+
+  other_commond: function (res) {
+    var that = this
+    var data = { 'openid': res.user.openid }
+    app.func.requestPost('/ball/UserCommond/', data, function (res) {
+      console.log(res)
+      that.setData({
+        commonds: res.data.commonds
       })
     })
   },

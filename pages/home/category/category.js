@@ -22,6 +22,9 @@ var bymin = function (name) {
     }
   }
 }
+/**
+   * 排序算法
+   */
 var bymax = function (name) {
   return function (o, p) {
     var a, b;
@@ -48,11 +51,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    item:{},
-    sort_price:'normal',
+    item: {},
+    ball_id:"1",
+    sort_price: 'normal',
     sort_time: 'normal',
-    windowWidth:0,
-    windowHeight:0
+    windowWidth: 0,
+    windowHeight: 0
   },
 
   /**
@@ -61,7 +65,7 @@ Page({
   onLoad: function (options) {
     var that = this
     that.setData({
-      item:JSON.parse(options.item),
+      item: JSON.parse(options.item),
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight
     })
@@ -70,9 +74,13 @@ Page({
       title: that.data.item.name
     })
   },
-
-  input_search: function (e){
-
+  /**
+     * 搜索框查询某个人创建的球约
+     */
+  input_search: function (e) {
+    console.log(e.detail.value)
+    var that = this
+    that.reqeuestSearchData(e.detail.value)
   },
 
   ball_info_press: function (e) {
@@ -82,92 +90,136 @@ Page({
       url: '/pages/home/detail/detail?item=' + JSON.stringify(data),
     })
   },
-
-  reqeuestData: function(res){
+  /**
+     * 请求列表
+     */
+  reqeuestData: function (res) {
     var that = this
-    var data = {'ball_id':res.id}
+    var data = { 'ball_id': res.id }
+    that.setData({
+      ball_id: res.id
+    })
     app.func.requestPost('/ball/gameList/', data, function (res) {
-        that.setData({
-          item:res.data.game_list
-        })
+      for (var i = 0; i < res.data.game_list.length; i++) {
+        res.data.game_list[i].game_start_times = Date.parse(new Date(res.data.game_list[i].game_start_time))
+      }
+      that.setData({
+        item: res.data.game_list
+
+      })
     })
   },
 
-  sort_time: function (res) {
-
-  },
-
-  sort_price: function (res) {
-      var that = this
-      if ((that.data.sort_price == 'normal') || (that.data.sort_price == 'max')) {
-        var newArray = that.data.item.sort(bymin('game_price'))
-        that.setData({
-          item: newArray,
-          sort_price:'min'
-        })
-      }else{
-        var newArray = that.data.item.sort(bymax('game_price'))
-        that.setData({
-          item: newArray,
-          sort_price: 'max'
-        })
+  /**
+     * 请求列表
+     */
+  reqeuestSearchData: function (res) {
+    var that = this
+    var data = { 'keyword': res,'ball_id':that.data.ball_id }
+    app.func.requestPost('/ball/gameSearch/', data, function (res) {
+      for (var i = 0; i < res.data.game_list.length; i++) {
+        res.data.game_list[i].game_start_times = Date.parse(new Date(res.data.game_list[i].game_start_time))
       }
+      that.setData({
+        item: res.data.game_list
+      })
+    })
+  },
+  /**
+     * 根据时间排序
+     */
+  sort_time: function (res) {
+    var that = this
+    if ((that.data.sort_time == 'normal') || (that.data.sort_time == 'max')) {
+      var newArray = that.data.item.sort(bymin('game_start_times'))
+      that.setData({
+        item: newArray,
+        sort_time: 'min'
+      })
+    } else {
+      var newArray = that.data.item.sort(bymax('game_start_times'))
+      that.setData({
+        item: newArray,
+        sort_time: 'max'
+      })
+    }
+  },
+  /**
+     * 根据价格排序
+     */
+  sort_price: function (res) {
+    var that = this
+    if ((that.data.sort_price == 'normal') || (that.data.sort_price == 'max')) {
+      var newArray = that.data.item.sort(bymin('game_price'))
+      that.setData({
+        item: newArray,
+        sort_price: 'min'
+      })
+    } else {
+      var newArray = that.data.item.sort(bymax('game_price'))
+      that.setData({
+        item: newArray,
+        sort_price: 'max'
+      })
+    }
   },
 
-  appointment_btn_press:function (res) {
+
+  appointment_btn_press: function (res) {
     wx.navigateTo({
       url: '/pages/home/create_game/create_game',
     })
   },
 
-  
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

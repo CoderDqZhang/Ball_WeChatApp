@@ -51,36 +51,72 @@ Page({
 
   appointment_btn_press: function (e) {
     var that = this
-    wx.showModal({
-      title: '现在人数10个差5个，确定赴约吗？',
-      showCancel:true,
-      confirmColor:"#4bd4c5",
-      success: function (e) {
-        if (e.confirm) {
-          wx.requestPayment({
-            timeStamp: '',
-            nonceStr: '',
-            package: '',
-            signType: '',
-            paySign: '',
-          })
-          that.appointment()
-        }else{
+    var number_count = 0
+    for (var i = 0; i < that.data.item.user_list.length; i ++) {
+      number_count = number_count + parseInt(that.data.item.user_list[i].number_count.number)
+    }
+    if (number_count < that.data.item.game_number){
+      wx.showModal({
+        title: '现在人数' + number_count + '个差' + (that.data.item.game_number - number_count) + '个，确定赴约吗？',
+        showCancel: true,
+        confirmColor: "#4bd4c5",
+        success: function (e) {
+          if (e.confirm) {
+            wx.requestPayment({
+              timeStamp: '',
+              nonceStr: '',
+              package: '',
+              signType: '',
+              paySign: '',
+            })
+            that.appointment()
+          } else {
 
+          }
         }
-      }
-    })
+      })
+    }else{
+      wx.showModal({
+        title: '赴约人数已满',
+        showCancel: true,
+        confirmColor: "#4bd4c5",
+        success: function (e) {
+          if (e.confirm) {
+            wx.requestPayment({
+              timeStamp: '',
+              nonceStr: '',
+              package: '',
+              signType: '',
+              paySign: '',
+            })
+          } else {
+
+          }
+        }
+      })
+    }
+  },
+
+  select_number: function (res) {
+
   },
   
   appointment: function (e) {
     var data = { 'openid': '16601131280', 'game_id': this.data.item.id, 'number_count':1}
     app.func.requestPost('/ball/gameAppointment/', data, function (res) {
-      wx.showToast({
-        title: '赴约成功',
-        icon: 'success',
-        duration: 2000
-      })
-      
+      if (res.data.message != null) {
+        wx.showToast({
+          title: '您已经赴约过了',
+          icon: 'success',
+          duration: 2000
+        })
+      }else{
+        wx.showToast({
+          title: '赴约成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }      
     })
   },
 

@@ -72,6 +72,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
+  height: 140rpx;
 }
 
 .conmment_user_infos{
