@@ -129,7 +129,7 @@ Page({
 
   user_info_press: function (e) {
     var that = this
-    var data = that.data.item.user_list[e.currentTarget.dataset.index]
+    var data = that.data.item.user_list[e.currentTarget.dataset.index].user
       wx.navigateTo({
         url: '/pages/mine/other/other?item=' + JSON.stringify(data),
       })
