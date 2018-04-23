@@ -97,4 +97,5 @@
     </view>
   </view>
 </scroll-view>
-<button class='appointment_btn' bindtap='appointment_btn_press'>我要赴约</button>
+<button class='appointment_btn' bindtap='appointment_cancel_press' wx:if="{{item.appoint_ment}}">取消赴约</button>
+<button class='appointment_btn' bindtap='appointment_btn_press' wx:else>赴约</button>

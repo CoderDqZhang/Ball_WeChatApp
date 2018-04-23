@@ -23,10 +23,12 @@ Page({
     })
     that.reqeuestData(that.data.item)
   },
-
+/**
+ * 详情
+ */
   reqeuestData: function (res) {
     var that = this
-    var data = { 'game_id': res.id }
+    var data = { 'game_id': res.id, 'openid': '16601131280', }
     app.func.requestPost('/ball/gameDetail/', data, function (res) {
       that.setData({
         item: res.data.game_detail
@@ -35,20 +37,26 @@ Page({
     })
   },
 
-
+/**
+ * 拨打电话
+ */
   phone_press: function(e){
     var that = this
     wx.makePhoneCall({
       phoneNumber: that.data.item.user.phone,
     })
   },
-
+/**
+ * 地图
+ */
   location_press: function (e) {
     wx.navigateTo({
       url: '/pages/home/map/map',
     })
   },
-
+/***
+ * 赴约
+ */
   appointment_btn_press: function (e) {
     var that = this
     var number_count = 0
@@ -97,11 +105,44 @@ Page({
     }
   },
 
+/**
+ * 取消赴约
+ */
+  appointment_cancel_press: function (res) {
+    var that = this
+    wx.showModal({
+      title: '确定取消赴约吗？',
+      showCancel: true,
+      confirmColor: "#4bd4c5",
+      success: function (e) {
+        that.cancel_appointment()
+      }
+    })
+  },
+
+/**
+ * 取消赴约
+ */
+  cancel_appointment: function (e) {
+    var that = this
+    var data = { 'openid': '16601131280', 'game_id': this.data.item.id}
+    app.func.requestPost('/ball/gameCancelAppoinment/', data, function (res) {
+      that.setData({
+        item: res.data.game_detail
+      })
+    })
+  },
+/**
+ * 选择赴约人数
+ */
   select_number: function (res) {
 
   },
-  
+/**
+ * 赴约
+ */
   appointment: function (e) {
+    var that = this
     var data = { 'openid': '16601131280', 'game_id': this.data.item.id, 'number_count':1}
     app.func.requestPost('/ball/gameAppointment/', data, function (res) {
       if (res.data.message != null) {
@@ -111,6 +152,9 @@ Page({
           duration: 2000
         })
       }else{
+        that.setData({
+          item: res.data.game_detail
+        })
         wx.showToast({
           title: '赴约成功',
           icon: 'success',
