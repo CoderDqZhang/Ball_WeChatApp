@@ -11,6 +11,7 @@
     "pages/mine/info/info",
     "pages/mine/invate/invate",
     "pages/mine/command/command",
+    "pages/mine/command_other/command_other",
     "pages/mine/help/help",
     "pages/index/index",
     "pages/logs/logs"

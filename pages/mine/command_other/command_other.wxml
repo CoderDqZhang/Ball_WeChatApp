@@ -1,0 +1,4 @@
+<!--pages/mine/command_other/command_other.wxml-->
+<input placeholder='请输入评价' class='search_input' bindinput='input_game_subtitle' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:100%; align:right;text-align:left;font-size:28rpx;height:200rpx;' confirm-type='done'
+      value='{{game.game_place_condition}}'></input>
+<button class='appointment_btn' bindtap='appointment_btn_press'>评价</button>

@@ -30,8 +30,10 @@ Page({
   },
 
   comment_press: function (e) {
+    var that = this
+    var data = that.data.item
     wx.navigateTo({
-      url: '/page/mine/command/command',
+      url: '/pages/mine/command_other/command_other?item=' + JSON.stringify(data),
     })
   },
 
