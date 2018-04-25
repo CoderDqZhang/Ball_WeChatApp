@@ -78,6 +78,7 @@ Page({
       "openid": res.openid,
       "nickname": res.nickname,
       "age": res.age,
+      "sign": res.sign,
       "gender": res.gender,
       "weight": res.weight,
       "height": res.height,
