@@ -127,6 +127,7 @@ Page({
     var that = this
     var data = { 'openid': '16601131280', 'game_id': this.data.item.id}
     app.func.requestPost('/ball/gameCancelAppoinment/', data, function (res) {
+      console.log(res)
       that.setData({
         item: res.data.game_detail
       })
@@ -145,6 +146,7 @@ Page({
     var that = this
     var data = { 'openid': '16601131280', 'game_id': this.data.item.id, 'number_count':1}
     app.func.requestPost('/ball/gameAppointment/', data, function (res) {
+      console.log(res)
       if (res.data.message != null) {
         wx.showToast({
           title: '您已经赴约过了',

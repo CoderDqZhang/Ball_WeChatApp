@@ -6,7 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userStars: app.globalData.userStars,
+    gameStars: app.globalData.gameStars,
     item:{},
+    my_commond:true,
     commonds:{},
     windowWidth: 0,
     windowHeight: 0
@@ -26,16 +29,29 @@ Page({
     })
     var that = this
     
-    this.other_commond(that.data.userInfo)
+    this.my_commond()
   },
 
-  other_commond: function (res) {
+  my_commond: function () {
     var that = this
-    var data = { 'openid': res.openid }
+    var data = { 'openid': that.data.userInfo.openid }
     app.func.requestPost('/ball/UserCommond/', data, function (res) {
       console.log(res)
       that.setData({
-        commonds: res.data.commonds
+        commonds: res.data.commonds,
+        my_commond:true
+      })
+    })
+  },
+
+  commond_my: function () {
+    var that = this
+    var data = { 'openid': that.data.userInfo.openid }
+    app.func.requestPost('/ball/UserOtherCommond/', data, function (res) {
+      console.log(res)
+      that.setData({
+        commonds: res.data.commonds,
+        my_commond: false
       })
     })
   },

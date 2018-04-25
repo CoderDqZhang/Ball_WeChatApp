@@ -1,1 +1,27 @@
 /* pages/mine/command_other/command_other.wxss */
+.startsession{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title{
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.right .star {
+  float: left;
+  width: 54rpx;
+  height: 54rpx;
+  text-align: center;
+  line-height: 54rpx;
+  padding: 48rpx 2rpx;
+  margin-left: 10rpx;
+}
+.star image{
+  width: 48rpx;
+  height: 48rpx;
+}

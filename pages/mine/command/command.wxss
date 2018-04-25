@@ -1,11 +1,32 @@
 /* pages/mine/command/command.wxss */
+.topsession{
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+}
+
+.session_title{
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  border:  1px solid #DDE0E5;
+  align-items: center;
+  width: 50%;
+  text-align: center;
+  font-size: 30rpx;
+}
+
 .comment_info{
   flex-direction: column;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
-  height: 140rpx;
+  height: 170rpx;
 }
 
 .conmment_user_infos{
@@ -26,6 +47,7 @@
   margin-left: 20rpx;
   flex-direction: column;
   display: flex;
+  height: 40rpx;
   justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
@@ -45,4 +67,41 @@
   font-size: 34rpx;
   color: #384269;
   margin-left: 100rpx;
+}
+
+.starcommond{
+  margin-left: 90rpx;
+  flex-direction: column;
+  display: flex;
+  height: 62rpx;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.startsession{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title{
+  font-size: 20rpx;
+  color: #DDE0E5;
+}
+
+.right .star {
+  float: left;
+  width: 34rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 2rpx;
+  padding: 28rpx 2rpx;
+  margin-left: 10rpx;
+}
+.star image{
+  width: 135rpx;
+  height: 28rpx;
 }

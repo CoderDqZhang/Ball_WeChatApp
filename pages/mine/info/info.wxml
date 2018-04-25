@@ -11,7 +11,7 @@
   <view class='user_info' bindtap='sign_press'>
     <view class='title'>个性签名</view>
     <view class='user_normal_info'>
-      <input placeholder='输入个性签名' class='search_input' bindinput='input_search' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 70}}px; text-align:right;font-size:28rpx;' confirm-type='done' value='{{userInfo.sign}}'></input>
+      <input placeholder='输入个性签名' class='search_input' bindinput='input_sign' bindblur='input_end' bindconfirm='input_end' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 70}}px; text-align:right;font-size:28rpx;' confirm-type='done' value='{{userInfo.sign}}'></input>
       <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
     </view>
   </view>
@@ -44,7 +44,7 @@
   <view class='user_info' bindtap='phone_press'>
     <view class='title'>电话</view>
     <view class='user_normal_info'>
-      <input placeholder='输入电话号码' class='search_input' bindinput='input_search' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 70}}px; text-align:right;font-size:28rpx;' confirm-type='done' value='{{userInfo.phone}}'></input>
+      <input placeholder='输入电话号码' class='search_input' bindinput='input_phone' bindblur='input_end' bindconfirm='input_end' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 70}}px; text-align:right;font-size:28rpx;' confirm-type='done' value='{{userInfo.phone}}'></input>
       <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
     </view>
   </view>

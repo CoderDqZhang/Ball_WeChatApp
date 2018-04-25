@@ -6,12 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userStars: app.globalData.userStars,
+    gameStars: app.globalData.gameStars,
     item:{},
     commond: {
       "openid": '18363899723',
       "targid": '16601131280',
       "content": "这家伙贼6",
-      "rank": 9
+      "userrank": 1,
+      "skillrank": 1
     }
   },
 
@@ -43,6 +46,47 @@ Page({
         icon: 'success',
         duration: 2000
       })
+    })
+  },
+
+  // 星星点击事件
+  userStarTap: function (e) {
+    var index = e.currentTarget.dataset.index; // 获取当前点击的是第几颗星星
+    var  that = this
+    that.data.commond.userrank = index
+    var tempUserStars = this.data.userStars; // 暂存星星数组
+    var len = tempUserStars.length; // 获取星星数组的长度
+    for (var i = 0; i < len; i++) {
+      if (i <= index) { // 小于等于index的是满心
+        
+        tempUserStars[i] = '/images/gloable/star_select.png'
+      } else { // 其他是空心
+        tempUserStars[i] = '/images/gloable/star_normal.png'
+      }
+    }
+    // 重新赋值就可以显示了
+    this.setData({
+      userStars: tempUserStars
+    })
+  },
+
+  // 星星点击事件
+  gameStarTap: function (e) {
+    var index = e.currentTarget.dataset.index; // 获取当前点击的是第几颗星星
+    var that = this
+    that.data.commond.skillrank = index
+    var tempUserStars = this.data.gameStars; // 暂存星星数组
+    var len = tempUserStars.length; // 获取星星数组的长度
+    for (var i = 0; i < len; i++) {
+      if (i <= index) { // 小于等于index的是满心
+        tempUserStars[i] = '/images/gloable/star_select.png'
+      } else { // 其他是空心
+        tempUserStars[i] = '/images/gloable/star_normal.png'
+      }
+    }
+    // 重新赋值就可以显示了
+    this.setData({
+      gameStars: tempUserStars
     })
   },
 

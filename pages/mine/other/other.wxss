@@ -72,7 +72,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
-  height: 140rpx;
+  height: 210rpx;
 }
 
 .conmment_user_infos{
@@ -112,4 +112,41 @@
   font-size: 34rpx;
   color: #384269;
   margin-left: 100rpx;
+}
+
+.starcommond{
+  margin-left: 90rpx;
+  flex-direction: column;
+  display: flex;
+  height: 62rpx;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.startsession{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.title{
+  font-size: 20rpx;
+  color: #DDE0E5;
+}
+
+.right .star {
+  float: left;
+  width: 34rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 2rpx;
+  padding: 28rpx 2rpx;
+  margin-left: 10rpx;
+}
+.star image{
+  width: 135rpx;
+  height: 28rpx;
 }

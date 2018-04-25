@@ -1,13 +1,48 @@
 <!--pages/mine/command/command.wxml-->
-<view class='comment_info' wx:for="{{commonds}}" wx:key="commond" data-index = "{{index}}" bindtap='commond_press'>
+<view class='topsession'>
+  <view class='session_title' wx:if="{{my_commond}}" style='color:#4bd4c5;' bindtap='my_commond'>我的评价</view>
+  <view class='session_title' wx:else style='color:#384269;' bindtap='my_commond'>我的评价</view>
+  <view class='session_title' wx:if="{{my_commond}}" style='color:#384269;' bindtap='commond_my'>评价我的</view>
+  <view class='session_title' wx:else style='color:#4bd4c5;' bindtap='commond_my'>评价我的</view>
+</view>
+<scroll-view scroll-y style="height: {{windowHeight}}px;">
+  <view class='comment_info' wx:for="{{commonds}}" wx:key="commond" data-index="{{index}}" bindtap='commond_press'>
     <view class='conmment_user_infos'>
       <image class="comment-avatar" src="{{item.tag_user.avatar}}"></image>
       <view class='conmment_user_info'>
-        <text class='conmment_username'>{{item.tag_user.nickname}} {{item.tag_user.good_point}}</text>
-        <text class='conmment_sub_title'>{{item.tag_user.sign}}</text>
+        <text class='conmment_username'>{{item.tag_user.nickname}}</text>
+      </view>
+    </view>
+    <view class='starcommond'>
+      <view class='startsession'>
+        <view class='title'>球品评价</view>
+        <view class="right">
+          <view class="star">
+            <image wx:if="{{item.userrank == 0}}" src="/images/gloable/star_0.png"></image>
+            <image wx:if="{{item.userrank == 1}}" src="/images/gloable/star_1.png"></image>
+            <image wx:if="{{item.userrank == 2}}" src="/images/gloable/star_2.png"></image>
+            <image wx:if="{{item.userrank == 3}}" src="/images/gloable/star_3.png"></image>
+            <image wx:if="{{item.userrank == 4}}" src="/images/gloable/star_4.png"></image>
+            <image wx:if="{{item.userrank == 5}}" src="/images/gloable/star_5.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class='startsession'>
+        <view class='title'>球技评价</view>
+        <view class="right">
+          <view class="star">
+            <image wx:if="{{item.skillrank == 0}}" src="/images/gloable/star_0.png"></image>
+            <image wx:if="{{item.skillrank == 1}}" src="/images/gloable/star_1.png"></image>
+            <image wx:if="{{item.skillrank == 2}}" src="/images/gloable/star_2.png"></image>
+            <image wx:if="{{item.skillrank == 3}}" src="/images/gloable/star_3.png"></image>
+            <image wx:if="{{item.skillrank == 4}}" src="/images/gloable/star_4.png"></image>
+            <image wx:if="{{item.skillrank == 5}}" src="/images/gloable/star_5.png"></image>
+          </view>
+        </view>
       </view>
     </view>
     <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
     <view class='comment'>{{item.content}}</view>
     <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
   </view>
+</scroll-view>

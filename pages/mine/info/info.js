@@ -94,7 +94,9 @@ Page({
     })
     that.save_userInfo(that.data.userInfo)
   },
-
+/**
+ * 修改年龄
+ */
   age_press: function (e) {
     var that = this
     that.setData({
@@ -111,6 +113,31 @@ Page({
         'balls_list[1]': temp_list
       })
     }
+    that.save_userInfo(that.data.userInfo)
+  },
+/**
+ * 修改个性签名
+ */
+  input_sign: function (res) {
+    var that = this
+    that.setData({
+      'userInfo.sign':res.detail.value
+    })
+  },
+/**
+ * 修改电话号码
+ */
+  input_phone: function (res){
+    var that = this
+    that.setData({
+      'userInfo.phone': res.detail.value
+    })
+  },
+
+  /**
+   * 输入框失去焦点直接保存数据
+   */
+  input_end: function (res) {
     that.save_userInfo(that.data.userInfo)
   },
 
@@ -136,7 +163,8 @@ Page({
       "phone": res.openid,
       "province": res.province,
       "city": res.city,
-      "avatar": res.avatar
+      "avatar": res.avatar,
+      "sign":res.sign
     }
     app.func.requestPost('/ball/updateUserInfo/', data, function (res) {
       console.log(res)

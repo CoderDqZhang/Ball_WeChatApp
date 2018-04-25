@@ -45,7 +45,21 @@ App({
   globalData: {
     userInfo: null,
     windowWidth:null,
-    windowHeight:null
+    windowHeight:null,
+    gameStars: [
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png'
+    ],
+    userStars: [
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png',
+      '/images/gloable/star_normal.png'
+    ],
   },
 
   func: {
