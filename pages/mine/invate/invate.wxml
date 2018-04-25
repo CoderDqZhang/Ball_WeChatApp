@@ -21,7 +21,7 @@
       </view>
     </view>
     <view class='invate_status'>
-      <view class='status_end' wx:if="{{item.game_status == '结束'}}">{{item.game_status}}</view>
+      <view class='status_end' wx:if="{{item.game_status == '失败'}}">{{item.game_status}}</view>
       <view class='status_active' wx:else>{{item.game_status}}</view>
     </view>
   </view>
