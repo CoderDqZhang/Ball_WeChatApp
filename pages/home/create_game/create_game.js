@@ -97,12 +97,6 @@ Page({
     })
   },
 
-  input_location: function(e){
-    this.setData({
-      'game.game_location': e.detail.value
-    })
-  },
-
   input_game_subtitle: function (e) {
     this.setData({
       'game.game_subtitle': e.detail.value
@@ -124,6 +118,17 @@ Page({
   input_price: function (e) {
     this.setData({
       'game.game_price': e.detail.value
+    })
+  },
+
+  choose_location: function (res) {
+    var that = this
+    wx.chooseLocation({
+      success: function(res) {
+        that.setData({
+          'game.game_location': res.address
+        })
+      },
     })
   },
 

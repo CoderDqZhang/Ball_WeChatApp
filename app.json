@@ -3,7 +3,7 @@
     "pages/home/home/home",
     "pages/home/category/category",
     "pages/home/create_game/create_game",
-    "pages/home/location_choose/location_choose",
+    "pages/home/location_choose/location_choose",        
     "pages/home/detail/detail",
     "pages/home/map/map",
     "pages/mine/mine/mine",

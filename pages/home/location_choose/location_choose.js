@@ -1,10 +1,15 @@
 // pages/home/location_choose/location_choose.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    windowWidth:0,
+    windowHeight:0,
+    latitude:0,
+    longitude:0,
     markers: [{
       iconPath: "/resources/others.png",
       id: 0,
@@ -37,6 +42,7 @@ Page({
       clickable: true
     }]
   },
+
   regionchange(e) {
     console.log(e.type)
   },
@@ -51,7 +57,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+        })
+      }
+    })
+    wx.authorize({
+      scope: 'scope.userLocation',
+    })
+    that.setData({
+      windowWidth: app.globalData.windowWidth,
+      windowHeight: app.globalData.windowHeight
+    })
+    
   },
 
   /**

@@ -50,9 +50,29 @@ Page({
  * 地图
  */
   location_press: function (e) {
-    wx.navigateTo({
-      url: '/pages/home/map/map',
-    })
+    var that = this
+    if (this.data.item.game_latitude == null) {
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          var latitude = res.latitude
+          var longitude = res.longitude
+          wx.openLocation({
+            latitude: latitude,
+            longitude: longitude,
+          })
+        }
+      })
+    }else{
+      wx.openLocation({
+        latitude: that.data.item.game_latitude,
+        longitude: that.data.item.game_longitude,
+      })
+    }
+    
+    // wx.navigateTo({
+    //   url: '/pages/home/map/map',
+    // })
   },
 /***
  * 赴约
