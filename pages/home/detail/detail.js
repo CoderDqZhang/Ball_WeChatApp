@@ -28,7 +28,7 @@ Page({
  */
   reqeuestData: function (res) {
     var that = this
-    var data = { 'game_id': res.id, 'openid': '16601131280', }
+    var data = { 'game_id': res.id, 'openid': app.globalData.userInfo.openid, }
     app.func.requestPost('/ball/gameDetail/', data, function (res) {
       that.setData({
         item: res.data.game_detail
@@ -145,7 +145,7 @@ Page({
  */
   cancel_appointment: function (e) {
     var that = this
-    var data = { 'openid': '16601131280', 'game_id': this.data.item.id}
+    var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id}
     app.func.requestPost('/ball/gameCancelAppoinment/', data, function (res) {
       console.log(res)
       that.setData({
@@ -164,7 +164,7 @@ Page({
  */
   appointment: function (e) {
     var that = this
-    var data = { 'openid': '16601131280', 'game_id': this.data.item.id, 'number_count':1}
+    var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id, 'number_count':1}
     app.func.requestPost('/ball/gameAppointment/', data, function (res) {
       console.log(res)
       if (res.data.message != null) {

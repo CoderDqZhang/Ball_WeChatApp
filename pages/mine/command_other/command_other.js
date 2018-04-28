@@ -10,7 +10,7 @@ Page({
     gameStars: app.globalData.gameStars,
     item:{},
     commond: {
-      "openid": '18363899723',
+      "openid": app.globalData.userInfo.openid,
       "targid": '16601131280',
       "content": "这家伙贼6",
       "userrank": 1,

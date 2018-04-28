@@ -47,7 +47,7 @@ Page({
   appointment_btn_press: function (res){
     var that = this;  
     var data = {
-      'openid':'16601131280',
+      'openid': app.globalData.userInfo.openid,
       'ball_id':that.data.game.ball_id,
       'game_title': that.data.game.game_title,
       'game_subtitle': that.data.game.game_subtitle,

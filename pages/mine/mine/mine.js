@@ -17,11 +17,11 @@ Page({
    */
   onLoad: function (options) {
     this.haseUserInfo() 
-    this.reqeuestData()
   },
 
   haseUserInfo: function () {
     if (app.globalData.userInfo) {
+      console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
@@ -56,11 +56,12 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+
   },
 
   reqeuestData: function (res) {
     var that = this
-    var data = { 'openid': '16601131280' }
+    var data = { 'openid': app.globalData.userInfo.openid }
     app.func.requestPost('/ball/getUserInfo/', data, function (res) {
       console.log(res)
       var avatar = that.data.userInfo.avatarUrl

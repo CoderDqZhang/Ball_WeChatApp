@@ -18,6 +18,23 @@ App({
     // 登录
     wx.login({
       success: res => {
+        wx.getUserInfo({
+          success:function(ress){
+            var data = { 
+              'code': res.code,
+              'avatar':ress.userInfo.avatarUrl,
+              'gender':ress.userInfo.gender,
+              'nickname':ress.userInfo.nickName,
+              'city':ress.userInfo.city,
+              'province': ress.userInfo.province
+               }
+            http.requestPost('/ball/WeChatlogin/', data, function (res) {
+              that.globalData.userInfo = res.data.user
+              console.log(res)
+            })
+          }
+        })
+        
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
