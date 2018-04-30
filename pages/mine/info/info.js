@@ -166,7 +166,7 @@ Page({
       "avatar": res.avatar,
       "sign":res.sign
     }
-    app.func.requestPost('/ball/updateUserInfo/', data, function (res) {
+    app.func.requestPost('/ball/updateuserinfo/', data, function (res) {
       console.log(res)
       that.setData({
         userInfo: res.data.user

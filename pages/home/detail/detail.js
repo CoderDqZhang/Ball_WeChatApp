@@ -29,7 +29,7 @@ Page({
   reqeuestData: function (res) {
     var that = this
     var data = { 'game_id': res.id, 'openid': app.globalData.userInfo.openid, }
-    app.func.requestPost('/ball/gameDetail/', data, function (res) {
+    app.func.requestPost('/ball/gamedetail/', data, function (res) {
       that.setData({
         item: res.data.game_detail
       })
@@ -146,7 +146,7 @@ Page({
   cancel_appointment: function (e) {
     var that = this
     var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id}
-    app.func.requestPost('/ball/gameCancelAppoinment/', data, function (res) {
+    app.func.requestPost('/ball/gamecancelappoinment/', data, function (res) {
       console.log(res)
       that.setData({
         item: res.data.game_detail
@@ -165,7 +165,7 @@ Page({
   appointment: function (e) {
     var that = this
     var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id, 'number_count':1}
-    app.func.requestPost('/ball/gameAppointment/', data, function (res) {
+    app.func.requestPost('/ball/gameappointment/', data, function (res) {
       console.log(res)
       if (res.data.message != null) {
         wx.showToast({
@@ -183,6 +183,14 @@ Page({
           duration: 2000
         })
       }      
+    })
+  },
+
+  time_cancel_press: function (res) {
+    wx.showToast({
+      title: '已经过期没法赴约',
+      icon: 'faile',
+      duration: 2000
     })
   },
 

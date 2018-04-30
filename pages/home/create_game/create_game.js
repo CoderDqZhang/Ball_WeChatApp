@@ -63,7 +63,7 @@ Page({
       'number':1
     }
 
-    app.func.requestPost('/ball/gameCreate/', data, function(res) {
+    app.func.requestPost('/ball/gamecreate/', data, function(res) {
         console.log(res)
         wx.navigateBack({
           delta: 2
@@ -73,7 +73,7 @@ Page({
 
   requestGame:function (res){
     var that = this;
-    app.func.requestGet('/ball/ballList/', {}, function (res) {
+    app.func.requestGet('/ball/balllist/', {}, function (res) {
       for (var i = 0; i < res.data.length; i++) {
         var urls = res.data[i].image
         res.data[i].image = urls

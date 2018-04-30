@@ -28,9 +28,9 @@ App({
               'city':ress.userInfo.city,
               'province': ress.userInfo.province
                }
-            http.requestPost('/ball/WeChatlogin/', data, function (res) {
-              that.globalData.userInfo = res.data.user
-              console.log(res)
+            http.requestPost('/ball/wechatlogin/', data, function (res) {
+                that.globalData.userInfo = res.data.user
+                console.log(res)
             })
           }
         })

@@ -29,13 +29,16 @@
           <view class='user_name'>{{item.user.nickname}}</view>
         </view>
         <view class='invate_info'>
-          <view class='invate_title'>{{item.game_title}}</view>
+          <view class='invate_title_done' wx:if='{{item.game_status == 0}}'>{{item.game_title}} 已过期</view>
+          <view class='invate_title' wx:else>{{item.game_title}}</view>
           <view class='invate_time'>{{item.game_start_time}}</view>
           <view class='invate_time'>{{item.game_end_time}}</view>
           <view class='invate_location'>{{item.game_location_detail}}</view>
           <view class='invate_much_info'>
-            <view class='invate_much'>人均费用:</view>
-            <view class='invate_muchs'>{{item.game_price}}</view>
+          <view class='invate_title_done' wx:if='{{item.game_status == 0}}'>人均费用:</view>
+            <view class='invate_much' wx:else>人均费用:</view>
+            <view class='invate_title_done' wx:if='{{item.game_status == 0}}'>{{item.game_price}}</view>
+            <view class='invate_muchs' wx:else>{{item.game_price}}</view>
           </view>
         </view>
       </view>

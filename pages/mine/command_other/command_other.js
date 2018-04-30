@@ -10,7 +10,7 @@ Page({
     gameStars: app.globalData.gameStars,
     item:{},
     commond: {
-      "openid": app.globalData.userInfo.openid,
+      "openid": "",
       "targid": '16601131280',
       "content": "这家伙贼6",
       "userrank": 1,
@@ -39,7 +39,7 @@ Page({
   appointment_btn_press: function (res) {
     var that = this
     var data = that.data.commond
-    app.func.requestPost('/ball/Commond/', data, function (res) {
+    app.func.requestPost('/ball/commond/', data, function (res) {
       console.log(res)
       wx.showToast({
         title: '评价成功',

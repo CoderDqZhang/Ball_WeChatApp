@@ -99,10 +99,11 @@ Page({
     that.setData({
       ball_id: res.id
     })
-    app.func.requestPost('/ball/gameList/', data, function (res) {
+    app.func.requestPost('/ball/gamelist/', data, function (res) {
       for (var i = 0; i < res.data.game_list.length; i++) {
         res.data.game_list[i].game_start_times = Date.parse(new Date(res.data.game_list[i].game_start_time))
       }
+      console.log(res)
       that.setData({
         item: res.data.game_list
 
@@ -116,7 +117,7 @@ Page({
   reqeuestSearchData: function (res) {
     var that = this
     var data = { 'keyword': res,'ball_id':that.data.ball_id }
-    app.func.requestPost('/ball/gameSearch/', data, function (res) {
+    app.func.requestPost('/ball/gamesearch/', data, function (res) {
       for (var i = 0; i < res.data.game_list.length; i++) {
         res.data.game_list[i].game_start_times = Date.parse(new Date(res.data.game_list[i].game_start_time))
       }

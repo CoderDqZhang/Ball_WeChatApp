@@ -32,7 +32,7 @@ Page({
   reqeuestData: function (res) {
     var that = this
     var data = { 'openid': res.openid }
-    app.func.requestPost('/ball/myGameAppoinment/', data, function (res) {
+    app.func.requestPost('/ball/mygameappoinment/', data, function (res) {
       console.log(res)
       that.setData({
         game_list: res.data.game_list

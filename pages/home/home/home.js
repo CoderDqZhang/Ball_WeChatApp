@@ -17,7 +17,7 @@ Page({
 
   requestData: function () {
     var that = this;
-    app.func.requestGet('/ball/ballList/', {}, function (res) {
+    app.func.requestGet('/ball/balllist/', {}, function (res) {
       for (var i = 0; i < res.data.length; i ++){
         var urls = res.data[i].image
         res.data[i].image = urls

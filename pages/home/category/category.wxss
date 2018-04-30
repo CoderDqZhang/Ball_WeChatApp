@@ -95,6 +95,11 @@
   color: #384269
 }
 
+.invate_title_done{
+  font-size: 30rpx;
+  color: #DDE0E5
+}
+
 .invate_time{
   font-size: 28rpx;
   color: #DDE0E5

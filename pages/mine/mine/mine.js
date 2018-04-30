@@ -62,7 +62,7 @@ Page({
   reqeuestData: function (res) {
     var that = this
     var data = { 'openid': app.globalData.userInfo.openid }
-    app.func.requestPost('/ball/getUserInfo/', data, function (res) {
+    app.func.requestPost('/ball/getuserinfo/', data, function (res) {
       console.log(res)
       var avatar = that.data.userInfo.avatarUrl
       that.setData({
@@ -90,7 +90,7 @@ Page({
       "city": res.city,
       "avatar": res.avatar
     }
-    app.func.requestPost('/ball/updateUserInfo/', data, function (res) {
+    app.func.requestPost('/ball/updateuserinfo/', data, function (res) {
       console.log(res)
       that.setData({
         userInfo: res.data.user
