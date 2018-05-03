@@ -45,24 +45,25 @@ Page({
   },
 
   appointment_btn_press: function (res){
-    var that = this;  
+    var that = this; 
+    console.log((that.data.game.game_start_date_time + " " + that.data.game.game_start_time).replace(/-/g, '/')) 
     var data = {
       'openid': app.globalData.userInfo.openid,
       'ball_id':that.data.game.ball_id,
       'game_title': that.data.game.game_title,
       'game_subtitle': that.data.game.game_subtitle,
       'ball_id': that.data.game.ball_id,
-      'game_location': "朝阳公园",
+      'game_location': that.data.game.game_location,
       'game_location_detail': that.data.game.game_location_detail,
       'game_price': that.data.game.game_price,
-      'game_start_time': Date.parse(that.data.game.game_start_date_time + " " + that.data.game.game_start_time) / 1000,
-      'game_end_time': Date.parse(that.data.game.game_end_date_time + " " + that.data.game.game_end_time) / 1000,
+      'game_start_time': Date.parse((that.data.game.game_start_date_time + " " + that.data.game.game_start_time).replace(/-/g, '/')) / 1000,
+      'game_end_time': Date.parse((that.data.game.game_end_date_time + " " + that.data.game.game_end_time).replace(/-/g, '/')) / 1000,
       'game_referee': that.data.game.game_referee == '是' ? 1 : 0,
       'game_number': that.data.game.game_number,
       'game_place_condition': that.data.game.game_place_condition,
       'number':1
     }
-
+    console.log(data)
     app.func.requestPost('/ball/gamecreate/', data, function(res) {
         console.log(res)
         wx.navigateBack({

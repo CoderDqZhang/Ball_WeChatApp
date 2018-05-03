@@ -1,5 +1,5 @@
 <!--pages/home/create_game/create_game.wxml-->
-<scroll-view scroll-y style="height: {{windowHeight - 50}}px;" class='scroll_session'>
+<scroll-view scroll-y style="height: {{windowHeight}}px;" class='scroll_session'>
 <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
 <view class='session_info' bindchange="game_title_press">
   <view class='title'>球约标题</view>

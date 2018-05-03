@@ -18,8 +18,10 @@ App({
     // 登录
     wx.login({
       success: res => {
+        console.log(res)
         wx.getUserInfo({
           success:function(ress){
+            console.log(ress)
             var data = { 
               'code': res.code,
               'avatar':ress.userInfo.avatarUrl,
@@ -28,9 +30,13 @@ App({
               'city':ress.userInfo.city,
               'province': ress.userInfo.province
                }
+               console.log(data)
+
             http.requestPost('/ball/wechatlogin/', data, function (res) {
-                that.globalData.userInfo = res.data.user
-                console.log(res)
+              console.log(res)
+                if (res != false) {
+                  that.globalData.userInfo = res.data.user
+                }
             })
           }
         })

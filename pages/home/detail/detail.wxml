@@ -1,6 +1,6 @@
 <!--pages/home/detail/detail.wxml-->
 <scroll-view scroll-y style="height: {{windowHeight}}px;">
-  <view class='ball_section'>
+  <view class='ball_section' bindtap='user_info_tap'>
     <image src='{{item.user.avatar}}' class='avatar'></image>
     <view class='ball_info'>
       <view class='title'>{{item.game_title}}</view>

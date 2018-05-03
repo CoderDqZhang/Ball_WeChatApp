@@ -209,6 +209,14 @@ Page({
       })
   },
 
+  user_info_tap: function (res) {
+    var that = this
+    var data = that.data.item.user
+    wx.navigateTo({
+      url: '/pages/mine/other/other?item=' + JSON.stringify(data),
+    })
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */

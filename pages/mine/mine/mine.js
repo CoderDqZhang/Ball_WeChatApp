@@ -58,6 +58,14 @@ Page({
     })
 
   },
+/**
+ * 修改个人信息后更新数据
+ */
+  changeData: function (data) {
+    this.setData({
+      userInfo: data
+    })
+  },
 
   reqeuestData: function (res) {
     var that = this

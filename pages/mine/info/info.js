@@ -9,9 +9,9 @@ Page({
     userInfo:{
       nickName:"",
       gender:"",
-      weight:"",
+      weight:0,
       phone:"",
-      height:"",
+      height:0,
       age:"",
       good:"",
       location:"",
@@ -138,7 +138,7 @@ Page({
    * 输入框失去焦点直接保存数据
    */
   input_end: function (res) {
-    that.save_userInfo(that.data.userInfo)
+    this.save_userInfo(this.data.userInfo)
   },
 
   good_press: function (e) {
@@ -160,7 +160,7 @@ Page({
       "height": res.height,
       "game_age": res.game_age,
       "good_point": res.good_point,
-      "phone": res.openid,
+      "phone": res.phone,
       "province": res.province,
       "city": res.city,
       "avatar": res.avatar,
@@ -171,6 +171,14 @@ Page({
       that.setData({
         userInfo: res.data.user
       })
+      var pages = getCurrentPages();
+      if (pages.length > 1) {
+        //上一个页面实例对象
+        var prePage = pages[pages.length - 2];
+        //关键在这里
+        prePage.changeData(res.data.user)
+      }
+      app.globalData.userInfo = res.data.user
     })
   },
 

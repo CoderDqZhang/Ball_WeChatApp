@@ -17,14 +17,18 @@ Page({
 
   requestData: function () {
     var that = this;
+    console.log('this is test data ')
     app.func.requestGet('/ball/balllist/', {}, function (res) {
-      for (var i = 0; i < res.data.length; i ++){
-        var urls = res.data[i].image
-        res.data[i].image = urls
+      console.log(res)
+      if (res != false) {
+        for (var i = 0; i < res.data.length; i++) {
+          var urls = res.data[i].image
+          res.data[i].image = urls
+        }
+        that.setData({
+          ball_datas: res.data
+        })
       }
-      that.setData({
-        ball_datas:res.data
-      })
     });
   },
 
@@ -33,6 +37,8 @@ Page({
    */
   onLoad: function (options) {
     this.requestData()
+    console.log(('2018-05-03 09:18').replace(/-/g, '/'))
+    console.log(Date.parse(('2018-05-03 09:18').replace(/-/g, '/')))
   },
 
   /**

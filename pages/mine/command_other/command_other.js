@@ -27,6 +27,7 @@ Page({
       item: JSON.parse(options.item),
     })
     that.data.commond.targid =that.data.item.openid
+    that.data.commond.openid = app.globalData.userInfo.openid
   },
 
   input_game_subtitle: function (e) {
