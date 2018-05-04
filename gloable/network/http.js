@@ -1,5 +1,5 @@
-// var rootDocment = 'https://yq.topveda.cn';//你的域名  
-var rootDocment = 'http://127.0.0.1:8000';//你的域名 
+var rootDocment = 'https://yq.topveda.cn';//你的域名  
+// var rootDocment = 'http://127.0.0.1:8000';//你的域名 
 function requestPost(url,data,cb){ 
   console.log(url,data) 
     wx.request({  

@@ -47,6 +47,9 @@ Page({
         icon: 'success',
         duration: 2000
       })
+      wx.navigateBack({
+        delta: 2
+      })
     })
   },
 
