@@ -12,7 +12,28 @@
 .location{
   font-size: 30rpx;
   color: #384269;
-  width: 80rpx;
+  width: 160rpx;
+}
+
+.picker-view {
+  width: 100%;
+  display: flex;
+  z-index:12;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  height: 40vh;
+}
+
+.picker-item {
+  line-height: 70rpx;
+  margin-left: 5rpx;
+  margin-right: 5rpx;
+  text-align: center;
 }
 
 .search_input{
@@ -35,7 +56,7 @@
   align-items: center;
   font-size: 30rpx;
   width: 33.3%;
-  height: 100rpx;
+  height: 70rpx;
 }
 
 .sort_image{
@@ -78,8 +99,8 @@
 }
 
 .user_name{
-  font-size: 20rpx;
-  margin-top: 30rpx;
+  font-size: 30rpx;
+  margin-top: 20rpx;
   color: #DDE0E5;
 }
 

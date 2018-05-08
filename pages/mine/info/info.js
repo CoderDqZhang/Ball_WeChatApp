@@ -87,6 +87,13 @@ Page({
     that.save_userInfo(that.data.userInfo)
   },
 
+  input_usename: function (res){
+    var that = this
+    that.setData({
+      'userInfo.nickname': res.detail.value
+    })
+  },
+
   height_press: function (e) {
     var that = this
     that.setData({

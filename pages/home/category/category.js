@@ -45,6 +45,8 @@ var bymax = function (name) {
   }
 }
 
+
+
 Page({
 
   /**
@@ -55,8 +57,19 @@ Page({
     ball_id:"1",
     sort_price: 'normal',
     sort_time: 'normal',
+    sort_location:'normal',
     windowWidth: 0,
-    windowHeight: 0
+    windowHeight: 0,
+    userInfo:{},
+    animationAddressMenu: {},
+    addressMenuIsShow: false,
+    value: [0, 0, 0],
+    provinces: [],
+    citys: [],
+    areas: [],
+    areaInfo: '',
+    address:{},
+    selectCity:""
   },
 
   /**
@@ -67,12 +80,116 @@ Page({
     that.setData({
       item: JSON.parse(options.item),
       windowWidth: app.globalData.windowWidth,
-      windowHeight: app.globalData.windowHeight
+      windowHeight: app.globalData.windowHeight,
+      userInfo: app.globalData.userInfo
     })
     that.reqeuestData(that.data.item)
     wx.setNavigationBarTitle({
       title: that.data.item.name
     })
+
+    // 初始化动画变量
+    var animation = wx.createAnimation({
+      duration: 500,
+      transformOrigin: "50% 50%",
+      timingFunction: 'ease',
+    })
+    this.animation = animation;
+
+    // 默认联动显示北京
+    that.setData({
+      address: app.city_data,
+      selectCity: that.data.userInfo.city
+    })
+    var id = that.data.address.provinces[0].id
+    this.setData({
+      provinces: that.data.address.provinces,
+      citys: that.data.address.citys[id],
+      areas: that.data.areas[that.data.address.citys[id][0].id],
+    })
+  },
+
+  // 点击所在地区弹出选择框
+  selectDistrict: function (e) {
+    var that = this
+    // 如果已经显示，不在执行显示动画
+    if (that.data.addressMenuIsShow) {
+      return
+    }
+    // 执行显示动画
+    that.startAddressAnimation(true)
+  },
+  // 执行动画
+  startAddressAnimation: function (isShow) {
+    console.log(isShow)
+    var that = this
+    if (isShow) {
+      // vh是用来表示尺寸的单位，高度全屏是100vh
+      that.animation.translateY(0 + 'vh').step()
+    } else {
+      that.animation.translateY(40 + 'vh').step()
+    }
+    that.setData({
+      animationAddressMenu: that.animation.export(),
+      addressMenuIsShow: isShow,
+    })
+  },
+  // 点击地区选择取消按钮
+  cityCancel: function (e) {
+    this.startAddressAnimation(false)
+  },
+  // 点击地区选择确定按钮
+  citySure: function (e) {
+    var that = this
+    var city = that.data.city
+    var value = that.data.value
+    that.startAddressAnimation(false)
+    // 将选择的城市信息显示到输入框
+    var areaInfo = that.data.provinces[value[0]].name + ',' + that.data.citys[value[1]].name + ',' + that.data.areas[value[2]].name
+    that.setData({
+      areaInfo: areaInfo,
+      selectCity: that.data.areas[value[2]].name
+    })
+
+  },
+  // 点击蒙版时取消组件的显示
+  hideCitySelected: function (e) {
+    console.log(e)
+    this.startAddressAnimation(false)
+  },
+  // 处理省市县联动逻辑
+  cityChange: function (e) {
+    console.log(e)
+    var that = this
+    var value = e.detail.value
+    var provinces = this.data.provinces
+    var citys = this.data.citys
+    var areas = this.data.areas
+    var provinceNum = value[0]
+    var cityNum = value[1]
+    var countyNum = value[2]
+    // 如果省份选择项和之前不一样，表示滑动了省份，此时市默认是省的第一组数据，
+    if (this.data.value[0] != provinceNum) {
+      var id = provinces[provinceNum].id
+      this.setData({
+        value: [provinceNum, 0, 0],
+        citys: that.data.address.citys[id],
+        areas: that.data.address.areas[that.data.address.citys[id][0].id],
+      })
+    } else if (this.data.value[1] != cityNum) {
+      // 滑动选择了第二项数据，即市，此时区显示省市对应的第一组数据
+      var id = citys[cityNum].id
+      this.setData({
+        value: [provinceNum, cityNum, 0],
+        areas: that.data.address.areas[citys[cityNum].id],
+      })
+    } else {
+      // 滑动选择了区
+      this.setData({
+        value: [provinceNum, cityNum, countyNum]
+      })
+    }
+    console.log(this.data)
   },
   /**
      * 搜索框查询某个人创建的球约
@@ -102,6 +219,9 @@ Page({
     app.func.requestPost('/ball/gamelist/', data, function (res) {
       for (var i = 0; i < res.data.game_list.length; i++) {
         res.data.game_list[i].game_start_times = Date.parse(new Date(res.data.game_list[i].game_start_time))
+        if (app.globalData.locationInfo.latitude != null){
+          res.data.game_list[i].game_distance = that.getDistance(app.globalData.locationInfo.latitude, app.globalData.locationInfo.longitude, res.data.game_list[i].game_latitude, res.data.game_list[i].game_longitude)
+        }
       }
       console.log(res)
       that.setData({
@@ -145,6 +265,23 @@ Page({
       })
     }
   },
+
+  sort_location: function(res) {
+    var that = this
+    if ((that.data.sort_location == 'normal') || (that.data.sort_location == 'max')) {
+      var newArray = that.data.item.sort(bymin('game_distance'))
+      that.setData({
+        item: newArray,
+        sort_location: 'min'
+      })
+    } else {
+      var newArray = that.data.item.sort(bymax('game_distance'))
+      that.setData({
+        item: newArray,
+        sort_location: 'max'
+      })
+    }
+  },
   /**
      * 根据价格排序
      */
@@ -173,7 +310,20 @@ Page({
   },
 
 
+  getDistance: function (lat1, lng1, lat2, lng2) {
+    lat1 = lat1 || 0;
+    lng1 = lng1 || 0;
+    lat2 = lat2 || 0;
+    lng2 = lng2 || 0;
 
+    var rad1 = lat1 * Math.PI / 180.0;
+    var rad2 = lat2 * Math.PI / 180.0;
+    var a = rad1 - rad2;
+    var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+
+    var r = 6378137;
+    return r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

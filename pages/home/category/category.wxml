@@ -1,6 +1,7 @@
 <!--pages/home/category/category.wxml-->
 <view class='search_bar'>
-  <view class='location'>北京</view>
+
+  <view class='location' bindtap='selectDistrict'>{{selectCity}}</view>
   <input placeholder='输入关键字查找' class='search_input' bindinput='input_search' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 70}}px; border:  1px solid #DDE0E5;text-align:left;font-size:28rpx;'
     confirm-type='search'></input>
 </view>
@@ -10,17 +11,17 @@
     <view class='tool_info'>时间</view>
     <image src='/images/gloable/sort-o.png' class='sort_image'></image>
   </view>
-  <view class='tool_contains'>
+  <view class='tool_contains' bindtap='sort_location'>
     <view class='tool_info'>地点</view>
     <image src='/images/gloable/sort-o.png' class='sort_image'></image>
   </view>
   <view class='tool_contains' bindtap='sort_price'>
-    <view class='tool_info'>价钱</view>
+    <view class='tool_info'>人均</view>
     <image src='/images/gloable/sort-o.png' class='sort_image'></image>
   </view>
 </view>
 <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
-<scroll-view scroll-y style="height: {{windowHeight - 100}}px;" class='scroll_session'>
+<scroll-view scroll-y style="height: {{windowHeight - 105}}px;" class='scroll_session'>
   <view wx:for='{{item}}' bindtap='ball_info_press' wx:key='data' data-index = "{{index}}">
     <view class='invate_section' >
       <view class='invate_sections'>
@@ -48,3 +49,23 @@
   </view>
 </scroll-view>
 <button class='appointment_btn' bindtap='appointment_btn_press'>创建邀约</button>
+<view class="picker-view" animation="{{animationAddressMenu}}" style="visibility:{{addressMenuIsShow ? 'visible':'hidden'}}">
+  <view style="height:10% ;width:95%;margin-top:10rpx">
+    <text catchtap="cityCancel">取消 </text>
+    <text style="float: right" catchtap="citySure">确定</text>
+  </view>
+  <picker-view style="width: 100%; height: 300px;" bindchange="cityChange" value="{{value}}" wx:key="items">
+    <picker-view-column>
+      <view wx:for="{{provinces}}" class="picker-item"wx:key="itemsss">
+        {{item.name}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{citys}}" class="picker-item" wx:key="itemsss">
+        {{item.name}} </view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{areas}}" class="picker-item" wx:key="itemss">
+        {{item.name}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

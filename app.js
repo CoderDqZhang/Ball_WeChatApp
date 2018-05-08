@@ -1,5 +1,6 @@
 //app.js
 var http = require('gloable/network/http.js');
+var address = require('gloable/until/city.js')
 
 App({
   onLaunch: function () {
@@ -15,6 +16,12 @@ App({
     })
     wx.setStorageSync('logs', logs)
 
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        that.globalData.locationInfo = res
+      }
+    })
     // 登录
     wx.login({
       success: res => {
@@ -69,6 +76,7 @@ App({
     userInfo: null,
     windowWidth:null,
     windowHeight:null,
+    locationInfo:null,
     gameStars: [
       '/images/gloable/star_normal.png',
       '/images/gloable/star_normal.png',
@@ -92,5 +100,13 @@ App({
     requestPut: http.requestPut,
     requestDelete: http.requestDelete,
     requestSessionIDGet: http.requestSessionIDGet
+  },
+
+  city_data:{
+    provinces: address.provinces,
+    citys: address.citys,
+    areas: address.areas,
   }
+
+  
 })
