@@ -14,8 +14,12 @@ Page({
       "targid": '16601131280',
       "content": "这家伙贼6",
       "userrank": 1,
-      "skillrank": 1
-    }
+      "skillrank": 1,
+      "anonymity":0
+    },
+    windowWidth: 0,
+    windowHeight: 0,
+    check: false
   },
 
   /**
@@ -25,6 +29,10 @@ Page({
     var that = this
     that.setData({
       item: JSON.parse(options.item),
+    })
+    that.setData({
+      windowWidth: app.globalData.windowWidth,
+      windowHeight: app.globalData.windowHeight
     })
     that.data.commond.targid =that.data.item.openid
     that.data.commond.openid = app.globalData.userInfo.openid
@@ -51,6 +59,20 @@ Page({
         delta: 2
       })
     })
+  },
+
+  checkboxChange: function (e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    var that = this
+    if (e.detail.value.length == 0) {
+      that.setData({
+        'commond.anonymity': 0
+      })
+    }else{
+      that.setData({
+        'commond.anonymity': 1
+      })
+    }
   },
 
   // 星星点击事件

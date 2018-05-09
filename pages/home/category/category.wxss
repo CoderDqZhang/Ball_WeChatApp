@@ -91,6 +91,8 @@
   align-items: center;
   display: flex;
   width: 200rpx;
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 .avatar{
@@ -109,6 +111,7 @@
   justify-content: flex-start;
   align-content: space-between;
   display: flex;
+  flex-grow: 0;
 }
 
 .invate_title{

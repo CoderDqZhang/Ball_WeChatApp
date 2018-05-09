@@ -8,7 +8,11 @@
         <view class='category_subtitle'>{{item.sub_title}}</view>
       </view>
     </view>
+    <view class='item_class'>
+    <view wx:if="{{item.count != 0}}" class='number'>{{item.count}}</view>
     <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+    
   </view>
   <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
 </view>

@@ -85,9 +85,11 @@
     </view>
     <view class='comment_info' wx:for="{{commonds}}" wx:key="commond" wx:key="commond" data-index="{{index}}" bindtap='commond_press'>
       <view class='conmment_user_infos'>
-        <image class="comment-avatar" src="{{item.tag_user.avatar}}"></image>
+        <image class="comment-avatar" wx:if="{{item.anonymity == 1}}" src="/images/gloable/avatar.jpg"></image>
+        <image class="comment-avatar" wx:else src="{{item.tag_user.avatar}}"></image>
         <view class='conmment_user_info'>
-          <text class='conmment_username'>{{item.tag_user.nickname}} {{item.tag_user.good_point}}</text>
+        <text class='conmment_username' wx:if="{{item.anonymity == 1}}">匿名评价</text>
+          <text class='conmment_username' wx:else>{{item.tag_user.nickname}} {{item.tag_user.good_point}}</text>
           <text class='conmment_sub_title'>{{item.tag_user.sign}}</text>
         </view>
       </view>

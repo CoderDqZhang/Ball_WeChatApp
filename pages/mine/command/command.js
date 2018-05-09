@@ -35,7 +35,7 @@ Page({
   my_commond: function () {
     var that = this
     var data = { 'openid': that.data.userInfo.openid }
-    app.func.requestPost('/ball/UserCommond/', data, function (res) {
+    app.func.requestPost('/ball/usercommond/', data, function (res) {
       console.log(res)
       that.setData({
         commonds: res.data.commonds,

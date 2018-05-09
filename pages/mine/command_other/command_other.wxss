@@ -25,3 +25,14 @@
   width: 48rpx;
   height: 48rpx;
 }
+
+.appointment_btn{
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-top: 20rpx;
+}
+
+.checkbox{
+  margin-left: 30rpx;
+  margin-top: 20rpx;
+}
