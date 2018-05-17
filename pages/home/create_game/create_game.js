@@ -110,6 +110,12 @@ Page({
     })
   },
 
+  input_place_condition: function (e) {
+    this.setData({
+      'game.game_place_condition': e.detail.value
+    })
+  },
+
   input_detail_location: function (e) {
     this.setData({
       'game.game_location_detail': e.detail.value
@@ -132,13 +138,7 @@ Page({
       },
     })
   },
-
-  input_place_condition: function (e) {
-    this.setData({
-      'game.game_place_condition': e.detail.value
-    })
-  },
-
+  
   game_referee_press: function (e) {
     var that = this
     that.setData({

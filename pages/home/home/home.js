@@ -17,7 +17,6 @@ Page({
 
   requestData: function () {
     var that = this;
-    console.log('this is test data ')
     app.func.requestGet('/ball/balllist/', {}, function (res) {
       console.log(res)
       if (res != false) {

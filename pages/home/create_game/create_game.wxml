@@ -5,7 +5,7 @@
   <view class='title'>球约标题</view>
   <view class='normal_info'>
     <input placeholder='球约标题' class='search_input' bindinput='input_game_title' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 100}}px; align:right;text-align:right;font-size:28rpx;' confirm-type='done'
-      value='{{game.game_place_condition}}'></input>
+      value='{{game.game_title}}'></input>
       <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
   </view>
 </view>
@@ -14,7 +14,7 @@
   <view class='title'>球约副标题</view>
   <view class='normal_info'>
     <input placeholder='球约副标题' class='search_input' bindinput='input_game_subtitle' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 100}}px; align:right;text-align:right;font-size:28rpx;' confirm-type='done'
-      value='{{game.game_place_condition}}'></input>
+      value='{{game.game_subtitle}}'></input>
       <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
   </view>
 </view>
