@@ -16,6 +16,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    console.log(options)
     that.setData({
       item: JSON.parse(options.item),
       windowWidth: app.globalData.windowWidth,
@@ -257,13 +258,9 @@ Page({
    */
   onShareAppMessage: function () {
     var that = this
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
     return {
-      title: '自定义转发标题',
-      path: '/pages/home/detail/detail?item=' + JSON.stringify(that.data.item),
+      title: that.data.item.game_title,
+      path: '/pages/home/detail/detail?item=' + that.options.item,
       success: function (res) {
         // 转发成功
       },
