@@ -138,6 +138,7 @@ Page({
       },
     })
   },
+
   
   game_referee_press: function (e) {
     var that = this

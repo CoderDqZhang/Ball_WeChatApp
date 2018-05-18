@@ -75,11 +75,33 @@ Page({
     //   url: '/pages/home/map/map',
     // })
   },
+  /**
+ * 修改个人信息后更新数据
+ */
+  changeData: function (data) {
+    this.setData({
+      'app.globalData.userInfo': data
+    })
+  },
 /***
  * 赴约
  */
   appointment_btn_press: function (e) {
     var that = this
+    if (app.globalData.userInfo.phone == '') {
+      wx.showModal({
+        title: '请您完善个人信息',
+        showCancel: true,
+        confirmColor: "#4bd4c5",
+        success: function (e) {
+          wx.navigateTo({
+            url: '/pages/mine/info/info?item=' + JSON.stringify(app.globalData.userInfo),
+          })
+        }
+      })
+      return
+    }
+
     var number_count = 0
     for (var i = 0; i < that.data.item.user_list.length; i ++) {
       number_count = number_count + parseInt(that.data.item.user_list[i].number_count.number)

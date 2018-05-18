@@ -302,8 +302,30 @@ Page({
     }
   },
 
+  /**
+   * 修改个人信息后更新数据
+   */
+  changeData: function (data) {
+    this.setData({
+      'app.globalData.userInfo': data
+    })
+  },
 
   appointment_btn_press: function (res) {
+    var that = this
+    if (app.globalData.userInfo.phone == '') {
+      wx.showModal({
+        title: '请您完善个人信息',
+        showCancel: true,
+        confirmColor: "#4bd4c5",
+        success: function (e) {
+          wx.navigateTo({
+            url: '/pages/mine/info/info?item=' + JSON.stringify(app.globalData.userInfo),
+          })
+        }
+      })
+      return
+    }
     wx.navigateTo({
       url: '/pages/home/create_game/create_game',
     })
