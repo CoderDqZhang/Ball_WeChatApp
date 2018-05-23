@@ -31,12 +31,20 @@ Page({
     var that = this
     var data = { 'game_id': res.id, 'openid': app.globalData.userInfo.openid, }
     app.func.requestPost('/ball/gamedetail/', data, function (res) {
+      console.log(res)
+      console.log(res.data.game_detail.user_list.length)
+      if (res.data.game_detail.user_list.length < 2 && res.data.game_detail.user.openid == app.globalData.userInfo.openid) {
+        res.data.game_detail.candelete = true
+      }else{
+        res.data.game_detail.candelete = false
+      }
       that.setData({
         item: res.data.game_detail
       })
       console.log(that.data.item)
     })
   },
+
 
 /**
  * 拨打电话
@@ -83,6 +91,46 @@ Page({
       'app.globalData.userInfo': data
     })
   },
+
+/**
+ * 删除球约
+ */
+  time_delete_press: function (e) {
+    var that = this
+    wx.showModal({
+      title: '确定删除球约么？',
+      showCancel: true,
+      confirmColor: "#4bd4c5",
+      success: function (e) {
+        var data = { 'game_id': that.data.item.id, 'openid': app.globalData.userInfo.openid, }
+        app.func.requestPost('/ball/gamedelete/', data, function (res) {
+          console.log(res)
+          if (res.msg != null) {
+            wx.showToast({
+              title: '删除失败',
+            })
+          }else{
+            wx.showToast({
+              title: '删除成功',
+            })
+            var pages = getCurrentPages();
+            if (pages.length > 1) {
+              //上一个页面实例对象
+              var prePage = pages[pages.length - 2];
+              //关键在这里
+              prePage.updataGame({'id':that.data.item.ball.id})
+            }
+            wx.navigateBack({
+              delta: 1
+            })
+
+          }
+        })
+      }
+    })
+    
+  },
+
 /***
  * 赴约
  */
@@ -209,6 +257,13 @@ Page({
     })
   },
 
+  go_home: function (res) {
+    wx.switchTab({
+      url: '/pages/home/home/home',
+    })
+   
+  },
+
   time_cancel_press: function (res) {
     wx.showToast({
       title: '已经过期没法赴约',
@@ -235,9 +290,15 @@ Page({
   user_info_tap: function (res) {
     var that = this
     var data = that.data.item.user
-    wx.navigateTo({
-      url: '/pages/mine/other/other?item=' + JSON.stringify(data),
-    })
+    if (that.data.item.user.openid == app.globalData.userInfo.openid) {
+      wx.navigateTo({
+        url: '/pages/mine/info/info?item=' + JSON.stringify(that.data.item.user),
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/mine/other/other?item=' + JSON.stringify(data),
+      })
+    }
   },
 
   /**

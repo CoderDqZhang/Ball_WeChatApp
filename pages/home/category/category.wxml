@@ -30,7 +30,7 @@
           <view class='user_name'>{{item.user.nickname}}</view>
         </view>
         <view class='invate_info'>
-          <view class='invate_title_done' wx:if='{{item.game_status == 0}}'>{{item.game_title}} 已过期</view>
+          <view class='invate_title_done' wx:if='{{item.game_status == 0}}'><text>{{item.game_title}} </text><text style='color:red;'>已过期</text></view>
           <view class='invate_title' wx:else>{{item.game_title}}</view>
           <view class='invate_time'>{{item.game_start_time}}</view>
           <view class='invate_time'>{{item.game_end_time}}</view>

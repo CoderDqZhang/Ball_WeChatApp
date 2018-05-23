@@ -9,9 +9,9 @@ Page({
     userInfo:{
       nickName:"",
       gender:"",
-      weight:0,
+      weight:"",
       phone:"",
-      height:0,
+      height:"",
       age:"",
       good:"",
       location:"",
@@ -62,7 +62,7 @@ Page({
       height_list: item_list
     })
     item_list = []
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 100; i++) {
       item_list.push(String(i))
     }
     that.setData({
@@ -76,7 +76,9 @@ Page({
     that.setData({
       'userInfo.gender': that.data.gender_list[parseInt(e.detail.value)] == "女" ? "0" : that.data.gender_list[parseInt(e.detail.value)] == "男" ? "1":"2",
     })
-    that.save_userInfo(that.data.userInfo)
+    if (that.data.userInfo.gender != null) {
+      that.save_userInfo(that.data.userInfo)
+    }
   },
 
   weight_press: function (e) {
@@ -84,7 +86,9 @@ Page({
     that.setData({
       'userInfo.weight': that.data.weight_list[parseInt(e.detail.value)],
     })
-    that.save_userInfo(that.data.userInfo)
+    if (that.data.userInfo.weight != null) {
+      that.save_userInfo(that.data.userInfo)
+    }
   },
 
   input_usename: function (res){
@@ -99,7 +103,9 @@ Page({
     that.setData({
       'userInfo.height': that.data.height_list[parseInt(e.detail.value)],
     })
-    that.save_userInfo(that.data.userInfo)
+    if (that.data.userInfo.height != null) {
+      that.save_userInfo(that.data.userInfo)
+    }
   },
 /**
  * 修改年龄
@@ -109,7 +115,9 @@ Page({
     that.setData({
       'userInfo.age': that.data.age_list[parseInt(e.detail.value)],
     })
-    that.save_userInfo(that.data.userInfo)
+    if (that.data.userInfo.age != null) {
+      that.save_userInfo(that.data.userInfo)
+    }
   },
 
   bindMultiPickerColumnChange: function (e) {
@@ -153,7 +161,9 @@ Page({
     that.setData({
       'userInfo.good_point': that.data.balls_list[0][e.detail.value[0]] + "  " + that.data.balls_list[1][e.detail.value[1]]
     })
-    that.save_userInfo(that.data.userInfo)
+    if (that.data.userInfo.good_point != null) {
+      that.save_userInfo(that.data.userInfo)
+    }
   },
 
   save_userInfo: function(res) {

@@ -16,3 +16,4 @@
   </view>
   <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
 </view>
+<button open-type=''></button>

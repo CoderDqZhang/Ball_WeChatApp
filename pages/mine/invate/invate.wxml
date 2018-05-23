@@ -11,15 +11,14 @@
         <image src='{{item.ball.image}}' style='width:80rpx;height:80rpx;'></image>
         <view class='username'>{{item.user.nickname}}</view>
       </view>
-      <view class='invate_info'>
+      <view class='game_info' style='width:{{windowWidth - 120}}px;'>
+        <view class='invate_info' style='width:70%; ' >
         <view class='game_type'>{{item.game_start_time}}</view>
-        <view class='game_type'>{{item.game_end_time}}</view>
-        <view class='location'> {{item.game_location}}</view>
+        <view class='location' style='width:100%;'> {{item.game_location}}</view>
       </view>
-      <view class='invate_info'>
-        <view class='game_type'>{{item.game_number}}人</view>
+      <view class='game_type' style='width:30px;'>{{item.game_number}}人</view>
       </view>
-    </view>
+      </view>
     <view class='invate_status'>
       <view class='status_end' wx:if="{{item.game_status == '失败'}}">{{item.game_status}}</view>
       <view class='status_active' wx:else>{{item.game_status}}</view>

@@ -109,6 +109,18 @@ Page({
     })
   },
 
+  updataGame: function (res) {
+    var that = this
+    that.reqeuestData(res)
+    // var pages = getCurrentPages();
+    // if (pages.length > 1) {
+    //   //上一个页面实例对象
+    //   var prePage = pages[pages.length - 2];
+    //   //关键在这里
+    //   prePage.updataGame()
+    // }
+  },
+
   // 点击所在地区弹出选择框
   selectDistrict: function (e) {
     var that = this
@@ -228,6 +240,7 @@ Page({
         item: res.data.game_list
 
       })
+      wx.stopPullDownRefresh();
     })
   },
 
@@ -379,7 +392,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that = this
+    that.reqeuestData({'id':that.data.ball_id})
   },
 
   /**

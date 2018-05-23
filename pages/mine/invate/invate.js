@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    game_list:{}
+    game_list:{},
+    windowWidth: 0,
+    windowHeight: 0
   },
 
   
@@ -20,6 +22,10 @@ Page({
       userInfo: JSON.parse(options.item)
     })
     this.reqeuestData(that.data.userInfo)
+    that.setData({
+      windowWidth: app.globalData.windowWidth,
+      windowHeight: app.globalData.windowHeight
+    })
   },
 
   invate_session: function (e) {

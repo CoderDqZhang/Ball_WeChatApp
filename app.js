@@ -1,6 +1,7 @@
 //app.js
 var http = require('gloable/network/http.js');
 var address = require('gloable/until/city.js')
+var QQMapWX = require('gloable/until/qqmap-wx-jssdk.js');
 
 App({
   onLaunch: function () {
@@ -22,35 +23,6 @@ App({
         that.globalData.locationInfo = res
       }
     })
-    // 登录
-    wx.login({
-      success: res => {
-        console.log(res)
-        wx.getUserInfo({
-          success:function(ress){
-            console.log(ress)
-            var data = { 
-              'code': res.code,
-              'avatar':ress.userInfo.avatarUrl,
-              'gender':ress.userInfo.gender,
-              'nickname':ress.userInfo.nickName,
-              'city':ress.userInfo.city,
-              'province': ress.userInfo.province
-               }
-               console.log(data)
-
-            http.requestPost('/ball/wechatlogin/', data, function (res) {
-              console.log(res)
-                if (res != false) {
-                  that.globalData.userInfo = res.data.user
-                }
-            })
-          }
-        })
-        
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -68,9 +40,115 @@ App({
               }
             }
           })
+        }else{
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success: () => {
+              console.log('yes')
+            }
+          })
         }
       }
     })
+    // 登录
+    wx.login({
+      success: res => {
+        console.log(res)
+        if (that.globalData.userInfo == null) {
+          var data = {
+            'code': res.code,
+            'avatar': "",
+            'gender': "",
+            'nickname': "",
+            'city': "",
+            'province': ""
+          }
+          console.log(data)
+
+          http.requestPost('/ball/wechatlogin/', data, function (res) {
+            console.log(res)
+            if (res != false) {
+              that.globalData.userInfo = res.data.user
+            }
+          })
+          return
+        }
+        
+        wx.getUserInfo({
+          withCredentials: true,
+          success:function(ress){
+            console.log(ress)
+            var data = { 
+              'code': res.code,
+              'avatar':ress.userInfo.avatarUrl,
+              'gender':ress.userInfo.gender,
+              'nickname':ress.userInfo.nickName,
+              'city':ress.userInfo.city,
+              'province': ress.userInfo.province
+            }
+               console.log(data)
+
+            http.requestPost('/ball/wechatlogin/', data, function (res) {
+              console.log(res)
+                if (res != false) {
+                  that.globalData.userInfo = res.data.user
+                }
+            })
+          },
+          fail: function(res){
+            console.log(res)
+            // wx.showModal({
+            //   title: '警告通知',
+            //   content: '您点击了拒绝授权,将无法正常显示个人信息,点击确定重新获取授权。',
+            //   success: function (res) {
+            //     if (res.confirm) {
+            //       wx.openSetting({
+            //         success: (res) => {
+            //           if (res.authSetting["scope.userInfo"]) {////如果用户重新同意了授权登录
+            //             wx.login({
+            //               success: function (res_login) {
+            //                 if (res_login.code) {
+            //                   wx.getUserInfo({
+            //                     withCredentials: true,
+            //                     success: function (ress) {
+            //                       console.log(ress)
+            //                       var data = {
+            //                         'code': res.code,
+            //                         'avatar': ress.userInfo.avatarUrl,
+            //                         'gender': ress.userInfo.gender,
+            //                         'nickname': ress.userInfo.nickName,
+            //                         'city': ress.userInfo.city,
+            //                         'province': ress.userInfo.province
+            //                       }
+            //                       console.log(data)
+
+            //                       http.requestPost('/ball/wechatlogin/', data, function (res) {
+            //                         console.log(res)
+            //                         if (res != false) {
+            //                           that.globalData.userInfo = res.data.user
+            //                         }
+            //                       })
+            //                     }
+            //                   })
+            //                 }
+            //               }
+            //             });
+            //           }
+            //         }, fail: function (res) {
+
+            //         }
+            //       })
+
+            //     }
+            //   }
+            // })
+          }
+        })
+        
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      }
+    })
+    
   },
   globalData: {
     userInfo: null,
@@ -91,6 +169,7 @@ App({
       '/images/gloable/star_normal.png',
       '/images/gloable/star_normal.png'
     ],
+    map:QQMapWX
   },
 
   func: {

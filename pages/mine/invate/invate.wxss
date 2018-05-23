@@ -46,6 +46,7 @@
   justify-content: flex-start;
   font-size: 28rpx;
   color: #384269;
+  margin-right: 10rpx;
 }
 
 .time{
@@ -55,21 +56,36 @@
 }
 
 .location{
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #DDE0E5;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  display: -webkit-inline-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.game_info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .invate_status{
-  margin-right: 30rpx;
+  width: 120rpx;
+  margin-right: 20rpx;
+  text-align: center;
 }
 
 .status_end{
-  font-size: 34rpx;
+  font-size: 28rpx;
   color: red;
 }
 
 .status_active{
-  font-size: 34rpx;
+  font-size: 28rpx;
   color: #4bd4c5;
 }
 

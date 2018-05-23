@@ -1,4 +1,6 @@
 // pages/home/create_game/create_game.js
+var qqmapsdk;
+
 var app = getApp()
 Page({
 
@@ -9,21 +11,23 @@ Page({
     game_list:[],
     normal_game_list: [],
     game_referee:["是","否"],
-    game_number: ["3", "4", "5", "6", "7", "8","9","10","11","12","13","14","15","16","17","18","19","20"],
+    game_number: ["3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"],
     game:{
-      "ball_id":0,
-      "game_title": '',
-      "game_subtitle": '',
-      'openid':"",
-      "game_location":"",
-      "game_location_detail":"",
-      "game_price":'',
+      "ball_id":null,
+      "game_title": null,
+      "game_subtitle": null,
+      'openid': null,
+      "game_location": '',
+      "game_location_detail": null,
+      "game_price":0,
       "game_end_date_time":'',
       "game_start_date_time":'',
       "game_start_time":'',
       "game_end_time":'',
       "game_referee":'',
       "game_number":'3',
+      'lat':'1',
+      'lng':'1',
       "game_place_condition":'',
       "number":1
     },
@@ -42,11 +46,21 @@ Page({
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight
     })
+    
+    qqmapsdk = new app.globalData.map({
+      key: 'ERCBZ-NKZKJ-W7YFI-KY4SB-62JEV-O4FSB'
+    });
   },
 
   appointment_btn_press: function (res){
     var that = this; 
-    console.log((that.data.game.game_start_date_time + " " + that.data.game.game_start_time).replace(/-/g, '/')) 
+    if (Date.parse((that.data.game.game_start_date_time + " " + that.data.game.game_start_time).replace(/-/g, '/')) / 1000 > Date.parse((that.data.game.game_end_date_time + " " + that.data.game.game_end_time).replace(/-/g, '/')) / 1000) {
+      wx.showModal({
+        title: '结束时间必须大于开始时间',
+        content: "",
+      })
+      return
+    }
     var data = {
       'openid': app.globalData.userInfo.openid,
       'ball_id':that.data.game.ball_id,
@@ -61,14 +75,24 @@ Page({
       'game_referee': that.data.game.game_referee == '是' ? 1 : 0,
       'game_number': that.data.game.game_number,
       'game_place_condition': that.data.game.game_place_condition,
+      'lat': that.data.game.lat,
+      'lng': that.data.game.lng,
       'number':1
     }
+    
     console.log(data)
     app.func.requestPost('/ball/gamecreate/', data, function(res) {
         console.log(res)
-        wx.navigateBack({
-          delta: 2
-        })
+        if (res.msg.errors != null) {
+          wx.showModal({
+            title: res.msg.errors[0].error,
+            content: "",
+          })
+        }else{
+          wx.navigateBack({
+            delta: 2
+          })
+        }
     })
   },
 
@@ -120,6 +144,7 @@ Page({
     this.setData({
       'game.game_location_detail': e.detail.value
     })
+    
   },
 
   input_price: function (e) {
@@ -135,8 +160,26 @@ Page({
         that.setData({
           'game.game_location': res.address
         })
+        // 调用接口
+        qqmapsdk.geocoder({
+          address: res.address,
+          success: function (res) {
+            console.log(res);
+            that.setData({
+              'game.lat': res.result.location.lat,
+              'game.lng': res.result.location.lng
+            })
+          },
+          fail: function (res) {
+            console.log(res);
+          },
+          complete: function (res) {
+            console.log(res);
+          }
+        })
       },
     })
+    
   },
 
   
@@ -151,6 +194,7 @@ Page({
     var that = this
     that.setData({
       'game.game_start_date_time': e.detail.value,
+      'game.game_end_date_time': e.detail.value,
     })
   },
 
@@ -180,12 +224,6 @@ Page({
     that.setData({
       'game.game_number': that.data.game_number[parseInt(e.detail.value)],
     })
-  },
-
-  location_press: function (e) {
-    // wx.navigateTo({
-    //   url: '/pages/home/location_choose/location_choose',
-    // })
   },
 
   /**

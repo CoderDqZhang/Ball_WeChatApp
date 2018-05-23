@@ -27,6 +27,7 @@ Page({
         that.setData({
           ball_datas: res.data
         })
+        wx.stopPullDownRefresh();
       }
     });
   },
@@ -36,8 +37,9 @@ Page({
    */
   onLoad: function (options) {
     this.requestData()
-    console.log(('2018-05-03 09:18').replace(/-/g, '/'))
-    console.log(Date.parse(('2018-05-03 09:18').replace(/-/g, '/')))
+    
+    
+
   },
 
   /**
@@ -47,11 +49,15 @@ Page({
   
   },
 
+  updataGame: function (res) {
+    var that = this
+    that.requestData()
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
@@ -72,7 +78,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    var that = this
+    that.requestData()
   },
 
   /**
@@ -86,6 +93,16 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    var that = this
+    return {
+      title: "我们一起约球吧",
+      path: '/pages/home/home/home',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

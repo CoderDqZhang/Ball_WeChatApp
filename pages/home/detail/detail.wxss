@@ -172,3 +172,15 @@
   font-size: 34rpx;
   color: red;
 }
+
+
+.img-plus-style {  
+  height: 70rpx;  
+  width: 70rpx;  
+  position: fixed;  
+  bottom: 150rpx;  
+  right: 30rpx;  
+  opacity: 0.7
+}   
+.zindex100{z-index: 100}
+.yc{opacity: 0}

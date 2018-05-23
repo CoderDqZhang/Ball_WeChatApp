@@ -20,7 +20,7 @@ Page({
   },
 
   haseUserInfo: function () {
-    if (app.globalData.userInfo) {
+    if (app.globalData.userInfo && app.globalData.userInfo.avatar != "") {
       console.log(app.globalData.userInfo)
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -51,12 +51,24 @@ Page({
 
   getUserInfo: function (e) {
     console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
+      "userInfo.openid": app.globalData.userInfo.openid,
+        "userInfo.nickname": e.detail.userInfo.nickName,
+        "userInfo.age": 0,
+        "userInfo.sign": "",
+        "userInfo.gender": e.detail.userInfo.gender,
+        "userInfo.weight": 0,
+        "userInfo.height": 0,
+        "userInfo.game_age": 0,
+        "userInfo.good_point": "",
+        "userInfo.phone": "",
+        "userInfo.province": e.detail.userInfo.country,
+        "userInfo.city": e.detail.userInfo.city,
+        "userInfo.avatar": e.detail.userInfo.avatarUrl,
       hasUserInfo: true
     })
-
+    this.save_userInfo(this.data.userInfo)
+    app.globalData.userInfo = this.data.userInfo
   },
 /**
  * 修改个人信息后更新数据
@@ -93,7 +105,7 @@ Page({
       "height": res.height,
       "game_age": res.game_age,
       "good_point": res.good_point,
-      "phone": res.openid,
+      "phone": res.phone,
       "province": res.province,
       "city": res.city,
       "avatar": res.avatar
