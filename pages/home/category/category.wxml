@@ -21,7 +21,11 @@
   </view>
 </view>
 <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
-<scroll-view scroll-y style="height: {{windowHeight - 105}}px;" class='scroll_session'>
+<view class="header" hidden="{{hideHeader}}">
+  <view class='refresh_title'>下拉刷新中……</view>
+  <view class='refresh_title'>{{refreshTime}}</view>
+</view>
+<scroll-view scroll-y style="height: {{windowHeight - 105}}px;" class='scroll_session' bindscrolltoupper="refesh">
   <view wx:for='{{item}}' bindtap='ball_info_press' wx:key='data' data-index = "{{index}}">
     <view class='invate_section' >
       <view class='invate_sections'>

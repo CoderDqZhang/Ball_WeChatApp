@@ -53,6 +53,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hideHeader: false,
     item: {},
     ball_id:"1",
     sort_price: 'normal',
@@ -119,6 +120,22 @@ Page({
     //   //关键在这里
     //   prePage.updataGame()
     // }
+  },
+
+  refesh: function (res){
+    var that = this;
+    that.setData({
+      hideHeader: false
+    })
+    setTimeout(function () {
+      console.log('下拉刷新');
+      var date = new Date();
+      that.setData({
+        currentPage: 1,
+        refreshTime: date.toLocaleTimeString(),
+      })
+      that.reqeuestData({ 'id': that.data.ball_id })
+    }, 300);
   },
 
   // 点击所在地区弹出选择框
@@ -237,10 +254,9 @@ Page({
       }
       console.log(res)
       that.setData({
-        item: res.data.game_list
-
+        item: res.data.game_list,
+        hideHeader: true
       })
-      wx.stopPullDownRefresh();
     })
   },
 

@@ -42,10 +42,9 @@
 
 .tools_top{
   background-color: white;
-  height: 100rpx;
+  height: 70rpx;
   display: flex;
   flex-direction: row;
-  min-height: 100rpx;
 }
 
 .tool_contains{
@@ -149,4 +148,19 @@
 .invate_muchs{
   font-size: 30rpx;
   color: red
+}
+
+.header{
+  height: 80rpx;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: #DDE0E5;
+  
+}
+
+.refresh_title{
+  font-size: 26rpx;
+  color: #384269;
 }
