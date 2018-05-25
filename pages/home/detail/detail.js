@@ -8,7 +8,12 @@ Page({
   data: {
     windowWidth: 0,
     windowHeight: 0,
-    item:{}
+    item:{},
+    appointment_number:1,
+    appointment_count:0,
+    number_appointment_count:[],
+    appointMenuMene: {},
+    addressMenuIsShow: false,
   },
 
   /**
@@ -23,6 +28,63 @@ Page({
       windowHeight: app.globalData.windowHeight
     })
     that.reqeuestData(that.data.item)
+
+    // 初始化动画变量
+    var animation = wx.createAnimation({
+      duration: 500,
+      transformOrigin: "50% 50%",
+      timingFunction: 'ease',
+    })
+    this.animation = animation;
+  },
+
+  // 点击所在地区弹出选择框
+  selectDistrict: function (e) {
+    var that = this
+    // 如果已经显示，不在执行显示动画
+    if (that.data.addressMenuIsShow) {
+      return
+    }
+    // 执行显示动画
+    that.startAddressAnimation(true)
+  },
+  // 执行动画
+  startAddressAnimation: function (isShow) {
+    console.log(isShow)
+    var that = this
+    if (isShow) {
+      // vh是用来表示尺寸的单位，高度全屏是100vh
+      that.animation.translateY(0 + 'vh').step()
+    } else {
+      that.animation.translateY(40 + 'vh').step()
+    }
+    that.setData({
+      animationAddressMenu: that.animation.export(),
+      addressMenuIsShow: isShow,
+    })
+  },
+  // 点击地区选择取消按钮
+  cityCancel: function (e) {
+    this.startAddressAnimation(false)
+  },
+  // 点击地区选择确定按钮
+  citySure: function (e) {
+    console.log(e)
+    this.appointment()
+    this.startAddressAnimation(false)
+  },
+  // 点击蒙版时取消组件的显示
+  hideCitySelected: function (e) {
+    console.log(e)
+    this.startAddressAnimation(false)
+  },
+  // 处理省市县联动逻辑
+  cityChange: function (e) {
+    console.log(e)
+    var that = this 
+    that.setData({
+      appointment_number:e.detail.value[0] + 1
+    })   
   },
 /**
  * 详情
@@ -38,6 +100,7 @@ Page({
       }else{
         res.data.game_detail.candelete = false
       }
+      res.data.game_detail.appoint_count = that.number_appoint(res.data.game_detail)
       that.setData({
         item: res.data.game_detail
       })
@@ -150,11 +213,16 @@ Page({
       return
     }
 
-    var number_count = 0
-    for (var i = 0; i < that.data.item.user_list.length; i ++) {
-      number_count = number_count + parseInt(that.data.item.user_list[i].number_count.number)
-    }
+    var number_count = that.data.item.appoint_count
     if (number_count < that.data.item.game_number){
+      var tempData = []
+      for (var j = 1; j <= that.data.item.game_number - number_count; j ++){
+        tempData.push(j)
+      }
+      that.setData({
+        number_appointment_count: tempData
+      })
+
       wx.showModal({
         title: '现在人数' + number_count + '个差' + (that.data.item.game_number - number_count) + '个，确定赴约吗？',
         showCancel: true,
@@ -168,7 +236,7 @@ Page({
               signType: '',
               paySign: '',
             })
-            that.appointment()
+            that.selectDistrict()
           } else {
 
           }
@@ -219,32 +287,35 @@ Page({
     var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id}
     app.func.requestPost('/ball/gamecancelappoinment/', data, function (res) {
       console.log(res)
+      res.data.game_detail.appoint_count = that.number_appoint(res.data.game_detail)
       that.setData({
         item: res.data.game_detail
       })
     })
   },
-/**
- * 选择赴约人数
- */
-  select_number: function (res) {
 
-  },
 /**
  * 赴约
  */
   appointment: function (e) {
     var that = this
-    var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id, 'number_count':1}
+    var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id, 'number_count': that.data.appointment_number}
     app.func.requestPost('/ball/gameappointment/', data, function (res) {
       console.log(res)
-      if (res.data.message != null) {
+      if (res.msg != null && res.msg.errors != null) {
+        wx.showToast({
+          title: "出现错误",
+          icon: 'success',
+          duration: 2000
+        })
+      }else if (res.data.message != null) {
         wx.showToast({
           title: '您已经赴约过了',
           icon: 'success',
           duration: 2000
         })
       }else{
+        res.data.game_detail.appoint_count = that.number_appoint(res.data.game_detail)
         that.setData({
           item: res.data.game_detail
         })
@@ -270,6 +341,14 @@ Page({
       icon: 'faile',
       duration: 2000
     })
+  },
+
+  number_appoint: function (res) {
+    var number_count = 0
+    for (var i = 0; i < res.user_list.length; i++) {
+      number_count = number_count + parseInt(res.user_list[i].number_count.number)
+    }
+    return number_count
   },
 
   /**
@@ -299,6 +378,10 @@ Page({
         url: '/pages/mine/other/other?item=' + JSON.stringify(data),
       })
     }
+  },
+
+  numberChange: function(res) {
+
   },
 
   /**

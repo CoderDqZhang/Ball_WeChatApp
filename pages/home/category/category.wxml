@@ -1,6 +1,5 @@
 <!--pages/home/category/category.wxml-->
 <view class='search_bar'>
-
   <view class='location' bindtap='selectDistrict'>{{selectCity}}</view>
   <input placeholder='输入关键字查找' class='search_input' bindinput='input_search' placeholder-style='font-size:28rpx;color:#DDE0E5' style='font:28rpx; color:#384269 border-radius: 10rpx; bordr-color:#384269; width:{{windowWidth - 70}}px; border:  1px solid #DDE0E5;text-align:left;font-size:28rpx;'
     confirm-type='search'></input>
