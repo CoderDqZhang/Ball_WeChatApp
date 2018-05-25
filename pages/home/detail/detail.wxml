@@ -80,7 +80,10 @@
         <view class='user_info'>
           <image src='{{item.user.avatar}}' style='width: 80rpx;  height: 80rpx;'></image>
           <view class='user_infos'>
-            <view class='user_name'>{{item.user.nickname}}</view>
+            <view class='user_name'>
+            <text>{{item.user.nickname}}  </text>
+            <text>  赴约次数:{{item.user.appointment_count}}次</text>
+            </view>
 
             <view class='user_desc'>
               <text class='sub_user_desc'>{{item.user.height}}cm</text>
