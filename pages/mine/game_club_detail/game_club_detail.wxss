@@ -1,0 +1,194 @@
+/* pages/mine/game_club_detail/game_club_detail.wxss */
+.game_club_sessioin{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 30rpx;
+  height: 260rpx;
+  align-items: center;
+}
+
+.game_club_info{
+  padding-top: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 30rpx;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-left: 30rpx;
+}
+
+.game_club_title{
+  font-size: 30rpx;
+  color: #364269;
+}
+
+.game_subtitle{
+  font-size: 28rpx;
+  color: #DDE0E5;
+}
+
+.game_club_desc{
+  padding-top: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 30rpx;
+  font-size: 30rpx;
+  color: #364269;
+  margin-left: 30rpx;
+}
+
+.session_title{
+  background-color: #f8f8fa;
+  height: 60rpx;
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.info_title{
+  font-size: 28rpx;
+  color: #364269;
+  margin-left: 30rpx;
+  padding-top: 20rpx;
+}
+
+.sub_info{
+  flex-direction: row;
+  display: flex;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100rpx;
+}
+
+.sub_title{
+  font-size: 30rpx;
+  color: #DDE0E5;
+}
+
+.sub_detail{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.sub_location{
+  flex-direction: row;
+  padding-left: 30rpx;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 150rpx;
+}
+
+.sub_locations{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.sub_infos{
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
+}
+
+.sub_subtitle{
+  font-size: 28rpx;
+  color: #DDE0E5;
+}
+
+.sub_much{
+  font-size: 36rpx;
+  color: red;
+}
+
+.users_sessions{
+  width: 100%;
+  background-color: white;
+}
+
+.game_info{
+  margin-left: 30rpx;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: flex-start
+}
+
+.game_info_title{
+  font-size: 28rpx;
+  color: #384269;
+}
+
+.user_list{
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  min-height: 120rpx; 
+}
+
+.user_info{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.user_infos{
+  flex-direction: column;
+  display: flex;
+  margin-left: 20rpx;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+.user_name{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.user_desc{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.sub_user_desc{
+  font-size: 28rpx;
+  color: #384269;
+  margin-right: 30rpx;
+}
+
+/* .appointment{
+
+} */
+
+.appointment_text{
+  font-size: 34rpx;
+  color: red;
+}
+
+
+.img-plus-style {  
+  height: 70rpx;  
+  width: 70rpx;  
+  position: fixed;  
+  bottom: 150rpx;  
+  right: 30rpx;  
+  opacity: 0.7
+}   
+.zindex100{z-index: 100}
+.yc{opacity: 0}

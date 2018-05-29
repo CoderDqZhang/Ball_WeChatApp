@@ -2,6 +2,7 @@
   "pages":[
     "pages/home/home/home",
     "pages/home/category/category",
+    "pages/home/unread_message/unread_message",
     "pages/home/create_game/create_game",
     "pages/home/location_choose/location_choose",        
     "pages/home/detail/detail",
@@ -11,6 +12,9 @@
     "pages/mine/info/info",
     "pages/mine/invate/invate",
     "pages/mine/command/command",
+    "pages/mine/game_club/game_club",
+    "pages/mine/game_club_detail/game_club_detail",
+    "pages/mine/create_game_club/create_game_club",
     "pages/mine/command_other/command_other",
     "pages/mine/help/help",
     "pages/index/index",

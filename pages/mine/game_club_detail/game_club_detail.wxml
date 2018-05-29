@@ -1,0 +1,93 @@
+<!--pages/mine/game_club_detail/game_club_detail.wxml-->
+<scroll-view scroll-y style="height: {{windowHeight}}px;" class='scroll_session'>
+<view class='game_club_sessioin'>
+  <image src='{{item.club_post}}' style='width: 180rpx;  height: 180rpx;'></image>
+  <view class='game_club_info'>
+    <view class='game_club_title'>{{item.club_title}} 等级：{{item.club_grade}}</view>
+    <view class='game_club_title'>{{item.club_slogan}}</view>
+    <view class='game_subtitle'>{{item.club_project}}</view>
+    <view class='game_subtitle'>{{item.club_number}}</view>
+  </view>
+</view>
+<view class='session_title'>
+  <view class='info_title'>俱乐部简介</view>
+</view>
+<view class='game_club_desc'>{{item.club_desc}}</view>
+<view class='session_title'>
+  <view class='info_title'>创建者</view>
+</view>
+<view class='user_list'>
+    <view class='user_info'>
+      <image src='{{item.user.avatar}}' style='width: 80rpx;  height: 80rpx;'></image>
+      <view class='user_infos'>
+        <view class='user_name'>
+          <text>{{item.user.nickname}} </text>
+        </view>
+
+        <view class='user_desc'>
+          <text class='sub_user_desc'>{{item.user.height}}cm</text>
+          <!-- <text class='sub_user_desc'>{{item.user.age}}</text> -->
+          <text class='sub_user_desc'>球龄{{item.user.age}}年</text>
+        </view>
+      </view>
+    </view>
+    <view class='appointment'>
+      <!-- <rich-text class='appointment_text'>{{item.number_count.number}}人</rich-text> -->
+    </view>
+  </view>
+  <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='session_title'>
+  <view class='info_title'>管理者</view>
+</view>
+<view wx:for="{{item.club_manager}}" wx:key="data" data-index="{{index}}" bindtap='user_info_press'>
+  <view class='user_list'>
+    <view class='user_info'>
+      <image src='{{item.avatar}}' style='width: 80rpx;  height: 80rpx;'></image>
+      <view class='user_infos'>
+        <view class='user_name'>
+          <text>{{item.nickname}} </text>
+          <!-- <text> 赴约次数:{{item.appointment_count}}次</text> -->
+        </view>
+
+        <view class='user_desc'>
+          <text class='sub_user_desc'>{{item.height}}cm</text>
+          <!-- <text class='sub_user_desc'>{{item.user.age}}</text> -->
+          <text class='sub_user_desc'>球龄{{item.age}}年</text>
+        </view>
+      </view>
+    </view>
+    <view class='appointment'>
+      <view class='appointment_class' wx:if="{{item.user_flag == 'create'}}">踢出</view>
+    </view>
+  </view>
+  <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+</view>
+
+<view class='session_title'>
+  <view class='info_title'>成员信息</view>
+</view>
+<view wx:for="{{item.club_user}}" wx:key="data" data-index="{{index}}" bindtap='user_info_press'>
+  <view class='user_list'>
+    <view class='user_info'>
+      <image src='{{item.avatar}}' style='width: 80rpx;  height: 80rpx;'></image>
+      <view class='user_infos'>
+        <view class='user_name'>
+          <text>{{item.nickname}} </text>
+          <!-- <text> 赴约次数:{{item.appointment_count}}次</text> -->
+        </view>
+
+        <view class='user_desc'>
+          <text class='sub_user_desc'>{{item.height}}cm</text>
+          <!-- <text class='sub_user_desc'>{{item.user.age}}</text> -->
+          <text class='sub_user_desc'>球龄{{item.age}}年</text>
+        </view>
+      </view>
+    </view>
+    <view class='appointment'>
+      <view class='appointment_class' wx:if="{{item.user_flag == 'create'}}">踢出</view>
+    </view>
+  </view>
+  <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+</view>
+</scroll-view>
+<button class='appointment_btn' bindtap='club_btn_press'>操作</button>

@@ -1,0 +1,61 @@
+<!--pages/home/unread_message/unread_message.wxml-->
+<view wx:for="{{unread_message}}" wx:key="message">
+  <view wx:if="{{item.message_type == 0}}">
+    <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
+      <image src="{{item.user.avatar}}" class='avatar'></image>
+      <view class='user_name'>{{item.user.nickname}}</view>
+      <view class='user_name'>{{item.message_type_desc}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='game_club_class' bindtap='game_club_press' data-id="{{item.id}}">
+      <image src="{{item.unread_club.club_post}}" class='game_club_post'></image>
+      <view class='game_club_info'>
+        <view class='game_club_title'>{{item.unread_club.club_title}}</view>
+        <view class='game_club_slogan'>{{item.unread_club.club_slogan}}</view>
+        <view class='game_club_subtitle'>{{item.unread_club.club_project}}</view>
+        <view class='game_club_subtitle'>{{item.unread_club.club_number}}</view>
+      </view>
+    </view>
+    <view class='club_status'>
+      <view class='button' bindtap='accpet' data-id="{{item.id}}">同意</view>
+      <view class='buttonreject' bindtap='reject' data-id="{{item.id}}">拒绝</view>
+    </view>
+    <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
+  </view>
+  <view wx:elif="{{item.message_type == 1}}">
+    <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
+      <image src="{{item.user.avatar}}" class='avatar'></image>
+      <view class='user_name'>{{item.user.nickname}}</view>
+      <view class='user_name'>{{item.message_type_desc}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='game_club_class' bindtap='game_club_press' data-id="{{item.id}}">
+      <image src="{{item.unread_club.club_post}}" class='game_club_post'></image>
+      <view class='game_club_info'>
+        <view class='game_club_title'>{{item.unread_club.club_title}}</view>
+        <view class='game_club_slogan'>{{item.unread_club.club_slogan}}</view>
+        <view class='game_club_subtitle'>{{item.unread_club.club_project}}</view>
+        <view class='game_club_subtitle'>{{item.unread_club.club_number}}</view>
+      </view>
+    </view>
+    <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
+  </view>
+
+  <view wx:elif="{{item.message_type == 2}}">
+    <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
+      <image src="{{item.user.avatar}}" class='avatar'></image>
+      <view class='user_name'>{{item.user.nickname}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='game_club_class' bindtap='game_club_press' data-id="{{item.id}}">
+      <image src="{{item.unread_club.club_post}}" class='game_club_post'></image>
+      <view class='game_club_info'>
+        <view class='game_club_title'>{{item.unread_club.club_title}}</view>
+        <view class='game_club_slogan'>{{item.unread_club.club_slogan}}</view>
+        <view class='game_club_subtitle'>{{item.unread_club.club_project}}</view>
+        <view class='game_club_subtitle'>{{item.unread_club.club_number}}</view>
+      </view>
+    </view>
+    <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
+  </view>
+</view>

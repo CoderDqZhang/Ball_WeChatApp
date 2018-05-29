@@ -37,9 +37,28 @@ Page({
    */
   onLoad: function (options) {
     this.requestData()
-    
-    
+    this.requestUnreadMessage()
+ },
 
+
+  requestUnreadMessage: function(){
+    var that = this;
+    var data = { 'openid': app.globalData.userInfo.openid }
+    app.func.requestPost('/ball/unreadmessage/', data, function (res) {
+      console.log(res)
+      console.log(res.data.unread_message.length)
+      if (res.data.unread_message.length > 0) {
+        wx.showModal({
+          title: "您有" + res.data.unread_message.length + "条未读消息",
+          count:'点击确定查看',
+          success: function(res) {
+              wx.navigateTo({
+                url: '/pages/home/unread_message/unread_message',
+              })
+          }
+        })
+      }
+    });
   },
 
   /**
@@ -80,6 +99,7 @@ Page({
   onPullDownRefresh: function () {
     var that = this
     that.requestData()
+    that.requestUnreadMessage()
   },
 
   /**
