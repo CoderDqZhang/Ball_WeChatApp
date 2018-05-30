@@ -62,7 +62,7 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         that.setData({
-          imagePath: res.tempFilePaths
+          imagePath: res.tempFiles
         })
       }
     })
@@ -113,7 +113,7 @@ Page({
       'club_project': that.data.club.club_project,
     }
     console.log(data)
-    app.func.requestUpload('/ball/creategameclub/', data, that.data.imagePath[0], 'club_post', function (res) {
+    app.func.requestUpload('/ball/creategameclub/', data, that.data.imagePath, 'club_post', function (res) {
       console.log(res)
       if (res.msg.errors != null) {
         wx.showModal({

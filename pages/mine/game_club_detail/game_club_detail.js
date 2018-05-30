@@ -11,6 +11,7 @@ Page({
     windowWidth: 0,
     windowHeight: 0,
     handle:null,
+    tempFilePaths:null
   },
 
   /**
@@ -171,11 +172,42 @@ Page({
     })
   },
 
+  change_post: function(){
+    var that = this
+    wx.chooseImage({
+      count: 9, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.setData({
+          tempFilePaths: res.tempFiles
+        })
+        that.choseImage(res.tempFiles)
+      }
+    })
+    
+  },
+
+  choseImage:function(res){
+    var that = this
+    var data = { 'openid':'16601131280','content':'这是一个测试数据'}
+    app.func.requestUpload('/ball/upload/gameclub/image/', data, that.data.tempFilePaths, 'club_image', function (res) {
+      console.log(res)
+      if (res.msg.errors != null) {
+        wx.showModal({
+          title: res.msg.errors[0].error,
+          content: "",
+        })
+      }
+    })
+  },
+
   /**
  * 上传图集
  */
   requestUploadImages: function () {
-
+    this.choseImage()
   },
 
   /**

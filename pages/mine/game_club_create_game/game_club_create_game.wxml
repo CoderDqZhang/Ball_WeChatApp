@@ -123,4 +123,4 @@
   </view>
 </view>
 </scroll-view>
-<button class='appointment_btn' bindtap='appointment_btn_press'>创建</button>
+<button class='appointment_btn' bindtap='game_invete_status'>创建</button>

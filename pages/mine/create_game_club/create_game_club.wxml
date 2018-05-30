@@ -12,7 +12,7 @@
 <view class='image_info' bindtap='choose_postimage'>
   <view class='title'>图片</view>
   <view class='normal_info'>
-    <image src='{{imagePath}}' class='post_image' style='width: 80rpx;  height: 80rpx;'></image>
+    <image src='{{imagePath[0].path}}' class='post_image' style='width: 80rpx;  height: 80rpx;'></image>
     <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
   </view>
 </view>

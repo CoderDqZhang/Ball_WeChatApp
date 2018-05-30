@@ -57,6 +57,21 @@ Page({
     });
   },
 
+  game_invete_status: function (res){
+    var that = this
+      wx.showModal({
+        title: '是否允许其他成员参加?',
+        cancelText:'否',
+        confirmText: '是',
+        success: function(res){
+          that.appointment_btn_press(1)
+        },
+        fail: function(res){
+          that.appointment_btn_press(0)
+        }
+      })
+  },
+
   appointment_btn_press: function (res) {
     var that = this;
     if (Date.parse((that.data.game.game_start_date_time + " " + that.data.game.game_start_time).replace(/-/g, '/')) / 1000 > Date.parse((that.data.game.game_end_date_time + " " + that.data.game.game_end_time).replace(/-/g, '/')) / 1000) {
@@ -82,7 +97,10 @@ Page({
       'game_place_condition': that.data.game.game_place_condition,
       'lat': that.data.game.lat,
       'lng': that.data.game.lng,
-      'number': 1
+      'number': 1,
+      'club_create':1,
+      'club_id': that.data.game_club.id,
+      'club_out':res
     }
 
     app.func.requestPost('/ball/gamecreate/', data, function (res) {
