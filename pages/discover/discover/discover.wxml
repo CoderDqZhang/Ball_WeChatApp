@@ -1,0 +1,20 @@
+<scroll-view scroll-y style="height: {{windowHeight}}px;" class='scroll_session'>
+<view wx:for='{{club_list}}' class='game_club_infos' wx:key = "club">
+  <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
+    <image src="{{item.user.avatar}}" class='avatar'></image>
+    <view class='user_name'>{{item.user.nickname}}</view>
+  </view>
+  <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+  <view class='game_club_class' bindtap='game_club_press' data-id="{{item.id}}">
+    <image src="{{item.club_post}}" class='game_club_post'></image>
+    <view class='game_club_info'>
+      <view class='game_club_title'>{{item.club_title}}</view>
+      <view class='game_club_slogan'>{{item.club_slogan}}</view>
+      <view class='game_club_subtitle'>{{item.club_project}}</view>
+      <view class='game_club_subtitle'>{{item.club_number}}</view>
+    </view>
+  </view>
+  <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
+</view>
+</scroll-view>
+<button class='appointment_btn' bindtap='club_btn_press'>创建俱乐部</button>

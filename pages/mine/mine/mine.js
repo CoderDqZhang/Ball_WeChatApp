@@ -9,7 +9,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    info_datas: ['我的资料', '我的邀约', '我的评价', '系统帮助', '俱乐部']
+    info_datas: ['我的资料', '我的邀约', '我的评价', '俱乐部']
   },
 
   /**
@@ -136,11 +136,6 @@ Page({
           url: '/pages/mine/command/command?item=' + JSON.stringify(that.data.userInfo),
         })
         break;
-      case 3:
-        wx.navigateTo({
-          url: '/pages/mine/help/help',
-        })
-        break
       default:
         wx.navigateTo({
           url: '/pages/mine/game_club/game_club',

@@ -1,0 +1,64 @@
+.game_club_infos{
+  flex-direction: column;
+  display: flex;
+  height: 320rpx;
+}
+
+.user_info{
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 30rpx;
+  display: flex;
+  height: 100rpx;
+}
+
+.avatar{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.user_name{
+  font-size: 30rpx;
+  color: #384269;
+  margin-left: 20rpx;
+}
+
+.game_club_class{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 30rpx;
+  height: 200rpx;
+}
+
+.game_club_post{
+  width: 180rpx;
+  height: 180rpx;
+  
+}
+
+.game_club_info{
+  margin-left: 20rpx;
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.game_club_title{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.game_club_slogan{
+  font-size: 28rpx;
+  color: #384269;
+}
+
+.game_club_subtitle{
+  font-size: 26rpx;
+  color: #DDE0E5;
+  
+}

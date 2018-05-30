@@ -4,9 +4,10 @@
     "pages/home/category/category",
     "pages/home/unread_message/unread_message",
     "pages/home/create_game/create_game",
-    "pages/home/location_choose/location_choose",        
+    "pages/home/location_choose/location_choose",   
     "pages/home/detail/detail",
     "pages/home/map/map",
+    "pages/discover/discover/discover",
     "pages/mine/mine/mine",
     "pages/mine/other/other",
     "pages/mine/info/info",
@@ -15,6 +16,7 @@
     "pages/mine/game_club/game_club",
     "pages/mine/game_club_detail/game_club_detail",
     "pages/mine/create_game_club/create_game_club",
+    "pages/mine/game_club_create_game/game_club_create_game",
     "pages/mine/command_other/command_other",
     "pages/mine/help/help",
     "pages/index/index",
@@ -39,6 +41,12 @@
         "iconPath": "images/tab_bar/home_tab_n.png",
         "pagePath": "pages/home/home/home",
         "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/tab_bar/discover_tab_s.png",
+        "iconPath": "images/tab_bar/discover_tab_n.png",
+        "pagePath": "pages/discover/discover/discover",
+        "text": "发现"
       },
       {
         "selectedIconPath": "images/tab_bar/mine_tab_s.png",

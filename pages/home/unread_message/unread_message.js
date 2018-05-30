@@ -33,6 +33,12 @@ Page({
     var data = { 'unread_id': res.currentTarget.dataset.id,'status':1 }
     app.func.requestPost('/ball/gameclubstatus/', data, function (res) {
       console.log(res)
+      wx.showToast({
+        title: res.data.message,
+      })
+      wx.navigateBack({
+        delta: 1
+      })
     });
   },
 
@@ -42,6 +48,12 @@ Page({
     var data = { 'unread_id': res.currentTarget.dataset.id, 'status': 0 }
     app.func.requestPost('/ball/gameclubstatus/', data, function (res) {
       console.log(res)
+      wx.showToast({
+        title: res.data.message,
+      })
+      wx.navigateBack({
+        delta: 1
+      })
     });
   },
 

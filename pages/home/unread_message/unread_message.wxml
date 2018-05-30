@@ -2,7 +2,7 @@
 <view wx:for="{{unread_message}}" wx:key="message">
   <view wx:if="{{item.message_type == 0}}">
     <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
-      <image src="{{item.user.avatar}}" class='avatar'></image>
+      <image src="{{item.user.avatar}}" class='invate_avatar'></image>
       <view class='user_name'>{{item.user.nickname}}</view>
       <view class='user_name'>{{item.message_type_desc}}</view>
     </view>
@@ -24,7 +24,7 @@
   </view>
   <view wx:elif="{{item.message_type == 1}}">
     <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
-      <image src="{{item.user.avatar}}" class='avatar'></image>
+      <image src="{{item.user.avatar}}" class='invate_avatar'></image>
       <view class='user_name'>{{item.user.nickname}}</view>
       <view class='user_name'>{{item.message_type_desc}}</view>
     </view>
@@ -38,13 +38,18 @@
         <view class='game_club_subtitle'>{{item.unread_club.club_number}}</view>
       </view>
     </view>
+    <view class='club_status'>
+      <view class='button' bindtap='accpet' data-id="{{item.id}}">同意</view>
+      <view class='buttonreject' bindtap='reject' data-id="{{item.id}}">拒绝</view>
+    </view>
     <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
   </view>
 
   <view wx:elif="{{item.message_type == 2}}">
     <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
-      <image src="{{item.user.avatar}}" class='avatar'></image>
+      <image src="{{item.user.avatar}}" class='invate_avatar'></image>
       <view class='user_name'>{{item.user.nickname}}</view>
+      <view class='user_name'>{{item.message_type_desc}}</view>
     </view>
     <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
     <view class='game_club_class' bindtap='game_club_press' data-id="{{item.id}}">
@@ -55,6 +60,48 @@
         <view class='game_club_subtitle'>{{item.unread_club.club_project}}</view>
         <view class='game_club_subtitle'>{{item.unread_club.club_number}}</view>
       </view>
+    </view>
+    <view class='club_status'>
+      <view class='button' bindtap='accpet' data-id="{{item.id}}">同意</view>
+      <view class='buttonreject' bindtap='reject' data-id="{{item.id}}">拒绝</view>
+    </view>
+    <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
+  </view>
+  <view wx:elif="{{item.message_type == 3}}">
+    <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
+      <image src="{{item.user.avatar}}" class='invate_avatar'></image>
+      <view class='user_name'>{{item.user.nickname}}</view>
+      <view class='user_name'>{{item.message_type_desc}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='invate_section'>
+      <view class='invate_sections'>
+        <view class='invate_user'>
+          <image src='{{item.unread_game.game_detail.user.avatar}}' class='avatar'></image>
+          <view class='user_name'>{{item.game_detail.user.nickname}}</view>
+        </view>
+        <view class='invate_info'>
+          <view class='invate_title_done' wx:if='{{item.unread_game.game_detail.game_status == 0}}'>
+            <text>{{item.unread_game.game_detail.game_title}} </text>
+            <text style='color:red;'>已过期</text>
+          </view>
+          <view class='invate_title' wx:else>{{item.unread_game.game_detail.game_title}}</view>
+          <view class='invate_time'>{{item.unread_game.game_detail.game_start_time}}</view>
+          <view class='invate_time'>{{item.unread_game.game_detail.game_end_time}}</view>
+          <view class='invate_location'>{{item.unread_game.game_detail.game_location_detail}}</view>
+          <view class='invate_much_info'>
+            <view class='invate_title_done' wx:if='{{item.unread_game.game_status == 0}}'>人均费用:</view>
+            <view class='invate_much' wx:else>人均费用:</view>
+            <view class='invate_title_done' wx:if='{{item.unread_game.game_status == 0}}'>{{item.unread_game.game_detail.game_price}}</view>
+            <view class='invate_muchs' wx:else>{{item.unread_game.game_detail.game_price}}</view>
+          </view>
+        </view>
+      </view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+    <view class='club_status'>
+      <view class='button' bindtap='accpet' data-id="{{item.id}}">同意</view>
+      <view class='buttonreject' bindtap='reject' data-id="{{item.id}}">拒绝</view>
     </view>
     <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
   </view>

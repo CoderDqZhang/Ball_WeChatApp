@@ -1,0 +1,126 @@
+<!--pages/home/create_game/create_game.wxml-->
+<scroll-view scroll-y style="height: {{windowHeight}}px;" class='scroll_session'>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='session_info' bindchange="game_title_press">
+  <view class='title'>标题</view>
+  <view class='normal_info'>
+    <input placeholder='标题' bindinput='input_game_title' placeholder-style='font-size:28rpx;color:#DDE0E5;text-align:right;' style='font:28rpx; color:#384269 width:{{windowWidth - 110}}px; text-align:right;font-size:28rpx;' confirm-type='done'
+      value='{{game.game_title}}'></input>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+  </view>
+</view>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='session_info' bindchange="game_subtitle_press">
+  <view class='title'>副标题</view>
+  <view class='normal_info'>
+    <input placeholder='副标题' bindinput='input_game_subtitle' placeholder-style='font-size:28rpx;color:#DDE0E5;text-align:right;' style='font:28rpx; color:#384269 width:{{windowWidth - 110}}px; text-align:right;font-size:28rpx;' confirm-type='done'
+      value='{{game.game_subtitle}}'></input>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+  </view>
+</view>
+<picker bindchange="game_type_press" value="{{index}}" range="{{game_list}}">
+  <view class='session_info'>
+    <view class='title'>球类</view>
+    <view class='normal_info'>
+      <view class='sub_title'>{{game_name}}</view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+  </view>
+</picker>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='session_info' bindtap='choose_location'>
+  <view class='title'>地点</view>
+  <view class='normal_info'>
+    <view class='sub_title'>{{game.game_location}}</view>
+    <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+  </view>
+</view>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='session_info'>
+  <view class='title'>详细地点</view>
+  <view class='normal_info'>
+    <input placeholder='输入详细地点' bindinput='input_detail_location' placeholder-style='font-size:28rpx;color:#DDE0E5;text-align:right;' style='font:28rpx; color:#384269 width:{{windowWidth - 110}}px; text-align:right;font-size:28rpx;' confirm-type='done'
+      value='{{game.game_location_detail}}'></input>
+    <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+  </view>
+</view>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='session_info'>
+  <view class='title'>费用</view>
+  <view class='normal_info'>
+    <input placeholder='输入费用' bindinput='input_price' placeholder-style='font-size:28rpx;color:#DDE0E5;text-align:right;' style='font:28rpx; color:#384269 width:{{windowWidth - 110}}px; text-align:right;font-size:28rpx;' confirm-type='done'
+      value='{{game.game_price}}'></input>
+    <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+  </view>
+</view>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<picker bindchange="date_start_date_press" value="{{index}}" mode="date">
+  <view class='session_info'>
+    <view class='title'>开始日期</view>
+    <view class='normal_info'>
+      <view class='sub_title'>{{game.game_start_date_time}}</view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+  </view>
+</picker>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<picker bindchange="date_start_time_press" value="{{index}}" mode="time">
+  <view class='session_info'>
+    <view class='title'>开始时间</view>
+    <view class='normal_info'>
+      <view class='sub_title'>{{game.game_start_time}}</view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+  </view>
+</picker>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<!-- <picker bindchange="game_end_date_time_press" value="{{index}}" mode="date">
+  <view class='session_info'>
+    <view class='title'>结束日期</view>
+    <view class='normal_info'>
+      <view class='sub_title'>{{game.game_end_date_time}}</view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+  </view>
+</picker> -->
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<picker bindchange="game_end_time_press" value="{{index}}" mode="time">
+  <view class='session_info'>
+    <view class='title'>结束时间</view>
+    <view class='normal_info'>
+      <view class='sub_title'>{{game.game_end_time}}</view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+  </view>
+</picker>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<picker bindchange="game_referee_press" value="{{index}}" range="{{game_referee}}">
+  <view class='session_info'>
+    <view class='title'>裁判</view>
+    <view class='normal_info'>
+      <view class='sub_title'>{{game.game_referee}}</view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+  </view>
+</picker>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<picker bindchange="game_number_press" value="{{index}}" range="{{game_number}}">
+  <view class='session_info'>
+    <view class='title'>人数</view>
+    <view class='normal_info'>
+      <view class='sub_title'>{{game.game_number}}</view>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+    </view>
+  </view>
+</picker>
+<view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+<view class='session_info' bindchange="game_place_condition_press">
+  <view class='title'>场地条件</view>
+  <view class='normal_info'>
+    <input placeholder='输入球场条件' bindinput='input_place_condition' placeholder-style='font-size:28rpx;color:#DDE0E5;text-align:right;' style='font:28rpx; color:#384269 width:{{windowWidth - 110}}px; text-align:right;font-size:28rpx;' confirm-type='done'
+      value='{{game.game_place_condition}}'></input>
+      <image src='/images/gloable/right.png' class='more_image' style='width: 40rpx;  height: 40rpx;'></image>
+  </view>
+</view>
+</scroll-view>
+<button class='appointment_btn' bindtap='appointment_btn_press'>创建</button>

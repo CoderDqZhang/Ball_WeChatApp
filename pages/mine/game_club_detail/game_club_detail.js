@@ -164,7 +164,11 @@ Page({
  * 发起球约
  */
   requestGameBall: function () {
-
+    var that = this
+    var data = that.data.game_club
+    wx.navigateTo({
+      url: '/pages/mine/game_club_create_game/game_club_create_game?item=' + JSON.stringify(data),
+    })
   },
 
   /**

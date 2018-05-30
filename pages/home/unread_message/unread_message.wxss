@@ -14,7 +14,7 @@
   height: 100rpx;
 }
 
-.avatar{
+.invate_avatar{
   width: 50rpx;
   height: 50rpx;
 }
@@ -108,4 +108,87 @@
   font-size: 30rpx;
   width: 120rpx;
   height: 70rpx;
+}
+
+.invate_section{
+  flex-direction: row;
+  display: flex;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  justify-content: space-between;
+  align-items: center;
+  height: 250rpx;
+}
+
+.invate_sections{
+  flex-direction: row;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+
+.invate_user{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 200rpx;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.avatar{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.user_name{
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  color: #DDE0E5;
+}
+
+.invate_info{
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: space-between;
+  display: flex;
+  flex-grow: 0;
+}
+
+.invate_title{
+  font-size: 30rpx;
+  color: #384269
+}
+
+.invate_title_done{
+  font-size: 30rpx;
+  color: #DDE0E5
+}
+
+.invate_time{
+  font-size: 28rpx;
+  color: #DDE0E5
+}
+
+.invate_location{
+  font-size: 28rpx;
+  color: #DDE0E5
+}
+
+.invate_much_info{
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.invate_much{
+  font-size: 30rpx;
+  color: #384269
+}
+
+.invate_muchs{
+  font-size: 30rpx;
+  color: red
 }
