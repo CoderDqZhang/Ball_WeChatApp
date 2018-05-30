@@ -9,6 +9,7 @@ Page({
     game_list: [],
     normal_game_list: [],
     imagePath: '/images/gloable/avatar.jpg',
+    imagePaths: '/images/gloable/avatar.jpg',
     club: {
       "openid": null,
       "ball_id": null,
@@ -62,7 +63,8 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         that.setData({
-          imagePath: res.tempFiles
+          imagePath: res.tempFiles,
+          imagePaths: res.tempFilePaths,
         })
       }
     })

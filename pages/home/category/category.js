@@ -265,7 +265,7 @@ Page({
      */
   reqeuestSearchData: function (res) {
     var that = this
-    var data = { 'keyword': res,'ball_id':that.data.ball_id }
+    var data = { 'keyword': res, 'ball_id': that.data.ball_id, 'open_id': app.globalData.userInfo.openid }
     app.func.requestPost('/ball/gamesearch/', data, function (res) {
       for (var i = 0; i < res.data.game_list.length; i++) {
         res.data.game_list[i].game_start_times = Date.parse(new Date(res.data.game_list[i].game_start_time))
