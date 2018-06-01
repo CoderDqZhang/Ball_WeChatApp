@@ -10,8 +10,11 @@ Page({
   },
 
   category_press: function(e) {
+    // wx.navigateTo({
+    //   url: '/pages/home/category/category?item=' + JSON.stringify(e.currentTarget.dataset.item),
+    // })
     wx.navigateTo({
-      url: '/pages/home/category/category?item=' + JSON.stringify(e.currentTarget.dataset.item),
+      url: '/pages/home/wechat_im/wechat_im',
     })
   },
 

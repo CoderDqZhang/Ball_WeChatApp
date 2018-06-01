@@ -7,6 +7,7 @@
     "pages/home/location_choose/location_choose",   
     "pages/home/detail/detail",
     "pages/home/map/map",
+    "pages/home/wechat_im/wechat_im",
     "pages/discover/discover/discover",
     "pages/mine/mine/mine",
     "pages/mine/other/other",
