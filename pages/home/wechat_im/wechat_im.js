@@ -200,6 +200,7 @@ Page({
       , selToID: avChatRoomId
       , selSess: null //当前聊天会话
     });
+    // webimhandler.applyJoinBigGroup(avChatRoomId)
     //当前用户身份
     var loginInfo = {
       'sdkAppID': Config.sdkappid, //用户所属应用id,必填
@@ -249,7 +250,7 @@ Page({
     //其他对象，选填
     var options = {
       'isAccessFormalEnv': true,//是否访问正式环境，默认访问正式，选填
-      'isLogOn': true//是否开启控制台打印日志,默认开启，选填
+      'isLogOn': false//是否开启控制台打印日志,默认开启，选填
     };
 
     if (Config.accountMode == 1) {//托管模式
@@ -291,6 +292,11 @@ Page({
       that.clearInput();
     })
   },
+
+  onUnload: function (e){
+    webimhandler.quitBigGroup()
+
+  }
 
 
 });

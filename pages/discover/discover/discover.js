@@ -34,7 +34,11 @@ Page({
 
   user_info_press: function (res) {
     var that = this
-    var data = that.data.club_list[res.currentTarget.dataset.id - 1].user
+    for (var i = 0; i < that.data.club_list.length; i++) {
+      if (res.currentTarget.dataset.id == that.data.club_list[i].id) {
+        var data = that.data.club_list[i].user
+      }
+    }
     wx.navigateTo({
       url: '/pages/mine/other/other?item=' + JSON.stringify(data),
     })
@@ -42,7 +46,11 @@ Page({
 
   game_club_press: function (res) {
     var that = this
-    var data = that.data.club_list[res.currentTarget.dataset.id - 1]
+    for (var i = 0; i < that.data.club_list.length; i++) {
+      if (res.currentTarget.dataset.id == that.data.club_list[i].id) {
+        var data = that.data.club_list[i]
+      }
+    }
     wx.navigateTo({
       url: '/pages/mine/game_club_detail/game_club_detail?item=' + JSON.stringify(data),
     })
