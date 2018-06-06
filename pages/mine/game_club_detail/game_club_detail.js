@@ -11,7 +11,8 @@ Page({
     windowWidth: 0,
     windowHeight: 0,
     handle:null,
-    tempFilePaths:null
+    tempFilePaths:null,
+    messageInfo:null
   },
 
   /**
@@ -24,6 +25,7 @@ Page({
       windowHeight: app.globalData.windowHeight
     })
     this.requestGameClubDetail()
+    this.requestMessageGroup()
   },
 
   requestGameClubDetail: function (res){
@@ -35,6 +37,24 @@ Page({
         item: res.data.club,
       })
       that.changeData(res.data.club)
+    })
+  },
+
+  requestMessageGroup: function (res) {
+    var that = this
+    var data = { 'game_id': 0, 'club_id': that.data.game_club.id }
+    app.func.requestPost('/ball/im/group/', data, function (res) {
+      console.log(res)
+      that.setData({
+        messageInfo: res.data
+      })
+    })
+  },
+
+  go_im: function (res) {
+    var data = this.data.messageInfo
+    wx.navigateTo({
+      url: '/pages/home/wechat_im/wechat_im?item=' + JSON.stringify(data),
     })
   },
 

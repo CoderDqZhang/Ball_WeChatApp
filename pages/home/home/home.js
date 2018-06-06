@@ -10,12 +10,10 @@ Page({
   },
 
   category_press: function(e) {
-    // wx.navigateTo({
-    //   url: '/pages/home/category/category?item=' + JSON.stringify(e.currentTarget.dataset.item),
-    // })
     wx.navigateTo({
-      url: '/pages/home/wechat_im/wechat_im',
+      url: '/pages/home/category/category?item=' + JSON.stringify(e.currentTarget.dataset.item),
     })
+    
   },
 
   requestData: function () {
@@ -55,9 +53,14 @@ Page({
           title: "您有" + res.data.unread_message.length + "条未读消息",
           count:'点击确定查看',
           success: function(res) {
+            if (res.confirm) {
               wx.navigateTo({
                 url: '/pages/home/unread_message/unread_message',
               })
+            }  
+          },
+          fail: function(res){
+
           }
         })
       }

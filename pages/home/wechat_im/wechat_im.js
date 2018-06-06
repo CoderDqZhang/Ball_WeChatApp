@@ -26,46 +26,8 @@ Page({
   data: {
     friendHeadUrl: '',
     textMessage: '',
-    chatItems: [
-                {
-                "fromAccountNick": "DIY",
-                "content": "测试数据啦在线,JSON,JSON 校验,格式化,xml转json 工具,在线工具,json视图,可视化,程序,服务器,域名注册,正则表达式,测试,在线json格式化工具,json 格式化,json格式化工具,json...",
-                "isSelfSend": 1
-                },
-                {
-                  "fromAccountNick": "Admin",
-                  "content": "在线JSON校验格式化工具,SO JSON在线",
-                  "isSelfSend": 0
-                },
-                {
-                  "fromAccountNick": "Admin",
-                  "content": "在线,JSON,JSON 校验,格式化,xml转json 工具,在线工具,json视图,可视化,程序,服务器,域名注册,正则表达式,测试,在线json格式化工具,json 格式化,json格式化工具,json...",
-                  "isSelfSend": 0
-                },
-                {
-                  "fromAccountNick": "DIY",
-                  "content": "测试数据啦",
-                  "isSelfSend": 1
-                },
-                {
-                  "fromAccountNick": "Admin",
-                  "content": "测试数据啦",
-                  "isSelfSend": 0
-                },
-                {
-                  "fromAccountNick": "Admin",
-                  "content": "测试数据啦",
-                  "isSelfSend": 0
-                },
-                {
-                  "fromAccountNick": "DIY",
-                  "content": "测试数据啦",
-                  "isSelfSend": 1
-                },
-                ],
+    chatItems: [],
     scrollTopTimeStamp: 0,
-
-
     motto: 'Hello World',
     userInfo: {},
     msgs: [],
@@ -73,7 +35,8 @@ Page({
     UserSig: null,
     msgContent: "",
     windowWidth: 0,
-    windowHeight: 0
+    windowHeight: 0,
+    chatInfo:null,
   },
 
 
@@ -84,15 +47,17 @@ Page({
     this.initData();
     var that = this;
     that.setData({
+      chatInfo: JSON.parse(options.item),
       windowWidth: app.globalData.windowWidth,
       windowHeight: app.globalData.windowHeight,
     })
     that.login(function () {
       that.initIM(app.globalData.userInfo);
     });
+    that.requestMessage()
   },
 
-  getChatRoomMsg:function(){
+  requestMessage:function(){
     // {
     //   "GroupId": "@TGS#15ERQPAER",    //拉取消息的群ID
     //     "ReqMsgNumber": 2      //需要拉取的消息条数
@@ -127,7 +92,7 @@ Page({
       pageHeight: systemInfo.windowHeight,
     });
     wx.setNavigationBarTitle({
-      title: '好友'
+      title: '群聊'
     });
     that.textButton();
     that.extraButton();
@@ -224,7 +189,7 @@ Page({
   */
   initIM: function (userInfo) {
     var that = this;
-    var avChatRoomId = '@TGS#a2JBRZHFI';
+    var avChatRoomId = that.data.chatInfo.room;
     webimhandler.init({
       accountMode: Config.accountMode
       , accountType: Config.accountType

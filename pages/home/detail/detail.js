@@ -14,6 +14,7 @@ Page({
     number_appointment_count:[],
     appointMenuMene: {},
     addressMenuIsShow: false,
+    messageInfo:null
   },
 
   /**
@@ -28,7 +29,7 @@ Page({
       windowHeight: app.globalData.windowHeight
     })
     that.reqeuestData(that.data.item)
-
+    that.requestMessageGroup(that.data.item)
     // 初始化动画变量
     var animation = wx.createAnimation({
       duration: 500,
@@ -105,6 +106,17 @@ Page({
         item: res.data.game_detail
       })
       console.log(that.data.item)
+    })
+  },
+
+  requestMessageGroup:function(res){
+    var that = this
+    var data = { 'game_id': res.id,'club_id':0}
+    app.func.requestPost('/ball/im/group/', data, function (res) {
+      console.log(res)
+      that.setData({
+        messageInfo:res.data
+      })
     })
   },
 
@@ -333,6 +345,13 @@ Page({
       url: '/pages/home/home/home',
     })
    
+  },
+
+  go_im: function (res){
+    var data = this.data.messageInfo
+    wx.navigateTo({
+      url: '/pages/home/wechat_im/wechat_im?item=' + JSON.stringify(data),
+    })
   },
 
   time_cancel_press: function (res) {

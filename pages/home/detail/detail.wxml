@@ -106,9 +106,14 @@
 <button class='appointment_btn' bindtap='appointment_cancel_press' wx:elif="{{item.appoint_ment}}">取消赴约</button>
 <button class='appointment_btn' bindtap='appointment_btn_press' wx:else>赴约</button>
 <view>
-  <button type="default-dark" size="40" bindtap='go_home' class="img-plus-style zindex100 yc">
+  <button type="default-dark" size="40" bindtap='go_home' class="img-plus-style zindex200 yc">
   </button>
   <image src="/images/gloable/home.png" class="img-plus-style"></image>
+</view>
+<view>
+  <button type="default-dark" size="40" bindtap='go_im'  class="img-plus-style zindex100 yc">
+  </button>
+  <image src="/images/gloable/message.png" class="img-plus-style1" bindtap='go_im'></image>
 </view>
 <view class="picker-view" animation="{{animationAddressMenu}}" style="visibility:{{addressMenuIsShow ? 'visible':'hidden'}}">
   <view style="height:10% ;width:95%;margin-top:10rpx">

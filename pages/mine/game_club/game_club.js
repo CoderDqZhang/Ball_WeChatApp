@@ -59,6 +59,8 @@ Page({
     })
   },
 
+  
+
   club_btn_press: function(res){
     wx.navigateTo({
       url: '/pages/mine/create_game_club/create_game_club',

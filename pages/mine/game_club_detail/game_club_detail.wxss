@@ -182,7 +182,7 @@
 }
 
 
-.img-plus-style {  
+.img-plus-style1 {  
   height: 70rpx;  
   width: 70rpx;  
   position: fixed;  

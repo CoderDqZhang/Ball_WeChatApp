@@ -90,4 +90,9 @@
   <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
 </view>
 </scroll-view>
+<view>
+  <button type="default-dark" size="40" bindtap='go_im'  class="img-plus-style zindex100 yc">
+  </button>
+  <image src="/images/gloable/message.png" class="img-plus-style1" bindtap='go_im'></image>
+</view>
 <button class='appointment_btn' bindtap='club_btn_press'>操作</button>

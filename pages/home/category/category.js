@@ -248,7 +248,7 @@ Page({
     app.func.requestPost('/ball/gamelist/', data, function (res) {
       for (var i = 0; i < res.data.game_list.length; i++) {
         res.data.game_list[i].game_start_times = Date.parse(new Date(res.data.game_list[i].game_start_time))
-        if (app.globalData.locationInfo.latitude != null){
+        if (app.globalData.locationInfo != null && app.globalData.locationInfo.latitude != null){
           res.data.game_list[i].game_distance = that.getDistance(app.globalData.locationInfo.latitude, app.globalData.locationInfo.longitude, res.data.game_list[i].game_latitude, res.data.game_list[i].game_longitude)
         }
       }

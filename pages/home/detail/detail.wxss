@@ -185,6 +185,18 @@
 .zindex100{z-index: 100}
 .yc{opacity: 0}
 
+.zindex200{z-index: 200}
+.yc{opacity: 0}
+
+.img-plus-style1 {  
+  height: 70rpx;  
+  width: 70rpx;  
+  position: fixed;  
+  bottom: 250rpx;  
+  right: 30rpx;  
+  opacity: 0.7
+} 
+
 .picker-view {
   width: 100%;
   display: flex;
