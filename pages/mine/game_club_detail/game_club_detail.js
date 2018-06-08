@@ -91,7 +91,7 @@ Page({
         that.data.handle = ['申请加入'] 
         break
       case 'create':
-        that.data.handle = ['解散','发起约球','上传图集'] 
+        that.data.handle = ['解散','发起约球','上传图集','编辑信息'] 
         break
       case 'manager':
         that.data.handle = ['发起约球', '上传图集','退出俱乐部'] 
@@ -102,11 +102,23 @@ Page({
     }
   },
 
+  /**
+ * 修改俱乐部信息后更新数据
+ */
+  changeDataGameClubData: function (data) {
+    this.setData({
+      game_club: data
+    })
+  },
+
   club_btn_press: function (res){
     var that = this
       wx.showActionSheet({
         itemList: that.data.handle,
         success: function (res) {
+          if (res.cancel){
+            return
+          }
           console.log(res.tapIndex)
           that.actionSheetTap(res.tapIndex,that.data.item.user_flag)
         },
@@ -127,8 +139,13 @@ Page({
             that.requestDissolve()
           }else if(res == 1) {
             that.requestGameBall()
-          }else{
+          }else if(res == 2){
             that.requestUploadImages()
+          }else{
+            var data = that.data.game_club
+            wx.navigateTo({
+              url: '/pages/mine/create_game_club/create_game_club?item=' + JSON.stringify(data),
+            })
           }
           break
       case 'manager':

@@ -8,7 +8,7 @@ Page({
   data: {
     game_list: [],
     normal_game_list: [],
-    imagePath: '/images/gloable/avatar.jpg',
+    imagePath: '',
     imagePaths: '/images/gloable/avatar.jpg',
     club: {
       "openid": null,
@@ -21,7 +21,8 @@ Page({
       "club_number": 0,
     },
     windowWidth: 0,
-    windowHeight: 0
+    windowHeight: 0,
+    isCreateGameClub:true
   },
 
   /**
@@ -29,11 +30,24 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    this.requestGame()
-    that.setData({
-      windowWidth: app.globalData.windowWidth,
-      windowHeight: app.globalData.windowHeight
-    })
+    if (options.item != null) {
+      that.setData({
+        isCreateGameClub:false,
+        club: JSON.parse(options.item), 
+        windowWidth: app.globalData.windowWidth,
+        windowHeight: app.globalData.windowHeight,
+      })
+      that.setData({
+        imagePaths:that.data.club.club_post
+      })
+    }else{
+      this.requestGame()
+      that.setData({
+        game_club: JSON.parse(options.item),
+        windowWidth: app.globalData.windowWidth,
+        windowHeight: app.globalData.windowHeight
+      })
+    }
   },
 
   requestGame: function (res) {
@@ -68,6 +82,74 @@ Page({
         })
       }
     })
+  },
+
+  club_btn_change_press:function (res){
+    var that = this
+    var data = {
+      'club_id': that.data.club.id,
+      'openid': app.globalData.userInfo.openid,
+      'club_title': that.data.club.club_title,
+      'club_slogan': that.data.club.club_slogan,
+      'club_desc': that.data.club.club_desc,
+      'club_grade': that.data.club.club_grade,
+      'club_number': that.data.club.club_number,
+      'club_project': that.data.club.club_project,
+    }
+    if (that.data.imagePath == "") {
+      app.func.requestPost('/ball/gameclub/updateinfo/', data, function (res) {
+        console.log(res)
+        if (res.msg != null && res.msg.errors != null) {
+          wx.showModal({
+            title: res.msg.errors[0].error,
+            content: "",
+          })
+        } else {
+          wx.showToast({
+            title: res.data.message,
+          })
+          var pages = getCurrentPages();
+          if (pages.length > 1) {
+            //上一个页面实例对象
+            var prePage = pages[pages.length - 2];
+            //关键在这里
+            prePage.changeDataGameClubData(that.data.club)
+          }
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
+    }else{
+      app.func.requestUpload('/ball/gameclub/updateinfo/', data, that.data.imagePath, 'club_post', function (res) {
+        console.log(res)
+        res = JSON.parse(res)
+        if (res.msg != null && res.msg.errors != null) {
+          wx.showModal({
+            title: res.msg.errors[0].error,
+            content: "",
+          })
+        } else {
+          wx.showToast({
+            title: res.data.message,
+          })
+          that.setData({
+            'club.club_post':res.data.image
+          })
+          var pages = getCurrentPages();
+          if (pages.length > 1) {
+            //上一个页面实例对象
+            var prePage = pages[pages.length - 2];
+            //关键在这里
+            prePage.changeDataGameClubData(that.data.club)
+          }
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      })
+    }
+    
   },
 
   game_type_press: function (e) {

@@ -1,6 +1,6 @@
 <!--pages/mine/game_club_detail/game_club_detail.wxml-->
 <scroll-view scroll-y style="height: {{windowHeight}}px;" class='scroll_session'>
-  <view class='game_club_sessioin' bindtap='change_post'>
+  <view class='game_club_sessioin'>
     <image src='{{item.club_post}}' style='width: 180rpx;  height: 180rpx;'></image>
     <view class='game_club_info'>
       <view class='game_club_title'>{{item.club_title}} 等级：{{item.club_grade}}</view>

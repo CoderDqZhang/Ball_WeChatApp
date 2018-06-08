@@ -1,6 +1,6 @@
 <scroll-view scroll-y style="height: {{windowHeight}}px;" class='scroll_session'>
-<picker bindchange="game_type_press" value="{{index}}" range="{{game_list}}">
-  <view class='session_info'>
+<picker wx:if="{{isCreateGameClub}}" bindchange="game_type_press" value="{{index}}" range="{{game_list}}">
+  <view class='session_info' >
     <view class='title'>类别</view>
     <view class='normal_info'>
       <view class='sub_title'>{{game_name}}</view>
@@ -64,4 +64,5 @@
   </view>
 </picker>
 </scroll-view>
-<button class='appointment_btn' bindtap='club_btn_press'>创建</button>
+<button class='appointment_btn' bindtap='club_btn_press' wx:if="{{isCreateGameClub}}">创建</button>
+<button class='appointment_btn' bindtap='club_btn_change_press' wx:else>确定修改</button>
