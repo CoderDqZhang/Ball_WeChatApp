@@ -1,4 +1,6 @@
 /* pages/home/home/home.wxss */
+
+
 .category_session{
   flex-direction: row;
   display: flex;

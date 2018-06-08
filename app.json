@@ -16,6 +16,7 @@
     "pages/mine/command/command",
     "pages/mine/game_club/game_club",
     "pages/mine/game_club_detail/game_club_detail",
+    "pages/mine/game_club_images/game_club_images",
     "pages/mine/create_game_club/create_game_club",
     "pages/mine/game_club_create_game/game_club_create_game",
     "pages/mine/command_other/command_other",

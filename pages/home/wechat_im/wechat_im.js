@@ -7,6 +7,8 @@ var webim = require('../../../utils/wechat_im/webim.js');
 var webimhandler = require('../../../utils/wechat_im/webim_handler.js');
 var tls = require('../../../utils/wechat_im/tls.js');
 
+var WxParse = require('../../../gloable/wxParse/wxParse.js');
+
 var Config = {
   sdkappid: 1400098651
   , accountType: 28158
@@ -54,6 +56,7 @@ Page({
     that.login(function () {
       that.initIM(app.globalData.userInfo);
     });
+    console.log(that.data.chatInfo)
     that.requestMessage()
   },
 
@@ -277,11 +280,17 @@ Page({
 
   receiveMsgs: function (data) {
     var chatItems = this.data.chatItems || [];
+    var that = this;
     chatItems.push(data);
-
     this.setData({
       chatItems: chatItems
     })
+    for (let i = 0; i < chatItems.length; i++) {
+      WxParse.wxParse('chat' + i, 'html', chatItems[i].content, that);
+      if (i === chatItems.length - 1) {
+        WxParse.wxParseTemArray("chatItemsArray", 'chat', chatItems.length, that)
+      }
+    }
   },
 
   bindConfirm: function (e) {
@@ -291,6 +300,11 @@ Page({
     webimhandler.onSendMsg(content, function () {
       that.clearInput();
     })
+  },
+
+  senderImage: function (e) {
+    var that = this
+    webimhandler.onSendMsg()
   },
 
   onUnload: function (e){

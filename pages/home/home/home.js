@@ -1,4 +1,5 @@
 // pages/home/home/home.js
+
 var app = getApp()
 Page({
 
@@ -38,7 +39,7 @@ Page({
    */
   onLoad: function (options) {
     this.requestData()
-    this.requestUnreadMessage()
+    this.requestUnreadMessage()    
  },
 
 

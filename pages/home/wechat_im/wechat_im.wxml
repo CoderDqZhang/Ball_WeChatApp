@@ -1,22 +1,24 @@
 <import src="/modules/chat-input/chat-input.wxml" />
+<import src="/gloable/wxParse/wxParse.wxml" />
 <template is="chat-input" data="{{inputObj:inputObj,textMessage:textMessage,showVoicePart:true}}" />
 <scroll-view scroll-y style="height: {{windowHeight - 3}}px;">
-  <view wx:for="{{chatItems}}" style='margin-top:10rpx;' wx:key='id'>
-<view wx:if="{{item.isSelfSend == 0}}" class='message-left'>
-  <image src="/images/gloable/avatar.jpg" class='left-avatar'></image>
-  <view class='message-content-left'>
-    <view class='user_nickname-left' style='flex-grow:1;flex-shrink:0;'>{{item.fromAccountNick}}</view>
-    <view class='left-message' style='max-width:{{windowWidth-120}}px;'>{{item.content}}</view>
-  </view>
-</view>
-<view wx:else class='message-right'>
-    <view class='message-content-right'>
-        <view class='user_nickname-right' style='flex-grow:1;flex-shrink:0'>{{item.fromAccountNick}}</view>
-        <view class='right-message' style='max-width:{{windowWidth-120}}px;'>{{item.content}}</view>
+  <view wx:for="{{chatItemsArray}}" style='margin-top:10rpx;' wx:key='id' wx:data="{{index}}">
+    <view wx:if="{{chatItems[index].isSelfSend == 0}}" class='message-left'>
+      <image src="/images/gloable/avatar.jpg" class='left-avatar'></image>
+      <view class='message-content-left'>
+        <view class='user_nickname-left' style='flex-grow:1;flex-shrink:0;'>{{item.fromAccountNick}}</view>
+        <view class='left-message' style='max-width:{{windowWidth-120}}px;'>
+            <template is="wxParse" data="{{wxParseData:item}}" />
+        </view>
+      </view>
     </view>
-    <image src="/images/gloable/avatar.jpg" class='right-avatar'></image>
-</view>
-<view style='height:40rpx;width:100%'></view>
-</view>
+    <view wx:else class='message-right'>
+      <view class='message-content-right'>
+        <view class='user_nickname-right' style='flex-grow:1;flex-shrink:0'>{{item.fromAccountNick}}</view>
+         <template is="wxParse" data="{{wxParseData:item}}" />
+      </view>
+      <image src="/images/gloable/avatar.jpg" class='right-avatar'></image>
+    </view>
+    <view style='height:40rpx;width:100%'></view>
+  </view>
 </scroll-view>
-

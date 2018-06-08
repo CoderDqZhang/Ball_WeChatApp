@@ -1,0 +1,4 @@
+<!--pages/mine/game_club_images/game_club_images.wxml-->
+<view wx:for="{{club_images}}" wx:key="images">
+  <image src='{{item}}'></image>
+</view>

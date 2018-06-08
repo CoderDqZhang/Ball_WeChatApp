@@ -192,3 +192,17 @@
 }   
 .zindex100{z-index: 100}
 .yc{opacity: 0}
+
+.club_image_session{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 30rpx;
+  align-items: center;
+  height: 190rpx;
+}
+
+.club_image_class{
+  width: 180rpx;
+  height: 180rpx;
+}

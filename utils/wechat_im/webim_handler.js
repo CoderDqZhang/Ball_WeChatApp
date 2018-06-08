@@ -56,6 +56,7 @@ function handlderMsg(msg) {
     //会话类型为私聊时，子类型为：webim.C2C_MSG_SUB_TYPE
     subType = msg.getSubType();
 
+    msgType = messageType(msg);
     switch (sessType) {
         case webim.SESSION_TYPE.C2C://私聊消息
             switch (subType) {
@@ -192,7 +193,7 @@ function showMsg(msg) {
     return {
         fromAccountNick : fromAccountNick,
         content : content,
-        isSelfSend: isSelfSend
+        isSelfSend: isSelfSend,
     }
 }
 
@@ -270,7 +271,7 @@ function convertImageMsgToHtml(content) {
     if (!oriImage) {
         oriImage = smallImage;
     }
-    return "<img src='" + smallImage.getUrl() + "#" + bigImage.getUrl() + "#" + oriImage.getUrl() + "' style='CURSOR: hand' id='" + content.getImageId() + "' bigImgUrl='" + bigImage.getUrl() + "' onclick='imageClick(this)' />";
+    return "<img src='" + smallImage.getUrl() + "" + bigImage.getUrl() + "" + oriImage.getUrl() + "' style='CURSOR: hand' id='" + content.getImageId() + "' bigImgUrl='" + bigImage.getUrl() + "' onclick='imageClick(this)' />";
 }
 //解析语音消息元素
 function convertSoundMsgToHtml(content) {
@@ -508,6 +509,44 @@ function smsPicClick() {
         hideDiscussTool();//隐藏评论工具栏
         showDiscussForm();//显示评论表单
     }
+}
+
+//发送图片
+function sendPic(images) {
+  
+  if (!selSess) {
+    selSess = new webim.Session(selType, selToID, selToID, friendHeadUrl,
+      Math.round(new Date().getTime() / 1000));
+  }
+  var msg = new webim.Msg(selSess, true);
+  var images_obj = new webim.Msg.Elem.Images(images.File_UUID);
+  for (var i in images.URL_INFO) {
+    var img = images.URL_INFO[i];
+    var newImg;
+    var type;
+    switch (img.PIC_TYPE) {
+      case 1://原图
+        type = 1;//原图
+        break;
+      case 2://小图（缩略图）
+        type = 3;//小图
+        break;
+      case 4://大图
+        type = 2;//大图
+        break;
+    }
+    newImg = new webim.Msg.Elem.Images.Image(type, img.PIC_Size, img.PIC_Width,
+      img.PIC_Height, img.DownUrl);
+    images_obj.addImage(newImg);
+  }
+  msg.addImage(images_obj);
+  //调用发送图片接口
+  webim.sendMsg(msg, function (resp) {
+    addMsg(msg);
+    curMsgCount++;
+  }, function (err) {
+    console.log(err)
+  });
 }
 
 //发送消息(普通消息)

@@ -1,4 +1,5 @@
 <!--pages/home/home/home.wxml-->
+<import src="/gloable/wxParse/wxParse.wxml"/>
 <view wx:for="{{ball_datas}}" wx:key='datas'>
   <view class='category_session' bindtap='category_press' data-item='{{item}}'>
     <view class='category_infos'>
@@ -16,4 +17,11 @@
   </view>
   <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
 </view>
-<button open-type=''></button>
+<view class="wxParse">
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+</view>
+<!-- <view style="padding: 20px 10px; background-color:#eee;">
+    <block wx:for="{{replyTemArray}}" wx:key="">
+        回复{{index}}:<template is="wxParse" data="{{wxParseData:item}}"/>
+    </block>
+</view> -->

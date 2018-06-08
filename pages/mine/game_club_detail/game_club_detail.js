@@ -12,7 +12,8 @@ Page({
     windowHeight: 0,
     handle:null,
     tempFilePaths:null,
-    messageInfo:null
+    messageInfo:null,
+    club_images:null
   },
 
   /**
@@ -26,6 +27,7 @@ Page({
     })
     this.requestGameClubDetail()
     this.requestMessageGroup()
+    this.requestImages()
   },
 
   requestGameClubDetail: function (res){
@@ -51,10 +53,34 @@ Page({
     })
   },
 
+  requestImages: function (res) {
+    var that = this
+    var data = { 'club_id': that.data.game_club.id }
+    app.func.requestPost('/ball/gameclub/image', data, function (res) {
+      console.log(res)
+      var tempImages = []
+      for (var i = 0; i < res.data.images.length; i ++) {
+        if (res.data.images[i].image != 'error') {
+          tempImages.push(res.data.images[i].image)
+        }
+      }
+      that.setData({
+        club_images: tempImages
+      })
+    })
+  },
+
   go_im: function (res) {
     var data = this.data.messageInfo
     wx.navigateTo({
       url: '/pages/home/wechat_im/wechat_im?item=' + JSON.stringify(data),
+    })
+  },
+
+  more_images: function (e) {
+    var data = this.data.game_club
+    wx.navigateTo({
+      url: '/pages/mine/game_club_images/game_club_images?item=' + JSON.stringify(data),
     })
   },
 
@@ -195,7 +221,7 @@ Page({
   change_post: function(){
     var that = this
     wx.chooseImage({
-      count: 9, // 默认9
+      count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -208,13 +234,16 @@ Page({
     })
     
   },
-
+/**
+ * upload images
+ */
   choseImage:function(res){
     var that = this
-    var data = { 'openid':'16601131280','content':'这是一个测试数据'}
-    app.func.requestUpload('/ball/upload/gameclub/image/', data, that.data.tempFilePaths, 'club_image', function (res) {
+    var data = { 'openid': app.globalData.userInfo.openid, 'content': '这是一个测试数据', 'club_id': that.data.game_club.id}
+    console.log(data)
+    app.func.requestUpload('/ball/upload/gameclub/image/', data, res, 'club_image', function (res) {
       console.log(res)
-      if (res.msg.errors != null) {
+      if (res.msg != null && res.msg.errors != null) {
         wx.showModal({
           title: res.msg.errors[0].error,
           content: "",
@@ -227,7 +256,16 @@ Page({
  * 上传图集
  */
   requestUploadImages: function () {
-    this.choseImage()
+    var that = this
+    wx.chooseImage({
+      count: 9, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.choseImage(res.tempFiles)
+      }
+    })
   },
 
   /**

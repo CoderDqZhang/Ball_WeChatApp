@@ -1,4 +1,6 @@
 @import "/modules/chat-input/chat-input.wxss";
+@import "/gloable/wxParse/wxParse.wxss";
+
 page {
     background-color: #EFEFEF;
 }
