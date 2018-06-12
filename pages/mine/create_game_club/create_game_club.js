@@ -43,7 +43,6 @@ Page({
     }else{
       this.requestGame()
       that.setData({
-        game_club: JSON.parse(options.item),
         windowWidth: app.globalData.windowWidth,
         windowHeight: app.globalData.windowHeight
       })
