@@ -1,0 +1,79 @@
+<!--pages/discover/game_report/game_report.wxml-->
+<scroll-view scroll-y style="height: {{windowHeight - 40}}px;" class='scroll_session'>
+  <view class='game_report_infos'>
+    <view class='game_report_club_info'>
+      <image src='{{game_report.club_A.club_post}}' class='club_post'></image>
+      <view class='user_name'>{{game_report.club_A.club_title}}</view>
+    </view>
+    <view class='game_report_info'>
+      <view class='game_report_status' wx:if='{{game_report.success == 0}}'>{{game_report.desc}}</view>
+      <view class='game_report_status' wx:elif='{{game_report.game_detail.game_status == 0}}'>比赛结束</view>
+      <view class='game_report_status' wx:else>比赛进行中</view>
+      <image src='/images/gloable/timg.jpeg' style='width:140rpx;height:140rpx;'></image>
+      <view class='game_report_time'>{{game_report.game_detail.game_start_time}}</view>
+    </view>
+    <view class='game_report_club_info'>
+      <image src='{{game_report.club_B.club_post}}' class='club_post'></image>
+      <view class='user_name'>{{game_report.club_B.club_title}}</view>
+    </view>
+  </view>
+  <view class='session_title'>
+    <view class='info_title'>球约信息</view>
+  </view>
+  <view class='sub_session'>
+    <view class='sub_info'>
+      <view class='sub_title'>发起人</view>
+      <view class='sub_detail'>{{game_report.game_detail.user.nickname}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info' bindtap='phone_press'>
+      <view class='sub_title'>联系电话</view>
+      <view class='sub_detail'>{{game_report.game_detail.user.phone}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>开始时间</view>
+      <view class='sub_detail'>{{game_report.game_detail.game_start_time}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>结束时间</view>
+      <view class='sub_detail'>{{game_report.game_detail.game_end_time}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_location' bindtap='location_press'>
+      <view class='sub_title'>地点</view>
+      <view class='sub_locations'>
+        <view class='sub_infos'>
+          <view class='sub_detail'>{{game_report.game_detail.game_location}}</view>
+          <view class='sub_subtitle'>{{game_report.game_detail.game_location_detail}}</view>
+
+        </view>
+        <image src='/images/gloable/location-o.png' style='width:40rpx;height:40rpx;'></image>
+      </view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>场地条件</view>
+      <view class='sub_detail'>{{game_report.game_detail.game_place_condition}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>裁判</view>
+      <view class='sub_detail' wx:if="{{game_report.game_detail.referee}}">有</view>
+      <view class='sub_detail'>无</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>人数</view>
+      <view class='sub_detail'>{{game_report.game_detail.game_number}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    <view class='sub_info'>
+      <view class='sub_title'>费用</view>
+      <view class='sub_much'>￥{{game_report.game_detail.game_price}}</view>
+    </view>
+    <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+  </view>
+</scroll-view>
+<button class='appointment_btn' bindtap='game_report_press' wx:if='{{game_report.user_status != 0}}'>操作</button>

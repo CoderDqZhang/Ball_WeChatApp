@@ -1,20 +1,49 @@
-<scroll-view scroll-y style="height: {{windowHeight}}px;" class='scroll_session'>
-<view wx:for='{{club_list}}' class='game_club_infos' wx:key = "club">
-  <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
-    <image src="{{item.user.avatar}}" class='avatar'></image>
-    <view class='user_name'>{{item.user.nickname}}</view>
-  </view>
-  <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
-  <view class='game_club_class' bindtap='game_club_press' data-id="{{item.id}}">
-    <image src="{{item.club_post}}" class='game_club_post'></image>
-    <view class='game_club_info'>
-      <view class='game_club_title'>{{item.club_title}}</view>
-      <view class='game_club_slogan'>{{item.club_slogan}}</view>
-      <view class='game_club_subtitle'>{{item.club_project}}</view>
-      <view class='game_club_subtitle'>{{item.club_number}}</view>
+<view class='topsession'>
+  <view class='session_title' wx:if="{{game_club}}" style='color:#4bd4c5;' bindtap='game_club'>俱乐部</view>
+  <view class='session_title' wx:else style='color:#384269;' bindtap='game_club'>俱乐部</view>
+  <view class='session_title' wx:if="{{game_club}}" style='color:#384269;' bindtap='game_report'>对抗赛</view>
+  <view class='session_title' wx:else style='color:#4bd4c5;' bindtap='game_report'>对抗赛</view>
+</view>
+<scroll-view scroll-y style="height: {{windowHeight - 90}}px;" class='scroll_session'>
+  <view wx:if="{{game_club}}">
+    <view wx:for='{{club_list}}' class='game_club_infos' wx:key="club">
+      <view class='user_info' bindtap='user_info_press' data-id="{{item.id}}">
+        <image src="{{item.user.avatar}}" class='avatar'></image>
+        <view class='user_name'>{{item.user.nickname}}</view>
+      </view>
+      <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+      <view class='game_club_class' bindtap='game_club_press' data-id="{{item.id}}">
+        <image src="{{item.club_post}}" class='game_club_post'></image>
+        <view class='game_club_info'>
+          <view class='game_club_title'>{{item.club_title}}</view>
+          <view class='game_club_slogan'>{{item.club_slogan}}</view>
+          <view class='game_club_subtitle'>{{item.club_project}}</view>
+          <view class='game_club_subtitle'>{{item.club_number}}</view>
+        </view>
+      </view>
+      <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
     </view>
   </view>
-  <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
-</view>
+  <view wx:else>
+    <view wx:for='{{game_report_list}}' wx:key="game_report" bindtap='game_report_press' data-item='{{item}}'>
+      <view class='game_report_infos'>
+        <view class='game_report_club_info'>
+          <image src='{{item.club_A.club_post}}' class='club_post'></image>
+          <view class='user_name'>{{item.club_A.club_title}}</view>
+        </view>
+        <view class='game_report_info'>
+          <view class='game_report_status' wx:if='{{item.success == 0}}'>{{item.desc}}</view>
+          <view class='game_report_status' wx:elif='{{item.game_detail.game_status == 0}}'>比赛结束</view>
+          <view class='game_report_status' wx:else>比赛进行中</view>
+          <image src='/images/gloable/timg.jpeg' style='width:140rpx;height:140rpx;'></image>
+          <view class='game_report_time'>{{item.game_detail.game_start_time}}</view>
+        </view>
+        <view class='game_report_club_info'>
+          <image src='{{item.club_B.club_post}}' class='club_post'></image>
+          <view class='user_name'>{{item.club_B.club_title}}</view>
+        </view>
+      </view>
+      <view style='height:20rpx;width:100%;background-color:#f8f8fa;'></view>
+    </view>
+  </view>
 </scroll-view>
-<button class='appointment_btn' bindtap='club_btn_press'>创建俱乐部</button>

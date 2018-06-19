@@ -1,0 +1,118 @@
+/* pages/discover/game_report/game_report.wxss */
+.game_report_infos{
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.game_report_club_info{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 200rpx;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.club_post{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.club_title{
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  color: #DDE0E5;
+}
+
+.game_report_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game_report_status{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.game_report_time{
+  font-size: 24rpx;
+  color: #DDE0E5;
+}
+
+.session_title{
+  background-color: #f8f8fa;
+  height: 40rpx;
+  width: 100%;
+}
+
+.info_title{
+  font-size: 28rpx;
+  color: #364269;
+  margin-left: 30rpx;
+  margin-top: 6rpx;
+}
+
+.sub_info{
+  flex-direction: row;
+  display: flex;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100rpx;
+}
+
+.sub_title{
+  font-size: 30rpx;
+  color: #DDE0E5;
+}
+
+.sub_detail{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.sub_location{
+  flex-direction: row;
+  padding-left: 30rpx;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 150rpx;
+}
+
+.sub_locations{
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+.sub_infos{
+  flex-direction: column;
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  align-items: flex-end;
+}
+
+.sub_subtitle{
+  font-size: 28rpx;
+  color: #DDE0E5;
+}
+
+.sub_much{
+  font-size: 36rpx;
+  color: red;
+}
+
+.users_sessions{
+  width: 100%;
+  background-color: white;
+}

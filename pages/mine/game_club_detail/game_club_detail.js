@@ -91,7 +91,7 @@ Page({
         that.data.handle = ['申请加入'] 
         break
       case 'create':
-        that.data.handle = ['解散','发起约球','上传图集','编辑信息'] 
+        that.data.handle = ['解散','发起约球','上传图集','编辑信息','对抗赛'] 
         break
       case 'manager':
         that.data.handle = ['发起约球', '上传图集','退出俱乐部'] 
@@ -141,10 +141,15 @@ Page({
             that.requestGameBall()
           }else if(res == 2){
             that.requestUploadImages()
-          }else{
+          }else if(res == 3){
             var data = that.data.game_club
             wx.navigateTo({
               url: '/pages/mine/create_game_club/create_game_club?item=' + JSON.stringify(data),
+            })
+          }else{
+            var data = that.data.game_club
+            wx.navigateTo({
+              url: '/pages/discover/game_report_list/game_report_list?item=' + JSON.stringify(data),
             })
           }
           break

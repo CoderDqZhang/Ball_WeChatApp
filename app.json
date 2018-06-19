@@ -9,6 +9,8 @@
     "pages/home/map/map",
     "pages/home/wechat_im/wechat_im",
     "pages/discover/discover/discover",
+    "pages/discover/game_report_list/game_report_list",
+    "pages/discover/game_report/game_report",
     "pages/mine/mine/mine",
     "pages/mine/other/other",
     "pages/mine/info/info",
@@ -48,7 +50,7 @@
         "selectedIconPath": "images/tab_bar/discover_tab_s.png",
         "iconPath": "images/tab_bar/discover_tab_n.png",
         "pagePath": "pages/discover/discover/discover",
-        "text": "发现"
+        "text": "俱乐部"
       },
       {
         "selectedIconPath": "images/tab_bar/mine_tab_s.png",

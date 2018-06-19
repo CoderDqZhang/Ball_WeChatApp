@@ -1,3 +1,24 @@
+.topsession{
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+}
+
+.session_title{
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  border:  1px solid #DDE0E5;
+  align-items: center;
+  width: 50%;
+  text-align: center;
+  font-size: 30rpx;
+}
+
 .game_club_infos{
   flex-direction: column;
   display: flex;
@@ -61,4 +82,50 @@
   font-size: 26rpx;
   color: #DDE0E5;
   
+}
+
+.game_report_infos{
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.game_report_club_info{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 200rpx;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.club_post{
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.club_title{
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  color: #DDE0E5;
+}
+
+.game_report_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game_report_status{
+  font-size: 30rpx;
+  color: #384269;
+}
+
+.game_report_time{
+  font-size: 24rpx;
+  color: #DDE0E5;
 }

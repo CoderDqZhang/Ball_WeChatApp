@@ -1,7 +1,10 @@
-var rootDocment = 'https://yq.topveda.cn';//你的域名  
-// var rootDocment = 'http://127.0.0.1:8000';//你的域名 
+// var rootDocment = 'https://yq.topveda.cn';//你的域名  
+var rootDocment = 'http://127.0.0.1:8000';//你的域名 
+
+import md5 from '../until/md5.js';
+// var webim = require('../../../utils/wechat_im/webim.js');
 function requestPost(url,data,cb){ 
-  console.log(url,data) 
+  data['sign'] = sign(data)
     wx.request({  
       url: rootDocment + url,  
       data: data,  
@@ -18,6 +21,7 @@ function requestPost(url,data,cb){
 }
 
 function requestGet(url,data,cb){  
+  data['sign'] = sign(data)
     wx.request({  
       url: rootDocment + url,  
       data: data,  
@@ -32,6 +36,7 @@ function requestGet(url,data,cb){
 }
 
 function requestUpload(url,data,filePath,fileName,cb){
+  data['sign'] = sign(data)
   for (var i=0; i < filePath.length; i ++) {
     wx.uploadFile({
       url: rootDocment + url,
@@ -56,3 +61,11 @@ function requestUpload(url,data,filePath,fileName,cb){
 module.exports.requestPost = requestPost
 module.exports.requestGet = requestGet
 module.exports.requestUpload = requestUpload
+
+function sign(data){
+  var strs = ''
+  for (var index in data) {
+    strs = strs + index + data[index]
+  }
+  return md5(strs + 'wxc218fa7c51381f48')
+}
