@@ -9,6 +9,8 @@
     "pages/home/map/map",
     "pages/home/wechat_im/wechat_im",
     "pages/discover/discover/discover",
+    "pages/discover/game_report_comment/game_report_comment",
+    "pages/discover/game_report_images/game_report_images",
     "pages/discover/game_report_list/game_report_list",
     "pages/discover/game_report/game_report",
     "pages/mine/mine/mine",

@@ -75,5 +75,62 @@
     </view>
     <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
   </view>
+  <view wx:if="{{commonds.length > 0}}">
+    <view class='session_title'>
+      <view class='info_title'>评价信息</view>
+    </view>
+    <view class='comment_info' wx:for="{{commonds}}" wx:key="commond" wx:key="commond" data-index="{{index}}" bindtap='commond_press'>
+      <view class='conmment_user_infos'>
+        <image class="comment-avatar" wx:if="{{item.anonymity == 1}}" src="/images/gloable/avatar.jpg"></image>
+        <image class="comment-avatar" wx:else src="{{item.tag_user.avatar}}"></image>
+        <view class='conmment_user_info'>
+          <text class='conmment_username' wx:if="{{item.anonymity == 1}}">匿名评价</text>
+          <text class='conmment_username' wx:else>{{item.user.nickname}} {{item.user.good_point}}</text>
+          <text class='conmment_sub_title'>{{item.tag_user.sign}}</text>
+        </view>
+      </view>
+      <view class='starcommond'>
+        <view class='startsession'>
+          <view class='title'>球赛评价</view>
+          <view class="right">
+            <view class="star">
+              <image wx:if="{{item.userrank == 0}}" src="/images/gloable/star_0.png"></image>
+              <image wx:if="{{item.userrank == 1}}" src="/images/gloable/star_1.png"></image>
+              <image wx:if="{{item.userrank == 2}}" src="/images/gloable/star_2.png"></image>
+              <image wx:if="{{item.userrank == 3}}" src="/images/gloable/star_3.png"></image>
+              <image wx:if="{{item.userrank == 4}}" src="/images/gloable/star_4.png"></image>
+              <image wx:if="{{item.userrank == 5}}" src="/images/gloable/star_5.png"></image>
+            </view>
+          </view>
+        </view>
+        <view class='startsession'>
+          <view class='title'>球技评价</view>
+          <view class="right">
+            <view class="star">
+              <image wx:if="{{item.skillrank == 0}}" src="/images/gloable/star_0.png"></image>
+              <image wx:if="{{item.skillrank == 1}}" src="/images/gloable/star_1.png"></image>
+              <image wx:if="{{item.skillrank == 2}}" src="/images/gloable/star_2.png"></image>
+              <image wx:if="{{item.skillrank == 3}}" src="/images/gloable/star_3.png"></image>
+              <image wx:if="{{item.skillrank == 4}}" src="/images/gloable/star_4.png"></image>
+              <image wx:if="{{item.skillrank == 5}}" src="/images/gloable/star_5.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+      <view class='comment'>{{item.content}}</view>
+      <view class='line' style='margin-left: 0rpx;  margin-right: 0rpx;  height: 1rpx;  background-color: #f8f8fa;'></view>
+    </view>
+  </view>
+  <view wx:if="{{game_report_images.length > 0}}" bindtap='more_images'>
+    <view class='session_title'>
+      <view class='info_title'>图集信息</view>
+      <view class='game_report_images_session'>
+        <image class='game_report_images_class' src="{{game_report_images[0]}}"></image>
+        <view wx:if="{{game_report_images.length > 1}}" class="game_report_images_desc">查看更多</view>
+      </view>
+    </view>
+  </view>
+  
 </scroll-view>
 <button class='appointment_btn' bindtap='game_report_press' wx:if='{{game_report.user_status != 0}}'>操作</button>

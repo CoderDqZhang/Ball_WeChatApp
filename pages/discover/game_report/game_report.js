@@ -9,7 +9,9 @@ Page({
     game_report:null,
     windowWidth:0,
     windowHeight:0,
-    show_models:[]
+    show_models:[],
+    commonds:[],
+    game_report_images:[]
   },
 
   /**
@@ -24,6 +26,8 @@ Page({
     })
     console.log(that.data)
     that.report_detail()
+    that.requestCommonds()
+    that.requestImages()
   },
 
   report_detail: function(res){
@@ -64,18 +68,46 @@ Page({
     if (res == 0) {
       that.uploadImage()
     } else if (res == 1) {
-      that.requestGameBall()
+      that.commond()
     } else if (res == 2) {
-      that.requestUploadImages()
+      that.uploadSocre()
     }
   },
 
   uploadImage: function (res) {
+    var that = this
+    wx.chooseImage({
+      count: 9, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.choseImage(res.tempFiles)
+      }
+    })
+  },
 
+  choseImage:function(res){
+    var that = this
+    var data = { 'game_report_id': that.data.game_report.id, 'content': '这是一个测试数据', "openid": app.globalData.userInfo.openid }
+    console.log(data)
+    app.func.requestUpload('/ball/gamereport/upload/images/', data, res, 'report_image', function (res) {
+      console.log(res)
+      if (res.msg != null && res.msg.errors != null) {
+        wx.showModal({
+          title: res.msg.errors[0].error,
+          content: "",
+        })
+      }
+    })
   },
 
   commond: function (res) {
-
+    var that = this
+    var data = JSON.stringify(that.data.game_report)
+    wx.navigateTo({
+      url: '/pages/discover/game_report_comment/game_report_comment?item=' + data,
+    })
   },
 
   uploadSocre: function (res) {
@@ -83,6 +115,42 @@ Page({
     var data = { "game_report_id": that.data.game_report.id, "openid": app.globalData.userInfo.openid }
     app.func.requestPost('/ball/gamereport/upload/sorce/', data, function (res) {
       console.log(res)
+    })
+  },
+
+  requestCommonds:function(res){
+    var that = this
+    var data = { "game_report_id": that.data.game_report.id}
+    app.func.requestPost('/ball/gamereport/getcomment/', data, function (res) {
+      console.log(res)
+      that.setData({
+        commonds: res.data.commonds
+      })
+    })
+  },
+
+  requestImages:function(res){
+    var that = this
+    var data = { "game_report_id": that.data.game_report.id}
+    app.func.requestPost('/ball/gamereport/getimages/', data, function (res) {
+      console.log(res)
+      var tempImages = []
+      for (var i = 0; i < res.data.images.length; i++) {
+        if (res.data.images[i].image != 'error') {
+          tempImages.push(res.data.images[i].image)
+        }
+      }
+      that.setData({
+        game_report_images: tempImages
+      })
+    })
+  },
+
+
+  more_images: function(res){
+    var data = this.data.game_report
+    wx.navigateTo({
+      url: '/pages/discover/game_report_images/game_report_images?item=' + JSON.stringify(data),
     })
   },
 
