@@ -83,7 +83,7 @@ Page({
     console.log(data)
     app.func.requestPost('/ball/gamecreate/', data, function(res) {
         console.log(res)
-        if (res.msg.errors != null) {
+        if (res.msg != null && res.msg.errors != null) {
           wx.showModal({
             title: res.msg.errors[0].error,
             content: "",

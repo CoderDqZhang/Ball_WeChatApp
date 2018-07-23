@@ -1,5 +1,6 @@
 // pages/home/detail/detail.js
 var app = getApp()
+import md5 from '../../../gloable/until/md5.js';
 Page({
 
   /**
@@ -172,37 +173,38 @@ Page({
  */
   time_delete_press: function (e) {
     var that = this
-    wx.showModal({
-      title: '确定删除球约么？',
-      showCancel: true,
-      confirmColor: "#4bd4c5",
-      success: function (e) {
-        var data = { 'game_id': that.data.item.id, 'openid': app.globalData.userInfo.openid, }
-        app.func.requestPost('/ball/gamedelete/', data, function (res) {
-          console.log(res)
-          if (res.msg != null) {
-            wx.showToast({
-              title: '删除失败',
-            })
-          }else{
-            wx.showToast({
-              title: '删除成功',
-            })
-            var pages = getCurrentPages();
-            if (pages.length > 1) {
-              //上一个页面实例对象
-              var prePage = pages[pages.length - 2];
-              //关键在这里
-              prePage.updataGame({'id':that.data.item.ball.id})
-            }
-            wx.navigateBack({
-              delta: 1
-            })
+    that.appointment()
+    // wx.showModal({
+    //   title: '确定删除球约么？',
+    //   showCancel: true,
+    //   confirmColor: "#4bd4c5",
+    //   success: function (e) {
+    //     var data = { 'game_id': that.data.item.id, 'openid': app.globalData.userInfo.openid, }
+    //     app.func.requestPost('/ball/gamedelete/', data, function (res) {
+    //       console.log(res)
+    //       if (res.msg != null) {
+    //         wx.showToast({
+    //           title: '删除失败',
+    //         })
+    //       }else{
+    //         wx.showToast({
+    //           title: '删除成功',
+    //         })
+    //         var pages = getCurrentPages();
+    //         if (pages.length > 1) {
+    //           //上一个页面实例对象
+    //           var prePage = pages[pages.length - 2];
+    //           //关键在这里
+    //           prePage.updataGame({'id':that.data.item.ball.id})
+    //         }
+    //         wx.navigateBack({
+    //           delta: 1
+    //         })
 
-          }
-        })
-      }
-    })
+    //       }
+    //     })
+    //   }
+    // })
     
   },
 
@@ -241,13 +243,6 @@ Page({
         confirmColor: "#4bd4c5",
         success: function (e) {
           if (e.confirm) {
-            wx.requestPayment({
-              timeStamp: '',
-              nonceStr: '',
-              package: '',
-              signType: '',
-              paySign: '',
-            })
             that.selectDistrict()
           } else {
 
@@ -313,30 +308,47 @@ Page({
     var that = this
     var data = { 'openid': app.globalData.userInfo.openid, 'game_id': this.data.item.id, 'number_count': that.data.appointment_number}
     app.func.requestPost('/ball/gameappointment/', data, function (res) {
-      console.log(res)
-      if (res.msg != null && res.msg.errors != null) {
-        wx.showToast({
-          title: "出现错误",
-          icon: 'success',
-          duration: 2000
-        })
-      }else if (res.data.message != null) {
-        wx.showToast({
-          title: '您已经赴约过了',
-          icon: 'success',
-          duration: 2000
-        })
-      }else{
-        res.data.game_detail.appoint_count = that.number_appoint(res.data.game_detail)
-        that.setData({
-          item: res.data.game_detail
-        })
-        wx.showToast({
-          title: '赴约成功',
-          icon: 'success',
-          duration: 2000
-        })
-      }      
+      console.log(res.data.order)
+      // var str = 'appId=' + res.data.order.appId + '&' + 'nonceStr=' +
+      //   res.data.order.nonceStr + '&' + 'package=' + res.data.order.package + '&' + 'signType=MD5' + '&' + 'timeStamp=' + res.data.order.timeStamp + '&' + 'key=YueqiuXiaochengxu720RegisteredTM'
+      // console.log(str)
+      // console.log(md5(str).toUpperCase())
+      wx.requestPayment({
+        timeStamp: res.data.order.timeStamp + '',
+        nonceStr: res.data.order.nonceStr + '',
+        package: res.data.order.package + '',
+        signType: res.data.order.signType + '',
+        paySign: res.data.order.paySign + '',
+        success:function(res){
+          console.log(res)
+        },
+        fail: function(res){
+          console.log(res)
+        }
+      })
+      // if (res.msg != null && res.msg.errors != null) {
+      //   wx.showToast({
+      //     title: "出现错误",
+      //     icon: 'success',
+      //     duration: 2000
+      //   })
+      // }else if (res.data.message != null) {
+      //   wx.showToast({
+      //     title: '您已经赴约过了',
+      //     icon: 'success',
+      //     duration: 2000
+      //   })
+      // }else{
+      //   res.data.game_detail.appoint_count = that.number_appoint(res.data.game_detail)
+      //   that.setData({
+      //     item: res.data.game_detail
+      //   })
+      //   wx.showToast({
+      //     title: '赴约成功',
+      //     icon: 'success',
+      //     duration: 2000
+      //   })
+      // }      
     })
   },
 

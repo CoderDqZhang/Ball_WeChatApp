@@ -127,7 +127,7 @@
       <view class='info_title'>图集信息</view>
       <view class='game_report_images_session'>
         <image class='game_report_images_class' src="{{game_report_images[0]}}"></image>
-        <view wx:if="{{game_report_images.length > 1}}" class="game_report_images_desc">查看更多</view>
+        <view wx:if="{{game_report_images.length > 1}}" class="game_report_images_desc">图集</view>
       </view>
     </view>
   </view>

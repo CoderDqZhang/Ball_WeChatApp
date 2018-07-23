@@ -93,7 +93,7 @@
       <view class='info_title'>图集信息</view>
       <view class='club_image_session'>
         <image class='club_image_class' src="{{club_images[0]}}"></image>
-        <view wx:if="{{club_images.length > 1}}" class="game_club_desc">查看更多</view>
+        <view wx:if="{{club_images.length > 1}}" class="game_club_desc">图集</view>
       </view>
     </view>
   </view>

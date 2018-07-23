@@ -65,7 +65,11 @@ module.exports.requestUpload = requestUpload
 function sign(data){
   var strs = ''
   for (var index in data) {
-    strs = strs + index + data[index]
+    if (index != 'sign'){
+      strs = strs + index + data[index]
+    }
   }
-  return md5(strs + 'wxc218fa7c51381f48')
+  console.log(strs)
+  "openidowfcA5f3YCeZlTkXamyvq_AVqk6gnicknameDIYage0signgender1weight0height0game_age0good_pointphoneprovinceChinacityChaoyangavatarhttps://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKRBpdVAWaVsKzAvYMFLicbrYuwcs6aiagVibt3aFuQ5GFPpx0fxlowTZSRHicBUqFwlMj3bZOPc3IW5A/132"
+  return md5(strs + 'wx8df2ccb21a4fd773')
 }
